@@ -84,6 +84,11 @@ class Map {
     event.preventDefault();
     $('#addressSubmitModal').modal('hide')
     if (this.marker) { this.marker.setMap(null) }
+    if (this.polygons.length > 0) {
+      this.polygons.forEach(p => { p.setMap(null) });
+      this.polygons = [];
+      this.onPolygonsChanged(this.polygons);
+    }
     this.geocodeAddress();
   }
 
@@ -114,6 +119,6 @@ class Map {
 
   handleRemovePolygon() {
     this.polygons.pop().setMap(null);
-    this.onPolygonsChanged(this.polygons)
+    this.onPolygonsChanged(this.polygons);
   }
 }
