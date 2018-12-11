@@ -97,7 +97,7 @@ class QuotingPanel {
   }
 
   handleSearchAddressClick() {
-    $("#submitQuoteModal").modal("show");
+    $("#addressSubmitModal").modal("show");
   }
 }
 

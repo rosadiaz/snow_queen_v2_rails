@@ -17,6 +17,7 @@ class Map {
     this.addListeners();
     this.showAddressModal();
   }
+
   
   initMap() {
     return new google.maps.Map(document.getElementById('map'), {
@@ -51,7 +52,7 @@ class Map {
   
   initRemoveControl() {
     const removeControlDiv = document.createElement('button');
-    removeControlDiv.classList.add("map-btn")
+    removeControlDiv.classList.add('map-btn')
     removeControlDiv.title = 'Click to remove selected area from the map';
     removeControlDiv.innerHTML = 'Remove last';
 
@@ -72,12 +73,16 @@ class Map {
   }
 
   showAddressModal(){
-    $('#addressSubmitModal').modal("show");
+    const addressSubmitModal = $('#addressSubmitModal')
+    addressSubmitModal.modal('show');
+    addressSubmitModal.keyup(function() {
+      $('input[type=submit]').removeAttr('disabled').removeClass('disabled');
+    });
   }
   
   handleSearchSubmit(event) {
     event.preventDefault();
-    $('#addressSubmitModal').modal("hide")
+    $('#addressSubmitModal').modal('hide')
     if (this.marker) { this.marker.setMap(null) }
     this.geocodeAddress();
   }
