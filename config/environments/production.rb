@@ -97,6 +97,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  ## Added config
+  # Mailtrap config
   response = RestClient.get "https://mailtrap.io/api/v1/inboxes.json?api_token=#{ENV['MAILTRAP_API_TOKEN']}"
 
   first_inbox = JSON.parse(response)[0] # get first inbox
@@ -111,4 +113,6 @@ Rails.application.configure do
   :authentication => :plain
   }
 
+  # Devise config
+  config.action_mailer.default_url_options = { host: 'snow-queen.herokuapp.com' }
 end
