@@ -39,6 +39,7 @@ gem 'simple_form'
 gem 'json'
 gem 'rest-client'#needed for heroku Mailtrap
 gem 'devise' #authentication
+gem 'activeadmin' #admin backend
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
