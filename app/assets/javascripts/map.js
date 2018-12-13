@@ -42,7 +42,7 @@ class Map {
       drawingControl: true,
       drawingControlOptions: {
         position: google.maps.ControlPosition.TOP_CENTER,
-        drawingModes: ['polygon', 'rectangle']
+        drawingModes: ['polygon']
       },
       map: this.map,
       polygonOptions: drawingOptions,
