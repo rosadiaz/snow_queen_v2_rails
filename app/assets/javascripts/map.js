@@ -3,6 +3,7 @@ class Map {
     this.map = this.initMap();
     this.drawingManager = this.initDrawingManager();
     this.removeControl = this.initRemoveControl();
+    this.removeAllControl = this.initRemoveAllControl();
     this.geocoder = this.initGeocoder();
     this.marker = null;
     this.geocodedAddress = null;
@@ -55,6 +56,18 @@ class Map {
     removeControlDiv.classList.add('map-btn')
     removeControlDiv.title = 'Click to remove selected area from the map';
     removeControlDiv.innerHTML = 'Remove last';
+
+    removeControlDiv.index = 1;
+    this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(removeControlDiv);
+
+    return removeControlDiv;
+  }
+
+  initRemoveAllControl() {
+    const removeControlDiv = document.createElement('button');
+    removeControlDiv.classList.add('map-btn')
+    removeControlDiv.title = 'Click to remove ALL selected areas from the map';
+    removeControlDiv.innerHTML = 'Remove ALL';
 
     removeControlDiv.index = 1;
     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(removeControlDiv);
