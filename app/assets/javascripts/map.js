@@ -13,7 +13,7 @@ class Map {
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleGeocodingResponse = this.handleGeocodingResponse.bind(this);
     this.handlePolygonCreated = this.handlePolygonCreated.bind(this);
-    this.handleRemovePolygon = this.handleRemovePolygon.bind(this);
+    this.handleRemoveLastPolygon = this.handleRemoveLastPolygon.bind(this);
     this.addListeners();
     this.showAddressModal();
   }
@@ -69,7 +69,7 @@ class Map {
   addListeners() {
     document.getElementById('AddressSearchModal').addEventListener('submit', this.handleSearchSubmit);
     this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated);
-    this.removeControl.addEventListener('click', this.handleRemovePolygon);
+    this.removeControl.addEventListener('click', this.handleRemoveLastPolygon);
   }
 
   showAddressModal(){
@@ -117,7 +117,7 @@ class Map {
     this.onPolygonsChanged(this.polygons);
   }
 
-  handleRemovePolygon() {
+  handleRemoveLastPolygon() {
     this.polygons.pop().setMap(null);
     this.onPolygonsChanged(this.polygons);
   }
