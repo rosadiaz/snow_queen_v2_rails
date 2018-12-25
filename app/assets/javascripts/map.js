@@ -68,7 +68,7 @@ class Map {
     const removeAllControlDiv = document.createElement('button');
     removeAllControlDiv.classList.add('map-btn')
     removeAllControlDiv.title = 'Click to remove ALL selected areas from the map';
-    removeAllControlDiv.innerHTML = 'Remove ALL';
+    removeAllControlDiv.innerHTML = 'Remove All';
 
     removeAllControlDiv.index = 1;
     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(removeAllControlDiv);
