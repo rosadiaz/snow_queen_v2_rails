@@ -31,6 +31,7 @@ class QuotingPanel {
         secondaryAddressNode.appendChild(div);
       });
       document.getElementById("displayAddress").classList.remove("hidden");
+      document.getElementById("step2").classList.remove("hidden");
     }
   }
 
