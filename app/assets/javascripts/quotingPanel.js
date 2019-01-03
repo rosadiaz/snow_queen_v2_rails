@@ -36,6 +36,7 @@ class QuotingPanel {
   }
 
   handlePolygonChanged(polygons) {
+    document.getElementById("step2").classList.add("hidden");
     this.polygons = polygons;
     this.totalAreaInSqFt = this.convertToSqFt(this.aggregateAreaInMts());
     this.totalDue = this.calculateTotalDue();
