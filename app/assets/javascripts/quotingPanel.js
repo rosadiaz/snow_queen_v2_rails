@@ -35,7 +35,7 @@ class QuotingPanel {
     }
   }
 
-  handlePolygonChanged (polygons) {
+  handlePolygonChanged(polygons) {
     this.polygons = polygons;
     this.totalAreaInSqFt = this.convertToSqFt(this.aggregateAreaInMts());
     this.totalDue = this.calculateTotalDue();
@@ -58,7 +58,11 @@ class QuotingPanel {
   }
 
   calculateTotalDue() {
-    return this.totalAreaInSqFt * constants.PRICE_PER_SQ_FT;
+    let newTotalDue = this.totalAreaInSqFt * constants.PRICE_PER_SQ_FT;
+    if (newTotalDue >= constants.MIN_CHARGE) {
+      return newTotalDue;
+    }
+    return constants.MIN_CHARGE;
   }
 
   showTotalsNode() {

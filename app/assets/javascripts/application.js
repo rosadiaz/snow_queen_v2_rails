@@ -24,7 +24,8 @@ const constants = {
   CENTER_MAP_LOCATION: {lat: 49.2860, lng: -122.8130},
   SQ_FT_CONVERT: 10.764,
   // price to be defined by Snow Queen
-  PRICE_PER_SQ_FT: 0.15,
+  PRICE_PER_SQ_FT: 0.36,
+  MIN_CHARGE: 150,
 }
 
 function initMap() {
