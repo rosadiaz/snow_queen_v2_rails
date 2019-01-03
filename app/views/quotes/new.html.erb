@@ -44,35 +44,28 @@
                         </div>
                      </div>
                      <hr>
-                     <div>Did you know ...
-                        <p>You can select more than one area. Add side paths, backstairs, patio, etc </p>
+                     <div class="col-12 mt-3">
+                        <div>Did you know ...
+                           <p>You can select more than one area. Add side paths, backstairs, patio, etc </p>
+                        </div>
                      </div>
-                     <hr>
-                     <div>Step 3: When would you like the service?
-                        <fieldset class="form-group">
-                           <div class="row">
-                              <div class="col-sm-10">
-                              <div class="form-check">
-                                 <input class="form-check-input" type="radio" name="serviceExpeditionTime" id="3hr" value="9.99" checked>
-                                 <label class="form-check-label" for="3hr">
-                                    URGENT in the next 3 hours <b> $99.99 </b>
-                                 </label>
+                     <div class="col-12 mt-3">
+                        <div>Step 3: When would you like the service?
+                           <fieldset class="form-group">
+                              <div class="row">
+                                 <div class="col-sm-10">
+                                    <% @service_expedition_time.each {|i| %>
+                                       <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="serviceExpeditionTime" id="<%= i[:id] %>" value="<%= i[:price] %>">
+                                          <label class="form-check-label" for="<%= i[:id] %>">
+                                             <%= i[:label] %> <%= i[:id] %> - <b> $<%= i[:price] %> </b>
+                                          </label>
+                                       </div>
+                                    <% } %>
+                                 </div>
                               </div>
-                              <div class="form-check">
-                                 <input class="form-check-input" type="radio" name="serviceExpeditionTime" id="8hr" value="49.99">
-                                 <label class="form-check-label" for="8hr">
-                                    Within 8 hours <b> $49.99 </b>
-                                 </label>
-                              </div>
-                              <div class="form-check disabled">
-                                 <input class="form-check-input" type="radio" name="serviceExpeditionTime" id="24hr" value="0">
-                                 <label class="form-check-label" for="24hr">
-                                    The next 24 hours <b> FREE! </b>
-                                 </label>
-                              </div>
-                              </div>
-                           </div>
-                        </fieldset>
+                           </fieldset>
+                        </div>
                      </div>
                      <div class="col-12 mt-3">
                         <input 
