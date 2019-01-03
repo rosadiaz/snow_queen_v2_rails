@@ -45,4 +45,5 @@ function loadApp() {
   new Quote({
     onOpen: quotingPanel.getData,
   });
+  new Lead();
 }
