@@ -56,7 +56,7 @@
                                  <div class="col-sm-10">
                                     <% @service_expedition_time.each {|i| %>
                                        <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="serviceExpeditionTime" id="<%= i[:id] %>" value="<%= i[:price] %>">
+                                          <input class="form-check-input" type="radio" name="serviceExpeditionCost" id="<%= i[:id] %>" value="<%= i[:price] %>">
                                           <label class="form-check-label" for="<%= i[:id] %>">
                                              <%= i[:label] %> <%= i[:id] %> - <b> $<%= i[:price] %> </b>
                                           </label>
