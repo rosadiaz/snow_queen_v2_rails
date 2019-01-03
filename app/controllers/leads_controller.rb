@@ -3,7 +3,7 @@ class LeadsController < ApplicationController
   def create
     @lead = Lead.new lead_params
     if @lead.save
-      # LeadMailer.new_lead(@lead).deliver
+      LeadMailer.new_lead(@lead).deliver
       render json: {}, status: :ok
     else
       render json: { errors: @lead.errors.full_messages}, status: :unprocessable_entity
