@@ -69,10 +69,8 @@ class Map {
 
   initAutocomplete(){
     const defaultBoundaries = new google.maps.LatLngBounds(
-      // new google.maps.LatLng(constants.DEFAULT_BOUNDARIES.TOP),
-      new google.maps.LatLng(49.332254, -122.940602),
-      // new google.maps.LatLng(constants.DEFAULT_BOUNDARIES.BOTTOM),
-      new google.maps.LatLng(49.271558, -122.772397)
+      new google.maps.LatLng(...constants.DEFAULT_BOUNDARIES.BOTTOM),
+      new google.maps.LatLng(...constants.DEFAULT_BOUNDARIES.TOP),
     );
     const options= {
       bounds: defaultBoundaries,
@@ -80,7 +78,7 @@ class Map {
       componentRestrictions: {country: 'ca'}
     };
 
-    const input = document.getElementById('pac-input');
+    const input = document.getElementById('address');
     const autocomplete = new google.maps.places.Autocomplete(input, options);
   }
 
