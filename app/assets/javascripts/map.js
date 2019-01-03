@@ -4,6 +4,7 @@ class Map {
     this.drawingManager = this.initDrawingManager();
     this.removeControl = this.initRemoveControl();
     this.geocoder = this.initGeocoder();
+    this.autocomplete = this.initAutocomplete();
     this.marker = null;
     this.geocodedAddress = null;
     this.polygons = [];
@@ -64,6 +65,21 @@ class Map {
 
   initGeocoder() {
     return new google.maps.Geocoder();
+  }
+
+  initAutocomplete(){
+    const defaultBoundaries = new google.maps.LatLngBounds(
+      new google.maps.LatLng(49.332254, -122.940602),
+      new google.maps.LatLng(49.271558, -122.772397)
+    );
+    const options= {
+      bounds: defaultBoundaries,
+      types: ['address'],
+      componentRestrictions: {country: 'ca'}
+    };
+
+    const input = document.getElementById('pac-input');
+    const autocomplete = new google.maps.places.Autocomplete(input, options);
   }
 
   addListeners() {

@@ -69,8 +69,13 @@
             <h5 class="modal-title text-white text-shadow" id="addressSubmitModalLabel">Let's start looking for your address:</h5>
          </div>
          <form action="" id="AddressSearchModal">
-            <div class="modal-body d-flex justify-content-center">
-               <input id="address" type="textbox" placeholder="123 Street Rd, Port Moody" class="w-100">
+            <div class="modal-body d-flex justify-content-center pac-contianer">
+               <input id="pac-input" type="text" placeholder="123 Street Rd, Port Moody" class="w-100">
+               <div id="infowindow-content">
+                  <img src="" width="16" height="16" id="place-icon">
+                  <span id="place-name"  class="title"></span><br>
+                  <span id="place-address"></span>
+               </div>
                <input id="submit" type="submit" value="Find" class="disabled btn btn-dark ml-3" disabled>
             </div>
          </form>
@@ -175,5 +180,5 @@
    </div>
 </div>
 <script async defer
-   src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.credentials.google_api%>&libraries=drawing&callback=initMap">
+   src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.credentials.google_api%>&libraries=places,drawing&callback=initMap" async defer>
 </script>

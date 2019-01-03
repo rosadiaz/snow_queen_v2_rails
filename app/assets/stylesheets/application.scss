@@ -89,3 +89,15 @@ main {
   font-size: 25px;
   vertical-align: super;
 }
+
+.pac-container {
+  z-index: 20;
+}
+
+.modal {
+  z-index: 20;   
+}
+
+.modal-backdrop {
+  z-index: 10;        
+}
