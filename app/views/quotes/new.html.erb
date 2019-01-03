@@ -18,10 +18,10 @@
                      </button>
                   </div>
                </div>
+               <hr>
+               <div>Step 2: Select service area</div>
                <div class="hidden" id="step2">
-                  <hr>
-                  <div>Step 2</div>
-                  <p>Identify your driveway</p>
+                  <p>Identify your driveway, front door, and any area that needs to be cleared of snow and salted</p>
                   <div>
                      <%= image_tag('SelectArea.gif', alt: 'Select area example animation') %>
                   </div>
@@ -45,6 +45,19 @@
                      </div>
                      <div>Did you know ...
                         <p>You can select more than one area. Add side paths, backstairs, patio, etc </p>
+                     </div>
+                     <hr>
+                     <div>Step 3: When would you like the service? Approximately 3, 8, 24 hrs
+                        <div class="input-group">
+                           <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                 <input type="radio" aria-label="Radio button for following text input">
+                                 <input type="radio" aria-label="Radio button for following text input">
+                                 <input type="radio" aria-label="Radio button for following text input">
+                              </div>
+                           </div>
+                           <input type="text" class="form-control" aria-label="Text input with radio button">
+                        </div>
                      </div>
                      <div class="col-12 mt-3">
                         <input 
