@@ -69,7 +69,9 @@ class Map {
 
   initAutocomplete(){
     const defaultBoundaries = new google.maps.LatLngBounds(
+      // new google.maps.LatLng(constants.DEFAULT_BOUNDARIES.TOP),
       new google.maps.LatLng(49.332254, -122.940602),
+      // new google.maps.LatLng(constants.DEFAULT_BOUNDARIES.BOTTOM),
       new google.maps.LatLng(49.271558, -122.772397)
     );
     const options= {
