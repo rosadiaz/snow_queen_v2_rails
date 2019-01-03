@@ -1,6 +1,7 @@
 class QuotesController < ApplicationController
   def new
     @quote = Quote.new
+    @lead = Lead.new
   end
 
   def create
