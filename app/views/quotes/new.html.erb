@@ -199,23 +199,18 @@
    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
          <div class="modal-header bg-primary">
-            <h5 class="modal-title text-white text-shadow" id="requestCallSubmitModalLabel">Enter your phone and one of our friendly mangers will get in touch with you as soon as possible</h5>
+            <h5 class="modal-title text-white text-shadow text-center" id="requestCallSubmitModalLabel">Enter your phone and one of our friendly mangers will get in touch with you as soon as possible</h5>
          </div>
          <%= simple_form_for(@lead, remote: true) do |form| %>
-         <!-- <form action="" id="requestCallSearchModal">-->
-            <div class="modal-body d-flex justify-content-center">
-               <%= form.input :phone_number, label: "(123)456-7890" %>
-               <%= form.input :first_name, label: "First name" %>
-               <%= form.input :last_name, label: "Last name" %>
-               <!--    <input id="phone" type="text" placeholder="(123)456-7890" class="w-100">-->
-               <%= form.submit "Submit quote", class: 'btn btn-dark ml-3' %>
-               <!--   <input id="submit" type="submit" value="Request Call" class="disabled btn btn-dark ml-3" disabled>-->
+            <div class="modal-body">
+               <%= form.input :phone_number %>
+               <%= form.input :first_name %>
+               <%= form.input :last_name %>
+               <div class="text-center">
+                  <%= form.submit "Request a call", class: 'btn btn-dark ml-3' %> Or call 778-SHOVEL-SQUAD
+               </div>
             </div>
          <% end %>
-
-      -->
-      <div> Or call 778-SHOVEL-SQUAD
-      </div>
       </div>
    </div>
 </div>
