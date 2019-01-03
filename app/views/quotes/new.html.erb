@@ -4,7 +4,7 @@
          <div class="card">
             <h5 class="card-header font-weight-bold bg-primary text-white text-shadow">Quote calculator</h5>
             <div class="card-body" id="panel">
-               <div>Step 1: Address</div>
+               <div><b>Step 1:</b> Address</div>
                <div class="row hidden displayAddress" id="displayAddress">
                   <div class="col-12 card-text" id="primaryAddress"></div>
                   <div class="col-8 card-text secondary" id="secondaryAddress"></div>
@@ -19,7 +19,7 @@
                   </div>
                </div>
                <hr>
-               <div>Step 2: Select service area</div>
+               <div><b>Step 2:</b> Select service area</div>
                <div class="hidden" id="step2">
                   <p>Identify your driveway, front door, and any area that needs to be cleared of snow and salted</p>
                   <div>
@@ -39,7 +39,7 @@
                         <div class="card">
                            <div class="card-body text-center p-1">
                               <span class="font-weight-bold currency-symbol text-secondary">$</span>
-                              <span id="totalDue" class="font-weight-bold font-size-35"></span> CAD
+                              <span id="subTotalDue" class="font-weight-bold font-size-35">subTotal</span> CAD
                            </div>
                         </div>
                      </div>
@@ -50,7 +50,7 @@
                         </div>
                      </div>
                      <div class="col-12 mt-3">
-                        <div>Step 3: When would you like the service?
+                        <div><b>Step 3:</b> When would you like the service?
                            <fieldset class="form-group">
                               <div class="row">
                                  <div class="col-sm-10">
@@ -65,6 +65,14 @@
                                  </div>
                               </div>
                            </fieldset>
+                        </div>
+                     </div>
+                     <div class="col-12 mt-3">
+                        <div class="card"> 
+                           <div class="card-body text-center p-1">
+                              <span class="font-weight-bold currency-symbol text-secondary">$</span>
+                              <span id="totalDue" class="font-weight-bold font-size-35">Total</span> CAD
+                           </div>
                         </div>
                      </div>
                      <div class="col-12 mt-3">
