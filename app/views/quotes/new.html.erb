@@ -43,21 +43,36 @@
                            </div>
                         </div>
                      </div>
+                     <hr>
                      <div>Did you know ...
                         <p>You can select more than one area. Add side paths, backstairs, patio, etc </p>
                      </div>
                      <hr>
-                     <div>Step 3: When would you like the service? Approximately 3, 8, 24 hrs
-                        <div class="input-group">
-                           <div class="input-group-prepend">
-                              <div class="input-group-text">
-                                 <input type="radio" aria-label="Radio button for following text input">
-                                 <input type="radio" aria-label="Radio button for following text input">
-                                 <input type="radio" aria-label="Radio button for following text input">
+                     <div>Step 3: When would you like the service?
+                        <fieldset class="form-group">
+                           <div class="row">
+                              <div class="col-sm-10">
+                              <div class="form-check">
+                                 <input class="form-check-input" type="radio" name="serviceExpeditionTime" id="3hr" value="9.99" checked>
+                                 <label class="form-check-label" for="3hr">
+                                    URGENT in the next 3 hours <b> $99.99 </b>
+                                 </label>
+                              </div>
+                              <div class="form-check">
+                                 <input class="form-check-input" type="radio" name="serviceExpeditionTime" id="8hr" value="49.99">
+                                 <label class="form-check-label" for="8hr">
+                                    Within 8 hours <b> $49.99 </b>
+                                 </label>
+                              </div>
+                              <div class="form-check disabled">
+                                 <input class="form-check-input" type="radio" name="serviceExpeditionTime" id="24hr" value="0">
+                                 <label class="form-check-label" for="24hr">
+                                    The next 24 hours <b> FREE! </b>
+                                 </label>
+                              </div>
                               </div>
                            </div>
-                           <input type="text" class="form-control" aria-label="Text input with radio button">
-                        </div>
+                        </fieldset>
                      </div>
                      <div class="col-12 mt-3">
                         <input 
