@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_03_215055) do
+ActiveRecord::Schema.define(version: 2019_01_04_223634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2019_01_03_215055) do
     t.json "polygons"
     t.string "static_map_URL"
     t.float "service_expedition_cost"
+    t.string "service_expedition_time"
     t.index ["email"], name: "index_quotes_on_email"
   end
 
