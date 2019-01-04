@@ -4,7 +4,7 @@ class QuotingPanel {
     this.geocodedAddress = null;
     this.totalAreaInSqFt = null;
     this.subTotal = null;
-    this.service_expedition_cost = null;
+    this.serviceExpeditionCost = null;
     this.totalDue = null;
 
     this.showAddress = this.showAddress.bind(this);
@@ -81,19 +81,13 @@ class QuotingPanel {
   }
   
   calculateTotalDue() {
-    let service_expedition_cost = 0 || this.service_expedition_cost;
-    let subTotal = this.totalAreaInSqFt * constants.PRICE_PER_SQ_FT;
-    let totalDue = subTotal + service_expedition_cost;
+    let serviceExpeditionCost = 0 || this.serviceExpeditionCost;
+    let totalDue = this.subTotal + serviceExpeditionCost;
     if (totalDue >= constants.MIN_CHARGE) {
       return totalDue;
     }
     return constants.MIN_CHARGE;
   }
-  
-  // updateTotalDueNode() {
-  //   const areaNodeInModal = document.getElementById("areaModal");
-  //   areaNodeInModal.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
-  // }
 
   updateTotalDueNode() {
     const totalDueNode = document.getElementById("totalDue");
@@ -106,9 +100,18 @@ class QuotingPanel {
   addListeners() {
     document.getElementById("SubmitQuote").addEventListener('submit', (event) => { event.preventDefault() });
     document.getElementById("searchAddressButton").addEventListener('click', this.handleSearchAddressClick);
-    $('input[type=radio]').click(function(){
-      this.service_expedition_cost = this.value;
-  });
+    document.getElementsByName("serviceExpeditionCost").forEach((element) => { 
+      element.addEventListener('click', (event) => { 
+        const serviceExpeditionCost = Number.parseFloat(event.target.value);
+        this.handleServiceExpeditionChange(serviceExpeditionCost); 
+      });
+    });
+  }
+
+  handleServiceExpeditionChange(serviceExpeditionCost) {
+    this.serviceExpeditionCost = serviceExpeditionCost;
+    this.totalDue = this.calculateTotalDue();
+    this.updateTotalDueNode();
   }
 
   getData() {
@@ -116,7 +119,7 @@ class QuotingPanel {
       polygons: this.polygons,
       geocodedAddress: this.geocodedAddress || "",
       totalAreaInSqFt: this.totalAreaInSqFt, 
-      subTotal: this.subTotal,
+      totalDue: this.totalDue,
       totalDue: this.totalDue,
     }
   }
