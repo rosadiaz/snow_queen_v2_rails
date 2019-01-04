@@ -3,6 +3,8 @@ class QuotingPanel {
     this.polygons = {};
     this.geocodedAddress = null;
     this.totalAreaInSqFt = null;
+    this.subtotalDue = null;
+    this.service_expedition_cost = null;
     this.totalDue = null;
 
     this.showAddress = this.showAddress.bind(this);
@@ -39,10 +41,11 @@ class QuotingPanel {
     document.getElementById("step2").classList.add("hidden");
     this.polygons = polygons;
     this.totalAreaInSqFt = this.convertToSqFt(this.aggregateAreaInMts());
-    this.totalDue = this.calculateTotalDue();
     this.updateAreaNode();
-    this.updateTotalDueNode();
+    this.updateSubTotalNode();
     this.showTotalsNode();
+    this.totalDue = this.calculateTotalDue();
+    this.updateTotalDueNode();
   }
     
   aggregateAreaInMts() {
@@ -58,27 +61,34 @@ class QuotingPanel {
     return totalAreaInMts * constants.SQ_FT_CONVERT;
   }
 
-  calculateTotalDue() {
-    let newTotalDue = this.totalAreaInSqFt * constants.PRICE_PER_SQ_FT;
-    if (newTotalDue >= constants.MIN_CHARGE) {
-      return newTotalDue;
-    }
-    return constants.MIN_CHARGE;
+  updateAreaNode() {
+    const areaNode = document.getElementById("calculatedArea");
+    areaNode.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
+  }
+
+  updateSubTotalNode() {
+    const subTotalNode = document.getElementById("subTotalDue");
+    subTotalNode.innerText = `${(this.totalAreaInSqFt * constants.PRICE_PER_SQ_FT).toLocaleString(undefined, {maximumFractionDigits: 2})}`;
   }
 
   showTotalsNode() {
     document.getElementById("displayTotals").classList.remove("hidden");
   }
   
-  updateAreaNode() {
-    const areaNode = document.getElementById("calculatedArea");
-    areaNode.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
+  calculateTotalDue() {
+    let service_expedition_cost = 0 || this.service_expedition_cost;
+    let subTotal = this.totalAreaInSqFt * constants.PRICE_PER_SQ_FT;
+    let totalDue = subTotal + service_expedition_cost;
+    if (totalDue >= constants.MIN_CHARGE) {
+      return totalDue;
+    }
+    return constants.MIN_CHARGE;
   }
-
-  updateTotalDueNode() {
-    const areaNodeInModal = document.getElementById("areaModal");
-    areaNodeInModal.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
-  }
+  
+  // updateTotalDueNode() {
+  //   const areaNodeInModal = document.getElementById("areaModal");
+  //   areaNodeInModal.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
+  // }
 
   updateTotalDueNode() {
     const totalDueNode = document.getElementById("totalDue");
@@ -91,6 +101,9 @@ class QuotingPanel {
   addListeners() {
     document.getElementById("SubmitQuote").addEventListener('submit', (event) => { event.preventDefault() });
     document.getElementById("searchAddressButton").addEventListener('click', this.handleSearchAddressClick);
+    $('input[type=radio]').click(function(){
+      this.service_expedition_cost = this.value;
+  });
   }
 
   getData() {
