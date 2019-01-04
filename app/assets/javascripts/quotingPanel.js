@@ -3,7 +3,7 @@ class QuotingPanel {
     this.polygons = {};
     this.geocodedAddress = null;
     this.totalAreaInSqFt = null;
-    this.subtotalDue = null;
+    this.subTotal = null;
     this.service_expedition_cost = null;
     this.totalDue = null;
 
@@ -42,6 +42,7 @@ class QuotingPanel {
     this.polygons = polygons;
     this.totalAreaInSqFt = this.convertToSqFt(this.aggregateAreaInMts());
     this.updateAreaNode();
+    this.subTotal = this.calculateSubTotal();
     this.updateSubTotalNode();
     this.showTotalsNode();
     this.totalDue = this.calculateTotalDue();
@@ -66,9 +67,13 @@ class QuotingPanel {
     areaNode.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
   }
 
+  calculateSubTotal() {
+    return this.totalAreaInSqFt * constants.PRICE_PER_SQ_FT;
+  }
+
   updateSubTotalNode() {
     const subTotalNode = document.getElementById("subTotalDue");
-    subTotalNode.innerText = `${(this.totalAreaInSqFt * constants.PRICE_PER_SQ_FT).toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+    subTotalNode.innerText = `${(this.subTotal).toLocaleString(undefined, {maximumFractionDigits: 2})}`;
   }
 
   showTotalsNode() {
@@ -111,6 +116,7 @@ class QuotingPanel {
       polygons: this.polygons,
       geocodedAddress: this.geocodedAddress || "",
       totalAreaInSqFt: this.totalAreaInSqFt, 
+      subTotal: this.subTotal,
       totalDue: this.totalDue,
     }
   }

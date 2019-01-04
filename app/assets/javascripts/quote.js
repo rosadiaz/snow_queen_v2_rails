@@ -39,6 +39,7 @@ class Quote {
     this.updateStaticMap(quoteData.polygons);
 
     document.getElementById("areaModal").innerText = `${quoteData.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
+    document.getElementById("subTotalModal").innerText = `${quoteData.subTotal.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
     document.getElementById("totalModal").innerText = `${quoteData.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
     document.getElementById("quote_address").value = quoteData.geocodedAddress;
     document.getElementById("quote_area").value = quoteData.totalAreaInSqFt;
