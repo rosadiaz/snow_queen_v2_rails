@@ -5,6 +5,8 @@ class QuotingPanel {
     this.totalAreaInSqFt = null;
     this.subTotal = null;
     this.serviceExpeditionCost = null;
+    this.serviceExpeditionDetails = null;
+    this.serviceExpeditionTime = null;
     this.totalDue = null;
 
     this.showAddress = this.showAddress.bind(this);
@@ -103,13 +105,17 @@ class QuotingPanel {
     document.getElementsByName("serviceExpeditionCost").forEach((element) => { 
       element.addEventListener('click', (event) => { 
         const serviceExpeditionCost = Number.parseFloat(event.target.value);
-        this.handleServiceExpeditionChange(serviceExpeditionCost); 
+        const serviceExpeditionDetails = event.target.dataset.label;
+        const serviceExpeditionTime = event.target.id;
+        this.handleServiceExpeditionChange(serviceExpeditionCost, serviceExpeditionDetails, serviceExpeditionTime); 
       });
     });
   }
 
-  handleServiceExpeditionChange(serviceExpeditionCost) {
+  handleServiceExpeditionChange(serviceExpeditionCost, serviceExpeditionDetails, serviceExpeditionTime) {
     this.serviceExpeditionCost = serviceExpeditionCost;
+    this.serviceExpeditionDetails = serviceExpeditionDetails;
+    this.serviceExpeditionTime = serviceExpeditionTime;
     this.totalDue = this.calculateTotalDue();
     this.updateTotalDueNode();
   }
@@ -119,8 +125,11 @@ class QuotingPanel {
       polygons: this.polygons,
       geocodedAddress: this.geocodedAddress || "",
       totalAreaInSqFt: this.totalAreaInSqFt, 
+      subTotal: this.subTotal,
       totalDue: this.totalDue,
-      totalDue: this.totalDue,
+      serviceExpeditionCost: this.serviceExpeditionCost,
+      serviceExpeditionDetails: this.serviceExpeditionDetails,
+      serviceExpeditionTime: this.serviceExpeditionTime,
     }
   }
 
