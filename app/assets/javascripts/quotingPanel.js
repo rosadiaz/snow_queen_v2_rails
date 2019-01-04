@@ -4,9 +4,9 @@ class QuotingPanel {
     this.geocodedAddress = null;
     this.totalAreaInSqFt = null;
     this.subTotal = null;
-    this.serviceExpeditionCost = null;
-    this.serviceExpeditionDetails = null;
-    this.serviceExpeditionTime = null;
+    this.serviceExpeditionCost = 0; // needs improvement to start according to controller variables
+    this.serviceExpeditionDetails = 'FREE';  // needs improvement to start according to controller variables
+    this.serviceExpeditionTime = '24hrs'; // needs improvement to start according to controller variables
     this.totalDue = null;
 
     this.showAddress = this.showAddress.bind(this);
@@ -83,8 +83,7 @@ class QuotingPanel {
   }
   
   calculateTotalDue() {
-    let serviceExpeditionCost = 0 || this.serviceExpeditionCost;
-    let totalDue = this.subTotal + serviceExpeditionCost;
+    let totalDue = this.subTotal + this.serviceExpeditionCost;
     if (totalDue >= constants.MIN_CHARGE) {
       return totalDue;
     }
