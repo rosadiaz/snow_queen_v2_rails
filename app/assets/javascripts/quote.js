@@ -48,6 +48,7 @@ class Quote {
     document.getElementById("quote_total").value = quoteData.totalDue;
     document.getElementById("quote_polygons").value = polygonsLatLngs;
     document.getElementById("quote_static_map_URL").value = this.staticMapURL;
+    document.getElementById("quote_service_expedition_cost").value = quoteData.serviceExpeditionCost;
     console.log("this.staticMapURL: ", this.staticMapURL);
   }
 

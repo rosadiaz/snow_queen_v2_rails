@@ -30,7 +30,8 @@ class QuotesController < ApplicationController
       :total, 
       :comments, 
       :polygons, 
-      :static_map_URL
+      :static_map_URL,
+      :service_expedition_cost,
       )  
   end
   
