@@ -3,8 +3,8 @@ class LeadMailer < ApplicationMailer
     @lead = lead
     
     mail(
-      to: "SnowQueen@winterhelpers.com",
-      from: "SnowQueen@winterhelpers.com",
+      to: "info@shovelsquad.com",
+      from: "info@shovelsquad.com",
       subject: "Phone call requested #{@lead.phone_number}"
     )
   end

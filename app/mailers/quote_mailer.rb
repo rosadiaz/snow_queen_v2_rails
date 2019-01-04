@@ -4,8 +4,8 @@ class QuoteMailer < ApplicationMailer
     
     mail(
       to: @quote.email,
-      from: "SnowQueen@winterhelpers.com",
-      bcc: "SnowQueen@winterhelpers.com",
+      from: "info@shovelsquad.com",
+      bcc: "info@shovelsquad.com",
       subject: "Service request ##{@quote.id}"
     )
   end

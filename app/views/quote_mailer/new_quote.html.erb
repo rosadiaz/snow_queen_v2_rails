@@ -1,9 +1,9 @@
-<h1>Snow Queen service request #<%= @quote.id %></h1>
+<h1>Shovel Squad service request #<%= @quote.id %></h1>
 
 <h2>Hi <%= @quote.first_name %></h2>
 
 <p>
-  Thank you for choosing Snow Queen to fulfill your winter snow clearing and salting needs! <br>
+  Thank you for choosing Shovel Squad to fulfill your winter snow clearing and salting needs! <br>
   For your reference, here are the details of the service you requested on <%= @quote.created_at %>:
 </p>
 <dl>
@@ -18,5 +18,6 @@
   <dd><%= number_to_currency(@quote.total) %></dd><br/>
 </dl>
 
-<p>Cheers, <br> Snow Queen Team</p>
 <p>Expect one of our hard working squad members to show up within the next <%= @quote.service_expedition_time %> </p>
+
+<p>Cheers, <br> Shovel Squad</p>
