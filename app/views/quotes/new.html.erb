@@ -69,17 +69,11 @@
                      </div>
 
                      <div class="col-12 mt-3">
-                        <div><b>Step 4:</b> Would you like to add a bag of salt?
-                           <div class="row">
-                              <div class="col-sm-12">
-                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">Yes Please!</label>
-                                    <input type="number" class="form-control" aria-label="Number of bags">
-                                 </div>
-                              </div>
+                           <div><b>Step 4:</b> Add a bag of salt
+                              <button type="button" class="btn btn-success rounded-circle">+</button>
+                              <span> <%= @salt_bags %> </span>
+                              <button type="button" class="btn btn-danger rounded-circle">-</button>
                            </div>
-                        </div>
                      </div>
 
                      <div class="col-12 mt-3">

@@ -7,6 +7,7 @@ class QuotesController < ApplicationController
       {label: 'In the next', id: '8hrs', price: 49.99},
       {label: 'FREE', id: '24hrs', price: 0},
     ]
+    @salt_bags = 0
   end
 
   def create
