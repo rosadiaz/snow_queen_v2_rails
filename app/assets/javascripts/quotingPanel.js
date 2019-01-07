@@ -134,25 +134,16 @@ class QuotingPanel {
 
   handleAddSaltBag() {
     this.saltBags += 1;
-    // this.saltBagsDue = this.saltBags * this.saltBagPrice;
-    // this.updateTotalSaltBagsNode();
-    // this.totalDue = this.calculateTotalDue();
-    // this.updateTotalDueNode();
-    this.updateSaltBagsTotals();
+    this.saltBagsDue = this.saltBags * this.saltBagPrice;
+    this.updateTotalSaltBagsNode();
+    this.totalDue = this.calculateTotalDue();
+    this.updateTotalDueNode();
   }
 
   handleRemoveSaltBag() {
     if (this.saltBags > 0) {
       this.saltBags -= 1;
     }
-    this.updateSaltBagsTotals();
-    // this.saltBagsDue = this.saltBags * this.saltBagPrice;
-    // this.updateTotalSaltBagsNode();
-    // this.totalDue = this.calculateTotalDue();
-    // this.updateTotalDueNode();
-  }
-
-  updateSaltBagsTotals() {
     this.saltBagsDue = this.saltBags * this.saltBagPrice;
     this.updateTotalSaltBagsNode();
     this.totalDue = this.calculateTotalDue();
