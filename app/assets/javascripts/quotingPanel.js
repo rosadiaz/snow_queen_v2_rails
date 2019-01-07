@@ -7,7 +7,7 @@ class QuotingPanel {
     this.serviceExpeditionCost = 0; // needs improvement to start according to controller variables
     this.serviceExpeditionDetails = 'FREE';  // needs improvement to start according to controller variables
     this.serviceExpeditionTime = '24hrs'; // needs improvement to start according to controller variables
-    this.saltBags = 0;
+    this.saltBagsQuantity = 0;
     this.saltBagPrice = 35; // needs improvement to start according to controller variables
     this.saltBagsDue = null;
     this.totalDue = null;
@@ -83,7 +83,7 @@ class QuotingPanel {
 
   updateTotalSaltBagsNode() {
     const numberOfBagsNode = document.getElementById("numberOfBags");
-    numberOfBagsNode.innerText = `${this.saltBags}`;
+    numberOfBagsNode.innerText = `${this.saltBagsQuantity}`;
     const bagsDueNode = document.getElementById("saltBagsDue");
     bagsDueNode.innerText = `${this.saltBagsDue}`;
     this.updateTotalDueNode();
@@ -133,19 +133,19 @@ class QuotingPanel {
   }
 
   handleAddSaltBag() {
-    this.saltBags += 1;
+    this.saltBagsQuantity += 1;
     this.updateSaltBagsTotals();
   }
 
   handleRemoveSaltBag() {
-    if (this.saltBags > 0) {
-      this.saltBags -= 1;
+    if (this.saltBagsQuantity > 0) {
+      this.saltBagsQuantity -= 1;
     }
     this.updateSaltBagsTotals();
   }
 
   updateSaltBagsTotals() {
-    this.saltBagsDue = this.saltBags * this.saltBagPrice;
+    this.saltBagsDue = this.saltBagsQuantity * this.saltBagPrice;
     this.updateTotalSaltBagsNode();
     this.totalDue = this.calculateTotalDue();
     this.updateTotalDueNode();
@@ -157,10 +157,12 @@ class QuotingPanel {
       geocodedAddress: this.geocodedAddress || "",
       totalAreaInSqFt: this.totalAreaInSqFt, 
       subTotal: this.subTotal,
-      totalDue: this.totalDue,
       serviceExpeditionCost: this.serviceExpeditionCost,
       serviceExpeditionDetails: this.serviceExpeditionDetails,
       serviceExpeditionTime: this.serviceExpeditionTime,
+      saltBagsQuantity: this.saltBagsQuantity,
+      saltBagsDue: this.saltBagsDue,
+      totalDue: this.totalDue,
     }
   }
 

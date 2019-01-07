@@ -50,7 +50,6 @@ class Quote {
     document.getElementById("quote_static_map_URL").value = this.staticMapURL;
     document.getElementById("quote_service_expedition_cost").value = quoteData.serviceExpeditionCost;
     document.getElementById("quote_service_expedition_time").value = quoteData.serviceExpeditionTime;
-    console.log("this.staticMapURL: ", this.staticMapURL);
   }
 
   updateStaticMap(polygons) {
