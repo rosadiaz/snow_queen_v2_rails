@@ -8,6 +8,8 @@ class QuotingPanel {
     this.serviceExpeditionDetails = 'FREE';  // needs improvement to start according to controller variables
     this.serviceExpeditionTime = '24hrs'; // needs improvement to start according to controller variables
     this.saltBags = 0;
+    this.saltBagPrice = 35; // needs improvement to start according to controller variables
+    this.saltBagsDue = null;
     this.totalDue = null;
 
     this.showAddress = this.showAddress.bind(this);
@@ -124,9 +126,16 @@ class QuotingPanel {
   }
 
   handleAddSaltBag() {
-    debugger;
     this.saltBags += 1;
-    console.log("this.saltBags: ", this.saltBags);
+    this.saltBagsDue = this.saltBags * this.saltBagPrice;
+    this.updateTotalSaltBags();
+  }
+
+  updateTotalSaltBags() {
+    const numberOfBagsNode = document.getElementById("numberOfBags");
+    numberOfBagsNode.innerText = `${this.saltBags}`;
+    const bagsDueNode = document.getElementById("saltBagsDue");
+    bagsDueNode.innerText = `${this.saltBagsDue}`;
   }
 
   getData() {
