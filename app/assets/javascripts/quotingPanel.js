@@ -120,9 +120,8 @@ class QuotingPanel {
         this.handleServiceExpeditionChange(serviceExpeditionCost, serviceExpeditionDetails, serviceExpeditionTime); 
       });
     });
-    document.getElementById("addBag").addEventListener('click', (event) => {
-      this.handleAddSaltBag();
-    });
+    document.getElementById("addBag").addEventListener('click', (event) => { this.handleAddSaltBag() });
+    document.getElementById("removeBag").addEventListener('click', (event) => { this.handleRemoveSaltBag() });
   }
 
   handleServiceExpeditionChange(serviceExpeditionCost, serviceExpeditionDetails, serviceExpeditionTime) {
@@ -135,6 +134,16 @@ class QuotingPanel {
 
   handleAddSaltBag() {
     this.saltBags += 1;
+    this.saltBagsDue = this.saltBags * this.saltBagPrice;
+    this.updateTotalSaltBagsNode();
+    this.totalDue = this.calculateTotalDue();
+    this.updateTotalDueNode();
+  }
+
+  handleRemoveSaltBag() {
+    if (this.saltBags > 0) {
+      this.saltBags -= 1;
+    }
     this.saltBagsDue = this.saltBags * this.saltBagPrice;
     this.updateTotalSaltBagsNode();
     this.totalDue = this.calculateTotalDue();
