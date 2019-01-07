@@ -34,6 +34,8 @@ class QuotesController < ApplicationController
       :static_map_URL,
       :service_expedition_cost,
       :service_expedition_time,
+      :salt_bags_quantity,
+      :salt_bags_due,
       )  
   end
   

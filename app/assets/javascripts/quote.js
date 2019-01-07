@@ -45,6 +45,7 @@ class Quote {
     document.getElementById("saltBagsQuantityModal").innerText = `${quoteData.saltBagsQuantity}`;
     document.getElementById("saltBagsDueModal").innerText = `${quoteData.saltBagsDue}`;
     document.getElementById("totalModal").innerText = `${quoteData.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+
     document.getElementById("quote_address").value = quoteData.geocodedAddress;
     document.getElementById("quote_area").value = quoteData.totalAreaInSqFt;
     document.getElementById("quote_total").value = quoteData.totalDue;
@@ -52,6 +53,8 @@ class Quote {
     document.getElementById("quote_static_map_URL").value = this.staticMapURL;
     document.getElementById("quote_service_expedition_cost").value = quoteData.serviceExpeditionCost;
     document.getElementById("quote_service_expedition_time").value = quoteData.serviceExpeditionTime;
+    document.getElementById("quote_salt_bags_quantity").value = quoteData.saltBagsQuantity;
+    document.getElementById("quote_salt_bags_due").value = quoteData.saltBagsDue;
   }
 
   updateStaticMap(polygons) {
