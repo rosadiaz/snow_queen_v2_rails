@@ -7,6 +7,7 @@ class QuotingPanel {
     this.serviceExpeditionCost = 0; // needs improvement to start according to controller variables
     this.serviceExpeditionDetails = 'FREE';  // needs improvement to start according to controller variables
     this.serviceExpeditionTime = '24hrs'; // needs improvement to start according to controller variables
+    this.saltBags = 0;
     this.totalDue = null;
 
     this.showAddress = this.showAddress.bind(this);
@@ -109,6 +110,9 @@ class QuotingPanel {
         this.handleServiceExpeditionChange(serviceExpeditionCost, serviceExpeditionDetails, serviceExpeditionTime); 
       });
     });
+    document.getElementById("addBag").addEventListener('click', (event) => {
+      this.handleAddSaltBag();
+    });
   }
 
   handleServiceExpeditionChange(serviceExpeditionCost, serviceExpeditionDetails, serviceExpeditionTime) {
@@ -117,6 +121,12 @@ class QuotingPanel {
     this.serviceExpeditionTime = serviceExpeditionTime;
     this.totalDue = this.calculateTotalDue();
     this.updateTotalDueNode();
+  }
+
+  handleAddSaltBag() {
+    debugger;
+    this.saltBags += 1;
+    console.log("this.saltBags: ", this.saltBags);
   }
 
   getData() {
