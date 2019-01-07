@@ -81,12 +81,20 @@ class QuotingPanel {
     subTotalNode.innerText = `${(this.subTotal).toLocaleString(undefined, {maximumFractionDigits: 2})}`;
   }
 
+  updateTotalSaltBagsNode() {
+    const numberOfBagsNode = document.getElementById("numberOfBags");
+    numberOfBagsNode.innerText = `${this.saltBags}`;
+    const bagsDueNode = document.getElementById("saltBagsDue");
+    bagsDueNode.innerText = `${this.saltBagsDue}`;
+    this.updateTotalDueNode();
+  }
+
   showTotalsNode() {
     document.getElementById("displayTotals").classList.remove("hidden");
   }
   
   calculateTotalDue() {
-    let totalDue = this.subTotal + this.serviceExpeditionCost;
+    let totalDue = this.subTotal + this.serviceExpeditionCost + this.saltBagsDue;
     if (totalDue >= constants.MIN_CHARGE) {
       return totalDue;
     }
@@ -128,14 +136,9 @@ class QuotingPanel {
   handleAddSaltBag() {
     this.saltBags += 1;
     this.saltBagsDue = this.saltBags * this.saltBagPrice;
-    this.updateTotalSaltBags();
-  }
-
-  updateTotalSaltBags() {
-    const numberOfBagsNode = document.getElementById("numberOfBags");
-    numberOfBagsNode.innerText = `${this.saltBags}`;
-    const bagsDueNode = document.getElementById("saltBagsDue");
-    bagsDueNode.innerText = `${this.saltBagsDue}`;
+    this.updateTotalSaltBagsNode();
+    this.totalDue = this.calculateTotalDue();
+    this.updateTotalDueNode();
   }
 
   getData() {
