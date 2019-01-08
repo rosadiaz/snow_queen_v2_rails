@@ -19,23 +19,23 @@
                   </div>
                </div>
                <hr>
-               <div><b>Step 2:</b> Select service area</div>
-               <div class="hidden" id="step2">
-                  <p>Identify your driveway, front door, and any area that needs to be cleared of snow and salted</p>
-                  <div>
-                     <%= image_tag('SelectArea.gif', alt: 'Select area example animation') %>
-                  </div>
-               </div>
                <form action="" id="SubmitQuote">
+                  <div><b>Step 2:</b> Select service area</div>
+                  <div class="hidden" id="step2"> <!-- Displays instructions and gif -->
+                     <p>Identify your driveway, front door, and any area that needs to be cleared of snow and salted</p>
+                     <div>
+                        <%= image_tag('SelectArea.gif', alt: 'Select area example animation') %>
+                     </div>
+                  </div>
                   <div class="hidden row" id="displayTotals">
-                     <div class="col-12 mt-4">
+                     <div class="col-12 mt-4"> <!-- Displays total square footage selected -->
                         <div class="card">
                            <div class="card-body text-center p-1">
                               <span id="calculatedArea" class="font-weight-bold font-size-35"></span> sq ft
                            </div>
                         </div>
                      </div>
-                     <div class="col-12 mt-3">
+                     <div class="col-12 mt-3"> <!-- Displays subtotal for selected area -->
                         <div class="card">
                            <div class="card-body text-center p-1">
                               <span class="font-weight-bold currency-symbol text-secondary">$</span>
@@ -44,45 +44,57 @@
                         </div>
                      </div>
                      <hr>
-                     <div class="col-12 mt-3">
+                     <div class="col-12 mt-3"> <!-- Displays hint to add more areas -->
                         <div>Did you know ...
                            <p>You can select more than one area. Add side paths, backstairs, patio, etc </p>
                         </div>
                      </div>
+                  </div>
+                  <hr>
+                  <div><b>Step 3:</b> When would you like the service? </div>
+                  <div class="hidden row" id="displayServiceExpedition">
                      <div class="col-12 mt-3">
-                        <div><b>Step 3:</b> When would you like the service?
-                           <fieldset class="form-group">
-                              <div class="row">
-                                 <div class="col-sm-10">
-                                    <% @service_expedition_time.each {|i| %>
-                                       <div class="form-check">
-                                          <input class="form-check-input" type="radio" name="serviceExpeditionCost" id="<%= i[:id] %>" value="<%= i[:price] %>" data-label="<%= i[:label] %>" checked>
-                                          <label class="form-check-label" for="<%= i[:id] %>">
-                                             <%= i[:label] %> <%= i[:id] %> - <b> $<%= i[:price] %> </b>
-                                          </label>
-                                       </div>
-                                    <% } %>
-                                 </div>
+                        <fieldset class="form-group">
+                           <div class="row">
+                              <div class="col-sm-10">
+                                 <% @service_expedition_time.each {|i| %>
+                                    <div class="form-check">
+                                       <input class="form-check-input" type="radio" name="serviceExpeditionCost" id="<%= i[:id] %>" value="<%= i[:price] %>" data-label="<%= i[:label] %>" checked>
+                                       <label class="form-check-label" for="<%= i[:id] %>">
+                                          <%= i[:label] %> <%= i[:id] %> - <b> $<%= i[:price] %> </b>
+                                       </label>
+                                    </div>
+                                 <% } %>
                               </div>
-                           </fieldset>
+                           </div>
+                        </fieldset>
+                     </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                     <div class="col-6">
+                        <div><b>Step 4:</b> Add a bag of salt </div>
+                     </div>
+                     <div class="col-6">
+                        <div>
+                              <button id="addBag" type="button" class="btn btn-success rounded-circle pl-2 pr-2 pt-0 pb-0">+</button>
+                              <span id="numberOfBags" class="font-weight-bold font-size-35 align-middle">0</span>
+                              <button id="removeBag" type="button" class="btn btn-danger rounded-circle pl-2 pr-2 pt-0 pb-0">-</button>
                         </div>
                      </div>
-
+                  </div>
+                  <div class="row">
                      <div class="col-12 mt-3">
-                        <div><b>Step 4:</b> Add a bag of salt
-                           <button id="addBag" type="button" class="btn btn-success rounded-circle">+</button>
-                           <span id="numberOfBags" class="font-weight-bold font-size-35 align-middle">0</span>
-                           <button id="removeBag" type="button" class="btn btn-danger rounded-circle">-</button>
-                        </div>
-                        <div class="card">
+                        <div class="card hidden" id="displaySaltBags">
                            <div class="card-body text-center p-1">
                               <span class="font-weight-bold currency-symbol text-secondary">$</span>
                               <span id="saltBagsDue" class="font-weight-bold font-size-35"> 0 </span> CAD
                            </div>
                         </div>
                      </div>
-
-                     <div class="col-12 mt-3">
+                  </div>
+                  <div class="row hidden" id="grandTotal">
+                     <div class="col-12 mt-3"> <!-- Displays grand Total -->
                         <div class="card"> 
                            <div class="card-body text-center p-1">
                               <span class="font-weight-bold currency-symbol text-secondary">$</span>
@@ -90,7 +102,7 @@
                            </div>
                         </div>
                      </div>
-                     <div class="col-12 mt-3">
+                     <div class="col-12 mt-3"> <!-- Displays submit button -->
                         <input 
                            id="quoteSubmit" 
                            type="submit" 
@@ -204,18 +216,18 @@
                               <span class="font-weight-bold currency-symbol text-secondary">$</span>
                               <span id="serviceExpeditionCost" class="font-weight-bold font-size-35 text-secondary">expeditionCost</span> CAD
                            </div>
-
-                           <div>
-                              <span class="font-weight-bold currency-symbol text-secondary">+</span>
+                           <div class="hidden" id="saltBagsQuoteModal">
+                              <div>
+                                 <span class="font-weight-bold currency-symbol text-secondary">+</span>
+                              </div>
+                              <div>
+                                 <span>Added salt bags: <b id="saltBagsQuantityModal">saltBagsQuantity</b></span>
+                              </div>
+                              <div>
+                                 <span class="font-weight-bold currency-symbol text-secondary">$</span>
+                                 <span id="saltBagsDueModal" class="font-weight-bold font-size-35 text-secondary">saltBagsDue</span> CAD
+                              </div>
                            </div>
-                           <div>
-                              <span>Added salt bags: <b id="saltBagsQuantityModal">saltBagsQuantity</b></span>
-                           </div>
-                           <div>
-                              <span class="font-weight-bold currency-symbol text-secondary">$</span>
-                              <span id="saltBagsDueModal" class="font-weight-bold font-size-35 text-secondary">saltBagsDue</span> CAD
-                           </div>
-
                            <div>
                               <span class="font-weight-bold currency-symbol text-secondary">=</span>
                            </div>

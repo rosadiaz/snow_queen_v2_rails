@@ -52,6 +52,8 @@ class QuotingPanel {
     this.showTotalsNode();
     this.totalDue = this.calculateTotalDue();
     this.updateTotalDueNode();
+    document.getElementById("displayServiceExpedition").classList.remove("hidden");
+    document.getElementById("grandTotal").classList.remove("hidden");
   }
     
   aggregateAreaInMts() {
@@ -135,6 +137,8 @@ class QuotingPanel {
   handleAddSaltBag() {
     this.saltBagsQuantity += 1;
     this.updateSaltBagsTotals();
+    document.getElementById("displaySaltBags").classList.remove("hidden");
+    document.getElementById("saltBagsQuoteModal").classList.remove("hidden");
   }
 
   handleRemoveSaltBag() {
