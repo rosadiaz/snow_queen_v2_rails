@@ -5,6 +5,7 @@ class Map {
     this.removeLastControl = this.initRemoveControls('Click to remove selected area from the map','Remove last');
     this.removeAllControl = this.initRemoveControls('Click to remove ALL selected areas from the map', 'Remove All');
     this.geocoder = this.initGeocoder();
+    this.autocomplete = this.initAutocomplete();
     this.marker = null;
     this.geocodedAddress = null;
     this.polygons = [];
@@ -66,6 +67,21 @@ class Map {
 
   initGeocoder() {
     return new google.maps.Geocoder();
+  }
+
+  initAutocomplete(){
+    const defaultBoundaries = new google.maps.LatLngBounds(
+      new google.maps.LatLng(...constants.DEFAULT_BOUNDARIES.SOUTH_WEST),
+      new google.maps.LatLng(...constants.DEFAULT_BOUNDARIES.NORTH_EAST),
+    );
+    const options= {
+      bounds: defaultBoundaries,
+      types: ['address'],
+      componentRestrictions: {country: 'ca'}
+    };
+
+    const input = document.getElementById('address');
+    const autocomplete = new google.maps.places.Autocomplete(input, options);
   }
 
   addListeners() {

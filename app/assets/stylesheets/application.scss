@@ -89,3 +89,13 @@ main {
   font-size: 25px;
   vertical-align: super;
 }
+
+.modal {
+  // Ensures autocomplete suggestions are shown in the front most layer 
+  // https://stackoverflow.com/a/10958563
+  z-index: 20;
+}
+
+.modal-backdrop {
+  z-index: 10;        
+}
