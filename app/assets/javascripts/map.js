@@ -2,7 +2,8 @@ class Map {
   constructor(config) {
     this.map = this.initMap();
     this.drawingManager = this.initDrawingManager();
-    this.removeControl = this.initRemoveControl();
+    this.removeLastControl = this.initRemoveControls('Click to remove selected area from the map','Remove last');
+    this.removeAllControl = this.initRemoveControls('Click to remove ALL selected areas from the map', 'Remove All');
     this.geocoder = this.initGeocoder();
     this.marker = null;
     this.geocodedAddress = null;
@@ -13,7 +14,8 @@ class Map {
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleGeocodingResponse = this.handleGeocodingResponse.bind(this);
     this.handlePolygonCreated = this.handlePolygonCreated.bind(this);
-    this.handleRemovePolygon = this.handleRemovePolygon.bind(this);
+    this.handleRemoveLastPolygon = this.handleRemoveLastPolygon.bind(this);
+    this.handleRemoveAllPolygons = this.handleRemoveAllPolygons.bind(this);
     this.addListeners();
     this.showAddressModal();
   }
@@ -50,11 +52,11 @@ class Map {
     })
   }
   
-  initRemoveControl() {
+  initRemoveControls(title, label) {
     const removeControlDiv = document.createElement('button');
     removeControlDiv.classList.add('map-btn')
-    removeControlDiv.title = 'Click to remove selected area from the map';
-    removeControlDiv.innerHTML = 'Remove last';
+    removeControlDiv.title = title;
+    removeControlDiv.innerHTML = label;
 
     removeControlDiv.index = 1;
     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(removeControlDiv);
@@ -69,7 +71,8 @@ class Map {
   addListeners() {
     document.getElementById('AddressSearchModal').addEventListener('submit', this.handleSearchSubmit);
     this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated);
-    this.removeControl.addEventListener('click', this.handleRemovePolygon);
+    this.removeLastControl.addEventListener('click', this.handleRemoveLastPolygon);
+    this.removeAllControl.addEventListener('click', this.handleRemoveAllPolygons);
   }
 
   showAddressModal(){
@@ -117,8 +120,14 @@ class Map {
     this.onPolygonsChanged(this.polygons);
   }
 
-  handleRemovePolygon() {
+  handleRemoveLastPolygon() {
     this.polygons.pop().setMap(null);
+    this.onPolygonsChanged(this.polygons);
+  }
+
+  handleRemoveAllPolygons() {
+    this.polygons.forEach(p => p.setMap(null));
+    this.polygons = [];
     this.onPolygonsChanged(this.polygons);
   }
 }
