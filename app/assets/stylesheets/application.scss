@@ -45,7 +45,7 @@ main {
 .map-btn {
   border: 2px solid #fff;
   border-radius: 3px;
-  margin-top: 5px;
+  margin: 5px;
   font-size: 14px;
 }
 
@@ -92,4 +92,14 @@ main {
 .currency-symbol {
   font-size: 25px;
   vertical-align: super;
+}
+
+.modal {
+  // Ensures autocomplete suggestions are shown in the front most layer 
+  // https://stackoverflow.com/a/10958563
+  z-index: 20;
+}
+
+.modal-backdrop {
+  z-index: 10;        
 }

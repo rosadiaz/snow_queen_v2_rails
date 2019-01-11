@@ -26,6 +26,11 @@ const constants = {
   // price to be defined by Snow Queen
   PRICE_PER_SQ_FT: 0.36,
   MIN_CHARGE: 150,
+  // sets map boundaries to Port Moody and North Coquitlam
+  DEFAULT_BOUNDARIES: {
+    NORTH_EAST: [49.327512, -122.755847],
+    SOUTH_WEST: [49.271039, -122.892113],
+  }
 }
 
 function initMap() {
