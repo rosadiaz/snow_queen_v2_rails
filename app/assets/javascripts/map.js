@@ -126,7 +126,7 @@ class Map {
   }
 
   handleRemoveAllPolygons() {
-    this.polygons.forEach(p => { p.setMap(null) });
+    this.polygons.forEach(p => p.setMap(null));
     this.polygons = [];
     this.onPolygonsChanged(this.polygons);
   }
