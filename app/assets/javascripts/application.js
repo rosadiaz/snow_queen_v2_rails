@@ -27,8 +27,8 @@ const constants = {
   PRICE_PER_SQ_FT: 0.15,
   // sets map boundaries to Port Moody and North Coquitlam
   DEFAULT_BOUNDARIES: {
-    TOP: [49.327512, -122.755847],
-    BOTTOM: [49.271039, -122.892113],
+    NORT_EAST: [49.327512, -122.755847],
+    SOUTH_WEST: [49.271039, -122.892113],
   }
 }
 

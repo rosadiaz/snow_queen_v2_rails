@@ -71,8 +71,8 @@ class Map {
 
   initAutocomplete(){
     const defaultBoundaries = new google.maps.LatLngBounds(
-      new google.maps.LatLng(...constants.DEFAULT_BOUNDARIES.BOTTOM),
-      new google.maps.LatLng(...constants.DEFAULT_BOUNDARIES.TOP),
+      new google.maps.LatLng(...constants.DEFAULT_BOUNDARIES.SOUTH_WEST),
+      new google.maps.LatLng(...constants.DEFAULT_BOUNDARIES.NORTH_EAST),
     );
     const options= {
       bounds: defaultBoundaries,
