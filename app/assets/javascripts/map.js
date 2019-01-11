@@ -2,8 +2,8 @@ class Map {
   constructor(config) {
     this.map = this.initMap();
     this.drawingManager = this.initDrawingManager();
-    this.removeLastControl = this.initRemoveLastControls('Click to remove selected area from the map','Remove last');
-    this.removeAllControl = this.initRemoveLastControls('Click to remove ALL selected areas from the map', 'Remove All');
+    this.removeLastControl = this.initRemoveControls('Click to remove selected area from the map','Remove last');
+    this.removeAllControl = this.initRemoveControls('Click to remove ALL selected areas from the map', 'Remove All');
     this.geocoder = this.initGeocoder();
     this.marker = null;
     this.geocodedAddress = null;
@@ -52,7 +52,7 @@ class Map {
     })
   }
   
-  initRemoveLastControls(title, label) {
+  initRemoveControls(title, label) {
     const removeControlDiv = document.createElement('button');
     removeControlDiv.classList.add('map-btn')
     removeControlDiv.title = title;
