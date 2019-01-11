@@ -2,8 +2,8 @@ class Map {
   constructor(config) {
     this.map = this.initMap();
     this.drawingManager = this.initDrawingManager();
-    this.removeLastControl = this.initRemoveLastControl();
-    this.removeAllControl = this.initRemoveAllControl();
+    this.removeLastControl = this.initRemoveLastControls('Click to remove selected area from the map','Remove last');
+    this.removeAllControl = this.initRemoveLastControls('Click to remove ALL selected areas from the map', 'Remove All');
     this.geocoder = this.initGeocoder();
     this.marker = null;
     this.geocodedAddress = null;
@@ -52,28 +52,16 @@ class Map {
     })
   }
   
-  initRemoveLastControl() {
-    const removeLastControlDiv = document.createElement('button');
-    removeLastControlDiv.classList.add('map-btn')
-    removeLastControlDiv.title = 'Click to remove selected area from the map';
-    removeLastControlDiv.innerHTML = 'Remove last';
+  initRemoveLastControls(title, label) {
+    const removeControlDiv = document.createElement('button');
+    removeControlDiv.classList.add('map-btn')
+    removeControlDiv.title = title;
+    removeControlDiv.innerHTML = label;
 
-    removeLastControlDiv.index = 1;
-    this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(removeLastControlDiv);
+    removeControlDiv.index = 1;
+    this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(removeControlDiv);
 
-    return removeLastControlDiv;
-  }
-
-  initRemoveAllControl() {
-    const removeAllControlDiv = document.createElement('button');
-    removeAllControlDiv.classList.add('map-btn')
-    removeAllControlDiv.title = 'Click to remove ALL selected areas from the map';
-    removeAllControlDiv.innerHTML = 'Remove All';
-
-    removeAllControlDiv.index = 1;
-    this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(removeAllControlDiv);
-
-    return removeAllControlDiv;
+    return removeControlDiv;
   }
 
   initGeocoder() {
