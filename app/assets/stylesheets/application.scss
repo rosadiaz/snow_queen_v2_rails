@@ -90,12 +90,10 @@ main {
   vertical-align: super;
 }
 
-.pac-container {
-  z-index: 20;
-}
-
 .modal {
-  z-index: 20;   
+  // Ensures autocomplete suggestions are shown in the front most layer 
+  // https://stackoverflow.com/a/10958563
+  z-index: 20;
 }
 
 .modal-backdrop {
