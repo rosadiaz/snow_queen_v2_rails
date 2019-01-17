@@ -14,6 +14,7 @@ class QuotingPanel {
 
     this.showAddress = this.showAddress.bind(this);
     this.handlePolygonChanged = this.handlePolygonChanged.bind(this);
+    this.handleExpeditionInfoClick = this.handleExpeditionInfoClick.bind(this);
     this.getData = this.getData.bind(this);
     this.addListeners();
   }
@@ -111,19 +112,22 @@ class QuotingPanel {
   addListeners() {
     document.getElementById("SubmitQuote").addEventListener('submit', (event) => { event.preventDefault() });
     document.getElementById("searchAddressButton").addEventListener('click', this.handleSearchAddressClick);
+    const quotingPanel = this;
     document.getElementsByName("serviceExpeditionCost").forEach((element) => { 
-      element.addEventListener('click', (event) => { 
-        const serviceExpeditionCost = Number.parseFloat(event.target.value);
-        const serviceExpeditionDetails = event.target.dataset.label;
-        const serviceExpeditionTime = event.target.id;
-        this.handleServiceExpeditionChange(serviceExpeditionCost, serviceExpeditionDetails, serviceExpeditionTime); 
-      });
+      element.addEventListener('click', this.handleExpeditionInfoClick); 
     });
     document.getElementById("addBag").addEventListener('click', (event) => { this.handleAddSaltBag() });
     document.getElementById("removeBag").addEventListener('click', (event) => { this.handleRemoveSaltBag() });
   }
 
-  handleServiceExpeditionChange(serviceExpeditionCost, serviceExpeditionDetails, serviceExpeditionTime) {
+  handleExpeditionInfoClick(event) {
+    const serviceExpeditionCost = Number.parseFloat(event.target.value);
+    const serviceExpeditionDetails = event.target.dataset.label;
+    const serviceExpeditionTime = event.target.id;
+    this.updateServiceExpeditionInfo(serviceExpeditionCost, serviceExpeditionDetails, serviceExpeditionTime); 
+  }
+
+  updateServiceExpeditionInfo(serviceExpeditionCost, serviceExpeditionDetails, serviceExpeditionTime) {
     this.serviceExpeditionCost = serviceExpeditionCost;
     this.serviceExpeditionDetails = serviceExpeditionDetails;
     this.serviceExpeditionTime = serviceExpeditionTime;
