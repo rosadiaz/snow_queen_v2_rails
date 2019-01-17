@@ -97,10 +97,7 @@ class QuotingPanel {
   
   calculateTotalDue() {
     let totalDue = this.subTotal + this.serviceExpeditionCost + this.saltBagsDue;
-    if (totalDue >= constants.MIN_CHARGE) {
-      return totalDue;
-    }
-    return constants.MIN_CHARGE;
+    return Math.max(totalDue, constants.MIN_CHARGE);
   }
 
   updateTotalDueNode() {
