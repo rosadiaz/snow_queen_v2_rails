@@ -19,6 +19,6 @@ class Lead {
   }
 
   handleSuccess(event) {
-    $("#requestCallSubmitModal").modal("hide");
+    $("#leadSubmitModal").modal("hide");
   }
 }

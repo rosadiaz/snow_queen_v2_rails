@@ -135,7 +135,7 @@
             type="button" 
             class="btn edit-button btn-sm" 
             data-toggle="modal" 
-            data-target="#requestCallSubmitModal" 
+            data-target="#leadSubmitModal" 
             id="searchAddressButton">Request a call
           </button>
         </h5>
@@ -269,12 +269,12 @@
   </div>
 </div>
 
-<!-- REQUEST CALL MODAL -->
-<div class="modal fade" id="requestCallSubmitModal" tabindex="-1" role="dialog" aria-labelledby="requestCallSubmitModalLabel" aria-hidden="true">
+<!-- NEW LEAD MODAL -->
+<div class="modal fade" id="leadSubmitModal" tabindex="-1" role="dialog" aria-labelledby="leadSubmitModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-primary">
-        <h5 class="modal-title text-white text-shadow text-center" id="requestCallSubmitModalLabel">Enter your phone and one of our friendly mangers will get in touch with you as soon as possible</h5>
+        <h5 class="modal-title text-white text-shadow text-center" id="leadSubmitModalLabel">Enter your phone and one of our friendly mangers will get in touch with you as soon as possible</h5>
       </div>
       <%= simple_form_for(@lead, remote: true) do |form| %>
         <div class="modal-body">
