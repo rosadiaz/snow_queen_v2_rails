@@ -13,7 +13,7 @@ class Lead {
   handleErrors(event) {
     this.errors = event.detail[0].errors;
     const errorNode = document.getElementById("modal_errors");
-    errorNode.classList.remove("hidden");
+    Dom.showNode(errorNode);
     errorNode.innerText = this.errors.join(", ");
     document.getElementsByClassName("lead_email")[0].classList.add("m-0");
   }

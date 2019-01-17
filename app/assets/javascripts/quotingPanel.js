@@ -38,13 +38,13 @@ class QuotingPanel {
         div.classList.add("secondary-address");
         secondaryAddressNode.appendChild(div);
       });
-      document.getElementById("displayAddress").classList.remove("hidden");
-      document.getElementById("step2").classList.remove("hidden");
+      Dom.showNode(document.getElementById("displayAddress"));
+      Dom.showNode(document.getElementById("step2"));
     }
   }
 
   handlePolygonChanged(polygons) {
-    document.getElementById("step2").classList.add("hidden");
+    Dom.hideNode(document.getElementById("step2"));
     this.polygons = polygons;
     this.totalAreaInSqFt = this.convertToSqFt(this.aggregateAreaInMts());
     this.updateAreaNode();
@@ -53,8 +53,8 @@ class QuotingPanel {
     this.showTotalsNode();
     this.totalDue = this.calculateTotalDue();
     this.updateTotalDueNode();
-    document.getElementById("displayServiceExpedition").classList.remove("hidden");
-    document.getElementById("grandTotal").classList.remove("hidden");
+    Dom.showNode(document.getElementById("displayServiceExpedition"));
+    Dom.showNode(document.getElementById("grandTotal"));
   }
     
   aggregateAreaInMts() {
@@ -93,7 +93,7 @@ class QuotingPanel {
   }
 
   showTotalsNode() {
-    document.getElementById("displayTotals").classList.remove("hidden");
+    Dom.showNode(document.getElementById("displayTotals"));
   }
   
   calculateTotalDue() {
@@ -138,8 +138,8 @@ class QuotingPanel {
   handleAddSaltBag() {
     this.saltBagsQuantity += 1;
     this.updateSaltBagsTotals();
-    document.getElementById("displaySaltBags").classList.remove("hidden");
-    document.getElementById("saltBagsQuoteModal").classList.remove("hidden");
+    Dom.showNode(document.getElementById("displaySaltBags"));
+    Dom.showNode(document.getElementById("saltBagsQuoteModal"));
   }
 
   handleRemoveSaltBag() {

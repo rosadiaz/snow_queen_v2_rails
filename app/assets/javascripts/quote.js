@@ -90,7 +90,7 @@ class Quote {
   handleErrors(event) {
     this.errors = event.detail[0].errors;
     const errorNode = document.getElementById("quote_modal_errors");
-    errorNode.classList.remove("hidden");
+    Dom.showNode(errorNode);
     errorNode.innerText = this.errors.join(", ");
     document.getElementsByClassName("quote_email")[0].classList.add("m-0");
   }
