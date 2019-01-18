@@ -152,7 +152,7 @@ class QuotingPanel {
   handleExpeditionInfoClick(event) {
     const serviceExpeditionCost = Number.parseFloat(event.target.value);
     const serviceExpeditionDetails = event.target.dataset.label;
-    const serviceExpeditionTime = event.target.id;
+    const serviceExpeditionTime = event.target.dataset.time;
     this.updateServiceExpeditionInfo(serviceExpeditionCost, serviceExpeditionDetails, serviceExpeditionTime); 
   }
 
