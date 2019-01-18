@@ -57,7 +57,7 @@
                 <fieldset class="form-group">
                   <div class="row">
                     <div class="col-sm-10">
-                      <% @service_expedition_time.each {|i| %>
+                      <% @service_expedition_options.each {|i| %>
                         <div class="form-check">
                           <input class="form-check-input" type="radio" name="serviceExpeditionCost" id="<%= i[:id] %>" value="<%= i[:price] %>" data-label="<%= i[:label] %>" checked>
                           <label class="form-check-label" for="<%= i[:id] %>">

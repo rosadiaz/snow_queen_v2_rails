@@ -2,7 +2,7 @@ class QuotesController < ApplicationController
   def new
     @quote = Quote.new
     @lead = Lead.new
-    @service_expedition_time = [
+    @service_expedition_options = [
       {label: 'URGENT in ', id: '3hrs', price: 99.99},
       {label: 'In the next', id: '8hrs', price: 49.99},
       {label: 'FREE', id: '24hrs', price: 0},
