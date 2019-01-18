@@ -57,14 +57,14 @@
                 <fieldset class="form-group">
                   <div class="row">
                     <div class="col-sm-10">
-                      <% @service_expedition_options.each {|option| %>
+                      <% @service_expedition_options.each do |option| %>
                         <div class="form-check">
                           <input class="form-check-input" type="radio" name="serviceExpeditionCost" id="<%= option[:id] %>" value="<%= option[:price] %>" data-label="<%= option[:label] %>" checked>
                           <label class="form-check-label" for="<%= option[:id] %>">
                             <%= option[:label] %> <%= option[:id] %> - <b> $<%= option[:price] %> </b>
                           </label>
                         </div>
-                      <% } %>
+                      <% end %>
                     </div>
                   </div>
                 </fieldset>
