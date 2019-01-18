@@ -15,6 +15,8 @@ class QuotingPanel {
     this.showAddress = this.showAddress.bind(this);
     this.handlePolygonChanged = this.handlePolygonChanged.bind(this);
     this.handleExpeditionInfoClick = this.handleExpeditionInfoClick.bind(this);
+    this.handleAddBagClick = this.handleAddBagClick.bind(this);
+    this.handleRemoveBagClick = this.handleRemoveBagClick.bind(this);
     this.getData = this.getData.bind(this);
     this.addListeners();
   }
@@ -110,14 +112,36 @@ class QuotingPanel {
   }
 
   addListeners() {
-    document.getElementById("SubmitQuote").addEventListener('submit', (event) => { event.preventDefault() });
+    document.getElementById("SubmitQuote").addEventListener('submit', this.handleSubmitQuoteClick);
     document.getElementById("searchAddressButton").addEventListener('click', this.handleSearchAddressClick);
     const quotingPanel = this;
     document.getElementsByName("serviceExpeditionCost").forEach((element) => { 
       element.addEventListener('click', this.handleExpeditionInfoClick); 
     });
-    document.getElementById("addBag").addEventListener('click', (event) => { this.handleAddSaltBag() });
-    document.getElementById("removeBag").addEventListener('click', (event) => { this.handleRemoveSaltBag() });
+    document.getElementById("addBag").addEventListener('click', this.handleAddBagClick);
+    document.getElementById("removeBag").addEventListener('click', this.handleRemoveBagClick);
+  }
+
+  handleSubmitQuoteClick(event) {
+    event.preventDefault();
+  }
+
+  handleSearchAddressClick() {
+    $("#addressSubmitModal").modal("show");
+  }
+
+  handleAddBagClick() {
+    this.saltBagsQuantity += 1;
+    this.updateSaltBagsTotals();
+    Dom.showNode(document.getElementById("displaySaltBags"));
+    Dom.showNode(document.getElementById("saltBagsQuoteModal"));;
+  }
+
+  handleRemoveBagClick() {
+    if (this.saltBagsQuantity > 0) {
+      this.saltBagsQuantity -= 1;
+    }
+    this.updateSaltBagsTotals();
   }
 
   handleExpeditionInfoClick(event) {
@@ -133,20 +157,6 @@ class QuotingPanel {
     this.serviceExpeditionTime = serviceExpeditionTime;
     this.totalDue = this.calculateTotalDue();
     this.updateTotalDueNode();
-  }
-
-  handleAddSaltBag() {
-    this.saltBagsQuantity += 1;
-    this.updateSaltBagsTotals();
-    Dom.showNode(document.getElementById("displaySaltBags"));
-    Dom.showNode(document.getElementById("saltBagsQuoteModal"));
-  }
-
-  handleRemoveSaltBag() {
-    if (this.saltBagsQuantity > 0) {
-      this.saltBagsQuantity -= 1;
-    }
-    this.updateSaltBagsTotals();
   }
 
   updateSaltBagsTotals() {
@@ -169,10 +179,6 @@ class QuotingPanel {
       saltBagsDue: this.saltBagsDue,
       totalDue: this.totalDue,
     }
-  }
-
-  handleSearchAddressClick() {
-    $("#addressSubmitModal").modal("show");
   }
 }
 
