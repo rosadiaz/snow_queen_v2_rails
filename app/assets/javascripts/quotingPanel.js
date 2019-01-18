@@ -81,8 +81,7 @@ class QuotingPanel {
   }
 
   updateSubTotalNode() {
-    const subTotalNode = document.getElementById("subTotalDue");
-    subTotalNode.innerText = `${(this.subTotal).toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+    this.updateAmountNode("subTotalDue", this.subTotal, 2)
   }
 
   updateTotalSaltBagsNode() {
@@ -108,11 +107,13 @@ class QuotingPanel {
   }
 
   updateTotalDueNode() {
-    const totalDueNode = document.getElementById("totalDue");
-    totalDueNode.innerText = `${this.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+    this.updateAmountNode("totalDue", this.totalDue, 2);
+    this.updateAmountNode("totalModal", this.totalDue, 2)
+  }
 
-    const totalDueNodeInModal = document.getElementById("totalModal");
-    totalDueNodeInModal.innerText = `${this.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+  updateAmountNode(id, amount, precision) {
+    const node = document.getElementById(id);
+    node.innerText = `${amount.toLocaleString(undefined, {maximumFractionDigits: precision})}`;
   }
 
   addListeners() {
