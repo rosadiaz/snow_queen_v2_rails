@@ -3,9 +3,9 @@ class QuotesController < ApplicationController
     @quote = Quote.new
     @lead = Lead.new
     @service_expedition_options = [
-      {label: 'URGENT in ', id: '3hrs', price: 99.99},
-      {label: 'In the next', id: '8hrs', price: 49.99},
-      {label: 'FREE', id: '24hrs', price: 0},
+      {label: 'URGENT in ', time: '3hrs', price: 99.99},
+      {label: 'In the next', time: '8hrs', price: 49.99},
+      {label: 'FREE', time: '24hrs', price: 0},
     ]
     @salt_bag_price = 35
   end
