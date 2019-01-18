@@ -278,6 +278,7 @@
       </div>
       <%= simple_form_for(@lead, remote: true) do |form| %>
         <div class="modal-body">
+          <div class="hidden modal_errors col-12 p-0" id="lead_modal_errors"></div>
           <%= form.input :phone_number %>
           <%= form.input :first_name %>
           <%= form.input :last_name %>
