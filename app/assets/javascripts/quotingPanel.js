@@ -53,8 +53,7 @@ class QuotingPanel {
     this.subTotal = this.calculateSubTotal();
     this.updateSubTotalNode();
     this.showTotalsNode();
-    this.totalDue = this.calculateTotalDue();
-    this.updateTotalDueNode();
+    this.updateGrandTotal();
     Dom.showNode(document.getElementById("displayServiceExpedition"));
     Dom.showNode(document.getElementById("grandTotal"));
   }
@@ -96,6 +95,11 @@ class QuotingPanel {
 
   showTotalsNode() {
     Dom.showNode(document.getElementById("displayTotals"));
+  }
+
+  updateGrandTotal() {
+    this.totalDue = this.calculateTotalDue();
+    this.updateTotalDueNode();
   }
   
   calculateTotalDue() {
@@ -155,15 +159,13 @@ class QuotingPanel {
     this.serviceExpeditionCost = serviceExpeditionCost;
     this.serviceExpeditionDetails = serviceExpeditionDetails;
     this.serviceExpeditionTime = serviceExpeditionTime;
-    this.totalDue = this.calculateTotalDue();
-    this.updateTotalDueNode();
+    this.updateGrandTotal();
   }
 
   updateSaltBagsTotals() {
     this.saltBagsDue = this.saltBagsQuantity * this.saltBagPrice;
     this.updateTotalSaltBagsNode();
-    this.totalDue = this.calculateTotalDue();
-    this.updateTotalDueNode();
+    this.updateGrandTotal();
   }
 
   getData() {
