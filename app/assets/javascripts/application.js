@@ -23,9 +23,6 @@ const constants = {
   // sets loading map centerd in Eagle Ridge area
   CENTER_MAP_LOCATION: {lat: 49.2860, lng: -122.8130},
   SQ_FT_CONVERT: 10.764,
-  // price set by Shovel Squad
-  PRICE_PER_SQ_FT: 0.36,
-  MIN_CHARGE: 150,
   // sets map boundaries to Port Moody and North Coquitlam
   DEFAULT_BOUNDARIES: {
     NORTH_EAST: [49.327512, -122.755847],

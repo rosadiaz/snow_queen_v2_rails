@@ -77,7 +77,7 @@ class QuotingPanel {
   }
 
   calculateSubTotal() {
-    return this.totalAreaInSqFt * constants.PRICE_PER_SQ_FT;
+    return this.totalAreaInSqFt * priceList.PRICE_PER_SQ_FT;
   }
 
   updateSubTotalNode() {
@@ -103,7 +103,7 @@ class QuotingPanel {
   
   calculateTotalDue() {
     let totalDue = this.subTotal + this.serviceExpeditionCost + this.saltBagsDue;
-    return Math.max(totalDue, constants.MIN_CHARGE);
+    return Math.max(totalDue, priceList.MIN_CHARGE);
   }
 
   updateTotalDueNode() {

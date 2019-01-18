@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_07_195705) do
+ActiveRecord::Schema.define(version: 2019_01_18_211122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,9 @@ ActiveRecord::Schema.define(version: 2019_01_07_195705) do
     t.string "service_expedition_time"
     t.integer "salt_bags_quantity"
     t.float "salt_bags_due"
+    t.decimal "price_per_sq_ft", precision: 10, scale: 2
+    t.decimal "min_charge", precision: 10, scale: 2
+    t.decimal "price_per_salt_bag", precision: 10, scale: 2
     t.index ["email"], name: "index_quotes_on_email"
   end
 
