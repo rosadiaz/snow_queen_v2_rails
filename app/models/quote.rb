@@ -13,5 +13,10 @@ class Quote < ApplicationRecord
     self.min_charge = MIN_CHARGE
   end
 
+  before_update do
+    # When allowing previous quote updates, make sure the prices are persistent to the original quote
+    self.errors.add(:base, "Quote changes have not been implemented")
+    throw :abort
+  end
 
 end
