@@ -8,7 +8,7 @@ class QuotingPanel {
     this.serviceExpeditionDetails = 'FREE';  // needs improvement to start according to controller variables
     this.serviceExpeditionTime = '24hrs'; // needs improvement to start according to controller variables
     this.saltBagsQuantity = 0;
-    this.saltBagPrice = 35; // needs improvement to start according to controller variables
+    this.saltBagPrice = priceList.PRICE_PER_SALT_BAG;
     this.saltBagsDue = null;
     this.totalDue = null;
 
