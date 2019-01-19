@@ -40,7 +40,7 @@ class Quote {
 
     document.getElementById("areaModal").innerText = quoteData.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0});
     document.getElementById("subTotalModal").innerText = quoteData.subTotal.toLocaleString(undefined, {maximumFractionDigits: 2});
-    document.getElementById("serviceExpeditionDetails").innerText = `${quoteData.serviceExpeditionDetails} ${quoteData.serviceExpeditionTime}`;
+    document.getElementById("serviceExpeditionLabel").innerText = quoteData.serviceExpeditionLabel;
     document.getElementById("serviceExpeditionCost").innerText = quoteData.serviceExpeditionCost;
     document.getElementById("saltBagsQuantityModal").innerText = quoteData.saltBagsQuantity;
     document.getElementById("saltBagsDueModal").innerText = quoteData.saltBagsDue;
@@ -48,13 +48,11 @@ class Quote {
 
     document.getElementById("quote_address").value = quoteData.geocodedAddress;
     document.getElementById("quote_area").value = quoteData.totalAreaInSqFt;
-    document.getElementById("quote_total").value = quoteData.totalDue;
     document.getElementById("quote_polygons").value = polygonsLatLngs;
     document.getElementById("quote_static_map_URL").value = this.staticMapURL;
     document.getElementById("quote_service_expedition_cost").value = quoteData.serviceExpeditionCost;
     document.getElementById("quote_service_expedition_time").value = quoteData.serviceExpeditionTime;
     document.getElementById("quote_salt_bags_quantity").value = quoteData.saltBagsQuantity;
-    document.getElementById("quote_salt_bags_due").value = quoteData.saltBagsDue;
   }
 
   updateStaticMap(polygons) {

@@ -10,7 +10,7 @@
   <dt class="primary-address">Address:</dt>
   <dd><%= @quote.address %></dd><br/>
 
-  <p>Expect one of our hard working squad members to show up within the next <b><%= @quote.service_expedition_time %></b> </p>
+  <p>Expect one of our hard working squad members to show up within the next <b><%= t("service_expedition_times.#{@quote.service_expedition_time}") %></b> </p>
 
   <img alt="Selected area map" src="<%= @quote.static_map_URL.html_safe %>"><br/>
 

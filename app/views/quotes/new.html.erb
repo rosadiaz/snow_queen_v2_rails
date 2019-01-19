@@ -57,11 +57,11 @@
                 <fieldset class="form-group">
                   <div class="row">
                     <div class="col-sm-10">
-                      <% @service_expedition_options.each do |option| %>
+                      <% Quote::SERVICE_EXPEDITION_OPTIONS.each do |time, price| %>
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" name="serviceExpeditionCost" id="<%= option[:time] %>" value="<%= option[:price] %>" data-label="<%= option[:label] %>" checked>
-                          <label class="form-check-label" for="<%= option[:time] %>">
-                            <%= option[:label] %> <%= option[:time] %> - <b>$<%= option[:price] %></b>
+                          <input class="form-check-input" type="radio" name="serviceExpeditionCost" id="<%= time %>" value="<%= price %>" data-label="<%= t("service_expedition_labels.#{time}") %>" checked>
+                          <label class="form-check-label" for="<%= time %>">
+                            <%= t("service_expedition_labels.#{time}") %> - <b>$<%= price %></b>
                           </label>
                         </div>
                       <% end %>
@@ -207,7 +207,7 @@
                     <span class="font-weight-bold currency-symbol text-secondary">+</span>
                   </div>
                   <div>
-                    <span>Service expedited: <b id="serviceExpeditionDetails"> expeditionDetails </b></span>
+                    <span>Service expedited: <b id="serviceExpeditionLabel"> expeditionLabel </b></span>
                   </div>
                   <div>
                     <span class="font-weight-bold currency-symbol text-secondary">$</span>
@@ -248,13 +248,11 @@
             </div>
             <%= form.input :address, as: :hidden %>
             <%= form.input :area, as: :hidden %>
-            <%= form.input :total, as: :hidden %>
             <%= form.input :polygons, as: :hidden %>
             <%= form.input :static_map_URL, as: :hidden %>
             <%= form.input :service_expedition_cost, as: :hidden %>
             <%= form.input :service_expedition_time, as: :hidden %>
             <%= form.input :salt_bags_quantity, as: :hidden %>
-            <%= form.input :salt_bags_due, as: :hidden %>
             <div class="col-12">
               <%= form.input :comments, input_html: { placeholder: 'How can we best serve you?'} %>
             </div>
@@ -318,5 +316,6 @@
   const priceList = {
     PRICE_PER_SQ_FT: <%= @price_per_sq_ft %>,
     MIN_CHARGE: <%= @min_charge %>,
+    PRICE_PER_SALT_BAG: <%= @price_per_salt_bag %>
   }
 </script>

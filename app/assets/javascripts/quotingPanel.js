@@ -5,8 +5,8 @@ class QuotingPanel {
     this.totalAreaInSqFt = null;
     this.subTotal = null;
     this.serviceExpeditionCost = 0; // needs improvement to start according to controller variables
-    this.serviceExpeditionDetails = 'FREE';  // needs improvement to start according to controller variables
-    this.serviceExpeditionTime = '24hrs'; // needs improvement to start according to controller variables
+    this.serviceExpeditionLabel = 'FREE in 24hrs';  // needs improvement to start according to controller variables
+    this.serviceExpeditionTime = 'free'; // needs improvement to start according to controller variables
     this.saltBagsQuantity = 0;
     this.saltBagPrice = priceList.PRICE_PER_SALT_BAG;
     this.saltBagsDue = null;
@@ -151,14 +151,14 @@ class QuotingPanel {
 
   handleExpeditionInfoClick(event) {
     const serviceExpeditionCost = Number.parseFloat(event.target.value);
-    const serviceExpeditionDetails = event.target.dataset.label;
-    const serviceExpeditionTime = event.target.dataset.time;
-    this.updateServiceExpeditionInfo(serviceExpeditionCost, serviceExpeditionDetails, serviceExpeditionTime); 
+    const serviceExpeditionLabel = event.target.dataset.label;
+    const serviceExpeditionTime = event.target.id;
+    this.updateServiceExpeditionInfo(serviceExpeditionCost, serviceExpeditionLabel, serviceExpeditionTime); 
   }
 
-  updateServiceExpeditionInfo(serviceExpeditionCost, serviceExpeditionDetails, serviceExpeditionTime) {
+  updateServiceExpeditionInfo(serviceExpeditionCost, serviceExpeditionLabel, serviceExpeditionTime) {
     this.serviceExpeditionCost = serviceExpeditionCost;
-    this.serviceExpeditionDetails = serviceExpeditionDetails;
+    this.serviceExpeditionLabel = serviceExpeditionLabel;
     this.serviceExpeditionTime = serviceExpeditionTime;
     this.updateGrandTotal();
   }
@@ -176,7 +176,7 @@ class QuotingPanel {
       totalAreaInSqFt: this.totalAreaInSqFt, 
       subTotal: this.subTotal,
       serviceExpeditionCost: this.serviceExpeditionCost,
-      serviceExpeditionDetails: this.serviceExpeditionDetails,
+      serviceExpeditionLabel: this.serviceExpeditionLabel,
       serviceExpeditionTime: this.serviceExpeditionTime,
       saltBagsQuantity: this.saltBagsQuantity,
       saltBagsDue: this.saltBagsDue,

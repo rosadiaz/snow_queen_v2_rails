@@ -2,12 +2,7 @@ class QuotesController < ApplicationController
   def new
     @quote = Quote.new
     @lead = Lead.new
-    @service_expedition_options = [
-      {label: 'URGENT in ', time: '3hrs', price: 99.99},
-      {label: 'In the next', time: '8hrs', price: 49.99},
-      {label: 'FREE', time: '24hrs', price: 0},
-    ]
-    @salt_bag_price = Quote::PRICE_PER_SALT_BAG
+    @price_per_salt_bag = Quote::PRICE_PER_SALT_BAG
     @price_per_sq_ft = Quote::PRICE_PER_SQ_FT
     @min_charge = Quote::MIN_CHARGE
   end
@@ -30,15 +25,14 @@ class QuotesController < ApplicationController
       :first_name, 
       :last_name, 
       :address, 
-      :area, # TODO: remove 
-      :total, # TODO: remove
+      :area, # TODO: remove
+      # :total, # TODO: remove 
       :comments, 
       :polygons, 
       :static_map_URL, # TODO: remove
-      :service_expedition_cost, # TODO: remove
       :service_expedition_time,
+      :service_expedition_cost, # TODO: remove
       :salt_bags_quantity,
-      :salt_bags_due, # TODO: remove
       )  
   end
   
