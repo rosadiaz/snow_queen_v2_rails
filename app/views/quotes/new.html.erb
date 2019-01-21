@@ -13,7 +13,7 @@
                 type="button" 
                 class="btn edit-button btn-sm m-3" 
                 data-toggle="modal" 
-                data-target="#addressSubmitModal" 
+                data-target="#submitAddressModal" 
                 id="searchAddressButton">✎
               </button>
             </div>
@@ -135,7 +135,7 @@
             type="button" 
             class="btn edit-button btn-sm" 
             data-toggle="modal" 
-            data-target="#leadSubmitModal" 
+            data-target="#submitLeadModal" 
             id="searchAddressButton">Request a call
           </button>
         </h5>
@@ -145,11 +145,11 @@
 </main>
 
 <!-- ADDRESS SEARCH MODAL -->
-<div class="modal fade" id="addressSubmitModal" tabindex="-1" role="dialog" aria-labelledby="addressSubmitModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="submitAddressModal" tabindex="-1" role="dialog" aria-labelledby="submitAddressModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-primary">
-        <h5 class="modal-title text-white text-shadow" id="addressSubmitModalLabel">STEP 1: Let's start by searching for your address:</h5>
+        <h5 class="modal-title text-white text-shadow" id="submitAddressModalLabel">STEP 1: Let's start by searching for your address:</h5>
       </div>
       <form action="" id="AddressSearchModal">
           <div class="modal-body d-flex justify-content-center">
@@ -192,7 +192,7 @@
             <div class="col-12 mt-4">
               <div class="card">
                 <div class="card-body text-center p-1">
-                  <span id="areaModal" class="font-weight-bold font-size-35"></span> sq ft
+                  <span id="quoteModalArea" class="font-weight-bold font-size-35"></span> sq ft
                 </div>
               </div>
             </div>
@@ -213,7 +213,7 @@
                     <span class="font-weight-bold currency-symbol text-secondary">$</span>
                     <span id="serviceExpeditionCost" class="font-weight-bold font-size-35 text-secondary">expeditionCost</span> CAD
                   </div>
-                  <div class="hidden" id="saltBagsQuoteModal">
+                  <div class="hidden" id="quoteModalSaltBags">
                     <div>
                       <span class="font-weight-bold currency-symbol text-secondary">+</span>
                     </div>
@@ -222,7 +222,7 @@
                     </div>
                     <div>
                       <span class="font-weight-bold currency-symbol text-secondary">$</span>
-                      <span id="saltBagsDueModal" class="font-weight-bold font-size-35 text-secondary">saltBagsDue</span> CAD
+                      <span id="quoteModalSaltBagsDue" class="font-weight-bold font-size-35 text-secondary">saltBagsDue</span> CAD
                     </div>
                   </div>
                   <div>
@@ -268,11 +268,11 @@
 </div>
 
 <!-- NEW LEAD MODAL -->
-<div class="modal fade" id="leadSubmitModal" tabindex="-1" role="dialog" aria-labelledby="leadSubmitModalLabel" aria-hidden="true">
+<div class="modal fade" id="submitLeadModal" tabindex="-1" role="dialog" aria-labelledby="submitLeadModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-primary">
-        <h5 class="modal-title text-white text-shadow text-center" id="leadSubmitModalLabel">Enter your phone and one of our friendly mangers will get in touch with you as soon as possible</h5>
+        <h5 class="modal-title text-white text-shadow text-center" id="submitLeadModalLabel">Enter your phone and one of our friendly mangers will get in touch with you as soon as possible</h5>
       </div>
       <%= simple_form_for(@lead, remote: true) do |form| %>
         <div class="modal-body">

@@ -132,14 +132,14 @@ class QuotingPanel {
   }
 
   handleSearchAddressClick() {
-    $("#addressSubmitModal").modal("show");
+    $("#submitAddressModal").modal("show");
   }
 
   handleAddBagClick() {
     this.saltBagsQuantity += 1;
     this.updateSaltBagsTotals();
     Dom.showNode(document.getElementById("displaySaltBags"));
-    Dom.showNode(document.getElementById("saltBagsQuoteModal"));;
+    Dom.showNode(document.getElementById("quoteModalSaltBags"));;
   }
 
   handleRemoveBagClick() {

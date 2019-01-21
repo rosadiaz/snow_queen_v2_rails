@@ -92,16 +92,16 @@ class Map {
   }
 
   showAddressModal(){
-    const addressSubmitModal = $('#addressSubmitModal')
-    addressSubmitModal.modal('show');
-    addressSubmitModal.keyup(function() {
+    const submitAddressModal = $('#submitAddressModal')
+    submitAddressModal.modal('show');
+    submitAddressModal.keyup(function() {
       $('input[type=submit]').removeAttr('disabled').removeClass('disabled');
     });
   }
   
   handleSearchSubmit(event) {
     event.preventDefault();
-    $('#addressSubmitModal').modal('hide')
+    $('#submitAddressModal').modal('hide')
     if (this.marker) { this.marker.setMap(null) }
     if (this.polygons.length > 0) {
       this.polygons.forEach(p => { p.setMap(null) });

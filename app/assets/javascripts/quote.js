@@ -38,12 +38,12 @@ class Quote {
 
     this.updateStaticMap(quoteData.polygons);
 
-    document.getElementById("areaModal").innerText = quoteData.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0});
+    document.getElementById("quoteModalArea").innerText = quoteData.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0});
     document.getElementById("subTotalModal").innerText = quoteData.subTotal.toLocaleString(undefined, {maximumFractionDigits: 2});
     document.getElementById("serviceExpeditionLabel").innerText = quoteData.serviceExpeditionLabel;
     document.getElementById("serviceExpeditionCost").innerText = quoteData.serviceExpeditionCost;
     document.getElementById("saltBagsQuantityModal").innerText = quoteData.saltBagsQuantity;
-    document.getElementById("saltBagsDueModal").innerText = quoteData.saltBagsDue;
+    document.getElementById("quoteModalSaltBagsDue").innerText = quoteData.saltBagsDue;
     document.getElementById("totalModal").innerText = quoteData.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2});
 
     document.getElementById("quote_address").value = quoteData.geocodedAddress;
