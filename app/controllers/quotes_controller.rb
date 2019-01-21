@@ -26,12 +26,10 @@ class QuotesController < ApplicationController
       :last_name, 
       :address, 
       :area, # TODO: remove
-      # :total, # TODO: remove 
       :comments, 
       :polygons, 
       :static_map_URL, # TODO: remove
       :service_expedition_time,
-      :service_expedition_cost, # TODO: remove
       :salt_bags_quantity,
       )  
   end
