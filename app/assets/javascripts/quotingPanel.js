@@ -3,10 +3,20 @@ class QuotingPanel {
     this.polygons = {};
     this.geocodedAddress = null;
     this.totalAreaInSqFt = null;
+    this.subTotal = null;
+    this.serviceExpeditionCost = 0; // needs improvement to start according to controller variables
+    this.serviceExpeditionLabel = 'FREE in 24hrs';  // needs improvement to start according to controller variables
+    this.serviceExpeditionTime = 'free'; // needs improvement to start according to controller variables
+    this.saltBagsQuantity = 0;
+    this.saltBagPrice = priceList.PRICE_PER_SALT_BAG;
+    this.saltBagsDue = null;
     this.totalDue = null;
 
     this.showAddress = this.showAddress.bind(this);
     this.handlePolygonChanged = this.handlePolygonChanged.bind(this);
+    this.handleExpeditionInfoClick = this.handleExpeditionInfoClick.bind(this);
+    this.handleAddBagClick = this.handleAddBagClick.bind(this);
+    this.handleRemoveBagClick = this.handleRemoveBagClick.bind(this);
     this.getData = this.getData.bind(this);
     this.addListeners();
   }
@@ -30,17 +40,22 @@ class QuotingPanel {
         div.classList.add("secondary-address");
         secondaryAddressNode.appendChild(div);
       });
-      document.getElementById("displayAddress").classList.remove("hidden");
+      Dom.showNode(document.getElementById("displayAddress"));
+      Dom.showNode(document.getElementById("step2"));
     }
   }
 
-  handlePolygonChanged (polygons) {
+  handlePolygonChanged(polygons) {
+    Dom.hideNode(document.getElementById("step2"));
     this.polygons = polygons;
     this.totalAreaInSqFt = this.convertToSqFt(this.aggregateAreaInMts());
-    this.totalDue = this.calculateTotalDue();
     this.updateAreaNode();
-    this.updateTotalDueNode();
+    this.subTotal = this.calculateSubTotal();
+    this.updateSubTotalNode();
     this.showTotalsNode();
+    this.updateGrandTotal();
+    Dom.showNode(document.getElementById("displayServiceExpedition"));
+    Dom.showNode(document.getElementById("grandTotal"));
   }
     
   aggregateAreaInMts() {
@@ -56,35 +71,102 @@ class QuotingPanel {
     return totalAreaInMts * constants.SQ_FT_CONVERT;
   }
 
-  calculateTotalDue() {
-    return this.totalAreaInSqFt * constants.PRICE_PER_SQ_FT;
-  }
-
-  showTotalsNode() {
-    document.getElementById("displayTotals").classList.remove("hidden");
-  }
-  
   updateAreaNode() {
     const areaNode = document.getElementById("calculatedArea");
     areaNode.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
   }
 
-  updateTotalDueNode() {
-    const areaNodeInModal = document.getElementById("areaModal");
-    areaNodeInModal.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
+  calculateSubTotal() {
+    return this.totalAreaInSqFt * priceList.PRICE_PER_SQ_FT;
+  }
+
+  updateSubTotalNode() {
+    this.updateAmountNode("subTotalDue", this.subTotal, 2)
+  }
+
+  updateTotalSaltBagsNode() {
+    const numberOfBagsNode = document.getElementById("numberOfBags");
+    numberOfBagsNode.innerText = `${this.saltBagsQuantity}`;
+    const bagsDueNode = document.getElementById("saltBagsDue");
+    bagsDueNode.innerText = `${this.saltBagsDue}`;
+    this.updateTotalDueNode();
+  }
+
+  showTotalsNode() {
+    Dom.showNode(document.getElementById("displayTotals"));
+  }
+
+  updateGrandTotal() {
+    this.totalDue = this.calculateTotalDue();
+    this.updateTotalDueNode();
+  }
+  
+  calculateTotalDue() {
+    let totalDue = this.subTotal + this.serviceExpeditionCost + this.saltBagsDue;
+    return Math.max(totalDue, priceList.MIN_CHARGE);
   }
 
   updateTotalDueNode() {
-    const totalDueNode = document.getElementById("totalDue");
-    totalDueNode.innerText = `${this.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+    this.updateAmountNode("totalDue", this.totalDue, 2);
+    this.updateAmountNode("totalModal", this.totalDue, 2)
+  }
 
-    const totalDueNodeInModal = document.getElementById("totalModal");
-    totalDueNodeInModal.innerText = `${this.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+  updateAmountNode(id, amount, precision) {
+    const node = document.getElementById(id);
+    node.innerText = `${amount.toLocaleString(undefined, {maximumFractionDigits: precision})}`;
   }
 
   addListeners() {
-    document.getElementById("SubmitQuote").addEventListener('submit', (event) => { event.preventDefault() });
+    document.getElementById("SubmitQuote").addEventListener('submit', this.handleSubmitQuoteClick);
     document.getElementById("searchAddressButton").addEventListener('click', this.handleSearchAddressClick);
+    const quotingPanel = this;
+    document.getElementsByName("serviceExpeditionCost").forEach((element) => { 
+      element.addEventListener('click', this.handleExpeditionInfoClick); 
+    });
+    document.getElementById("addBag").addEventListener('click', this.handleAddBagClick);
+    document.getElementById("removeBag").addEventListener('click', this.handleRemoveBagClick);
+  }
+
+  handleSubmitQuoteClick(event) {
+    event.preventDefault();
+  }
+
+  handleSearchAddressClick() {
+    $("#submitAddressModal").modal("show");
+  }
+
+  handleAddBagClick() {
+    this.saltBagsQuantity += 1;
+    this.updateSaltBagsTotals();
+    Dom.showNode(document.getElementById("displaySaltBags"));
+    Dom.showNode(document.getElementById("quoteModalSaltBags"));;
+  }
+
+  handleRemoveBagClick() {
+    if (this.saltBagsQuantity > 0) {
+      this.saltBagsQuantity -= 1;
+    }
+    this.updateSaltBagsTotals();
+  }
+
+  handleExpeditionInfoClick(event) {
+    const serviceExpeditionCost = Number.parseFloat(event.target.value);
+    const serviceExpeditionLabel = event.target.dataset.label;
+    const serviceExpeditionTime = event.target.id;
+    this.updateServiceExpeditionInfo(serviceExpeditionCost, serviceExpeditionLabel, serviceExpeditionTime); 
+  }
+
+  updateServiceExpeditionInfo(serviceExpeditionCost, serviceExpeditionLabel, serviceExpeditionTime) {
+    this.serviceExpeditionCost = serviceExpeditionCost;
+    this.serviceExpeditionLabel = serviceExpeditionLabel;
+    this.serviceExpeditionTime = serviceExpeditionTime;
+    this.updateGrandTotal();
+  }
+
+  updateSaltBagsTotals() {
+    this.saltBagsDue = this.saltBagsQuantity * this.saltBagPrice;
+    this.updateTotalSaltBagsNode();
+    this.updateGrandTotal();
   }
 
   getData() {
@@ -92,12 +174,14 @@ class QuotingPanel {
       polygons: this.polygons,
       geocodedAddress: this.geocodedAddress || "",
       totalAreaInSqFt: this.totalAreaInSqFt, 
+      subTotal: this.subTotal,
+      serviceExpeditionCost: this.serviceExpeditionCost,
+      serviceExpeditionLabel: this.serviceExpeditionLabel,
+      serviceExpeditionTime: this.serviceExpeditionTime,
+      saltBagsQuantity: this.saltBagsQuantity,
+      saltBagsDue: this.saltBagsDue,
       totalDue: this.totalDue,
     }
-  }
-
-  handleSearchAddressClick() {
-    $("#addressSubmitModal").modal("show");
   }
 }
 

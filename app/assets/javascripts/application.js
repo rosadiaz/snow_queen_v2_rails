@@ -23,8 +23,6 @@ const constants = {
   // sets loading map centerd in Eagle Ridge area
   CENTER_MAP_LOCATION: {lat: 49.2860, lng: -122.8130},
   SQ_FT_CONVERT: 10.764,
-  // price to be defined by Snow Queen
-  PRICE_PER_SQ_FT: 0.15,
   // sets map boundaries to Port Moody and North Coquitlam
   DEFAULT_BOUNDARIES: {
     NORTH_EAST: [49.327512, -122.755847],
@@ -49,4 +47,5 @@ function loadApp() {
   new Quote({
     onOpen: quotingPanel.getData,
   });
+  new Lead();
 }

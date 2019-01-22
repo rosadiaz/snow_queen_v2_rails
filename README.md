@@ -1,9 +1,8 @@
-# SNOW QUEEN QUOTING TOOL
+# SHOVEL SQUAD QUOTING TOOL
 
+Shovel Squad is a quote generator that uses satellite imaging to calculate the area and request snow clearing and salting services for residential jobs reducing the overhead of the company since it eliminates the need to survey the area making the process fast and efficient for the potential customers and the business.
 
-Snow Queen is a quote generator that uses satellite imaging to calculate the area and request snow clearing and salting services for smaller jobs reducing the overhead of the company since it eliminates the need to survey the area making the process fast and efficient for the potential customers and the business.
-
-Technology: Ruby on Rails, Google APIs and libraries (Geocoding API, Geolocation API, Drawing and Geometry library, Static Maps), Heroku, Bootstrap.
+Technology: Ruby on Rails, Google APIs and libraries (Geocoding API, Geolocation API, Drawing and Geometry library, Static Maps, Places), Heroku, Bootstrap.
 Note: this project is split into Rails and React sub-repos on GitHub
 
 
@@ -29,7 +28,7 @@ application up and running.
 * ...
 # snow_queen
 
-Snow Queen is a rails backend application to generate quotes for snow clearing and salting services. 
+ShovelSquad is a rails backend application to generate quotes for snow clearing and salting services. 
 
 The application uses Google APIs to search for an address, the customer then marks the area to be serviced. The area calculated, along with specifications provided by the customer like: steps, hidden paths, ________, and a text area for additional notes to the service provider. This information adjusts the total to be paid for the service. When the quote is accepted, the application requests contact information for the customer and sends an email with the entered information, map, and total payment due to customer and to the service provider for revision.
 
@@ -45,13 +44,12 @@ pip install foobar
 
 ## Usage
 
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
-```
+To change constanst like the price list, refer to file 'quote.rb'
+To change service expedition times and descriptions, refer to file 'en.yml'
+To change email sender, cc, and bcc, refer to file 'application_mailer.rb'
+<!-- TODO: UPDATE INFORMATION -->
+To change mailing service, refer to file _____________________ 
+To change Google API key, refer to file __________________
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
@@ -66,8 +64,8 @@ Future versions will have the following features:
 
 * React front end
 * Option of delimiting a service area and notifying if an address is outside of its limits
-* SnowQueen admin customer will be able to log in and keep track of quotes and mark as jobs finished or cancelled.
-* SnowQueen admin can update quotes if the needs to be adjustments and notify customer of changes
+* Shovel Squad admin customer will be able to log in and keep track of quotes and mark as jobs finished or cancelled.
+* Shovel Squad admin can update quotes if the needs to be adjustments and notify customer of changes
 * Accept payments from customers at time of quote request
 * Customer can log in and rate the service received after job is done
 

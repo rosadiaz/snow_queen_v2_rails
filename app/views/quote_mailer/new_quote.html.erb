@@ -1,21 +1,31 @@
-<h1>Snow Queen service request #<%= @quote.id %></h1>
+<h1>Shovel Squad service request #<%= @quote.id %></h1>
 
 <h2>Hi <%= @quote.first_name %></h2>
 
 <p>
-  Thank you for choosing Snow Queen to fulfill your winter snow clearing and salting needs! <br>
+  Thank you for choosing Shovel Squad to fulfill your winter snow clearing and salting needs! <br>
   For your reference, here are the details of the service you requested on <%= @quote.created_at %>:
 </p>
 <dl>
   <dt class="primary-address">Address:</dt>
   <dd><%= @quote.address %></dd><br/>
+
+  <p>Expect one of our hard working squad members to show up within the next <b><%= t("service_expedition_times.#{@quote.service_expedition_time}") %></b> </p>
+
   <img alt="Selected area map" src="<%= @quote.static_map_URL.html_safe %>"><br/>
+
   <dt>Area to be serviced:</dt>
   <dd><%= number_with_precision(@quote.area, precision: 0, delimiter: ",") %> sq ft</dd><br/>
+
+  <dt>Added salt bags:</dt>
+  <dd><%= @quote.salt_bags_quantity %> </dd><br/>
+
+  <dt>Total due:</dt>
+  <dd> <b><%= number_to_currency(@quote.total) %></b> </dd><br/>
+
   <dt>Comments:</dt>
   <dd><%= @quote.comments %></dd><br/>
-  <dt>Total due:</dt>
-  <dd><%= number_to_currency(@quote.total) %></dd><br/>
 </dl>
 
-<p>Cheers, <br> Snow Queen Team</p>
+
+<p>Cheers, <br> Shovel Squad</p>
