@@ -6,7 +6,7 @@ class LeadsController < ApplicationController
       LeadMailer.new_lead(@lead).deliver
       render json: {}, status: :ok
     else
-      render json: { errors: @lead.errors.full_messages}, status: :unprocessable_entity
+      render json: {errors: @lead.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
@@ -16,6 +16,6 @@ class LeadsController < ApplicationController
       :first_name, 
       :last_name, 
       :phone_number, 
-      )  
+    )  
   end
 end

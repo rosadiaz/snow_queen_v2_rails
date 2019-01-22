@@ -1,9 +1,8 @@
 # SHOVEL SQUAD QUOTING TOOL
 
+Shovel Squad is a quote generator that uses satellite imaging to calculate the area and request snow clearing and salting services for residential jobs reducing the overhead of the company since it eliminates the need to survey the area making the process fast and efficient for the potential customers and the business.
 
-Shovel Squad is a quote generator that uses satellite imaging to calculate the area and request snow clearing and salting services for smaller jobs reducing the overhead of the company since it eliminates the need to survey the area making the process fast and efficient for the potential customers and the business.
-
-Technology: Ruby on Rails, Google APIs and libraries (Geocoding API, Geolocation API, Drawing and Geometry library, Static Maps), Heroku, Bootstrap.
+Technology: Ruby on Rails, Google APIs and libraries (Geocoding API, Geolocation API, Drawing and Geometry library, Static Maps, Places), Heroku, Bootstrap.
 Note: this project is split into Rails and React sub-repos on GitHub
 
 
@@ -45,13 +44,12 @@ pip install foobar
 
 ## Usage
 
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
-```
+To change constanst like the price list, refer to file 'quote.rb'
+To change service expedition times and descriptions, refer to file 'en.yml'
+To change email sender, cc, and bcc, refer to file 'application_mailer.rb'
+<!-- TODO: UPDATE INFORMATION -->
+To change mailing service, refer to file _____________________ 
+To change Google API key, refer to file __________________
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

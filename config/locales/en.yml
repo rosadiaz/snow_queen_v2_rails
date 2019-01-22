@@ -31,3 +31,13 @@
 
 en:
   hello: "Hello world"
+
+  service_expedition_labels: 
+    urgent: "URGENT in 3hrs"
+    soon: "In the next 8hrs"
+    free: "FREE in 24hrs"
+
+  service_expedition_times:
+    urgent: "3hrs"
+    soon: "8hrs"
+    free: "24hrs"

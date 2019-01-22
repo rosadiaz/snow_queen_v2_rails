@@ -5,15 +5,18 @@ class QuotingPanel {
     this.totalAreaInSqFt = null;
     this.subTotal = null;
     this.serviceExpeditionCost = 0; // needs improvement to start according to controller variables
-    this.serviceExpeditionDetails = 'FREE';  // needs improvement to start according to controller variables
-    this.serviceExpeditionTime = '24hrs'; // needs improvement to start according to controller variables
+    this.serviceExpeditionLabel = 'FREE in 24hrs';  // needs improvement to start according to controller variables
+    this.serviceExpeditionTime = 'free'; // needs improvement to start according to controller variables
     this.saltBagsQuantity = 0;
-    this.saltBagPrice = 35; // needs improvement to start according to controller variables
+    this.saltBagPrice = priceList.PRICE_PER_SALT_BAG;
     this.saltBagsDue = null;
     this.totalDue = null;
 
     this.showAddress = this.showAddress.bind(this);
     this.handlePolygonChanged = this.handlePolygonChanged.bind(this);
+    this.handleExpeditionInfoClick = this.handleExpeditionInfoClick.bind(this);
+    this.handleAddBagClick = this.handleAddBagClick.bind(this);
+    this.handleRemoveBagClick = this.handleRemoveBagClick.bind(this);
     this.getData = this.getData.bind(this);
     this.addListeners();
   }
@@ -37,23 +40,22 @@ class QuotingPanel {
         div.classList.add("secondary-address");
         secondaryAddressNode.appendChild(div);
       });
-      document.getElementById("displayAddress").classList.remove("hidden");
-      document.getElementById("step2").classList.remove("hidden");
+      Dom.showNode(document.getElementById("displayAddress"));
+      Dom.showNode(document.getElementById("step2"));
     }
   }
 
   handlePolygonChanged(polygons) {
-    document.getElementById("step2").classList.add("hidden");
+    Dom.hideNode(document.getElementById("step2"));
     this.polygons = polygons;
     this.totalAreaInSqFt = this.convertToSqFt(this.aggregateAreaInMts());
     this.updateAreaNode();
     this.subTotal = this.calculateSubTotal();
     this.updateSubTotalNode();
     this.showTotalsNode();
-    this.totalDue = this.calculateTotalDue();
-    this.updateTotalDueNode();
-    document.getElementById("displayServiceExpedition").classList.remove("hidden");
-    document.getElementById("grandTotal").classList.remove("hidden");
+    this.updateGrandTotal();
+    Dom.showNode(document.getElementById("displayServiceExpedition"));
+    Dom.showNode(document.getElementById("grandTotal"));
   }
     
   aggregateAreaInMts() {
@@ -75,12 +77,11 @@ class QuotingPanel {
   }
 
   calculateSubTotal() {
-    return this.totalAreaInSqFt * constants.PRICE_PER_SQ_FT;
+    return this.totalAreaInSqFt * priceList.PRICE_PER_SQ_FT;
   }
 
   updateSubTotalNode() {
-    const subTotalNode = document.getElementById("subTotalDue");
-    subTotalNode.innerText = `${(this.subTotal).toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+    this.updateAmountNode("subTotalDue", this.subTotal, 2)
   }
 
   updateTotalSaltBagsNode() {
@@ -92,67 +93,80 @@ class QuotingPanel {
   }
 
   showTotalsNode() {
-    document.getElementById("displayTotals").classList.remove("hidden");
+    Dom.showNode(document.getElementById("displayTotals"));
+  }
+
+  updateGrandTotal() {
+    this.totalDue = this.calculateTotalDue();
+    this.updateTotalDueNode();
   }
   
   calculateTotalDue() {
     let totalDue = this.subTotal + this.serviceExpeditionCost + this.saltBagsDue;
-    if (totalDue >= constants.MIN_CHARGE) {
-      return totalDue;
-    }
-    return constants.MIN_CHARGE;
+    return Math.max(totalDue, priceList.MIN_CHARGE);
   }
 
   updateTotalDueNode() {
-    const totalDueNode = document.getElementById("totalDue");
-    totalDueNode.innerText = `${this.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+    this.updateAmountNode("totalDue", this.totalDue, 2);
+    this.updateAmountNode("totalModal", this.totalDue, 2)
+  }
 
-    const totalDueNodeInModal = document.getElementById("totalModal");
-    totalDueNodeInModal.innerText = `${this.totalDue.toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+  updateAmountNode(id, amount, precision) {
+    const node = document.getElementById(id);
+    node.innerText = `${amount.toLocaleString(undefined, {maximumFractionDigits: precision})}`;
   }
 
   addListeners() {
-    document.getElementById("SubmitQuote").addEventListener('submit', (event) => { event.preventDefault() });
+    document.getElementById("SubmitQuote").addEventListener('submit', this.handleSubmitQuoteClick);
     document.getElementById("searchAddressButton").addEventListener('click', this.handleSearchAddressClick);
+    const quotingPanel = this;
     document.getElementsByName("serviceExpeditionCost").forEach((element) => { 
-      element.addEventListener('click', (event) => { 
-        const serviceExpeditionCost = Number.parseFloat(event.target.value);
-        const serviceExpeditionDetails = event.target.dataset.label;
-        const serviceExpeditionTime = event.target.id;
-        this.handleServiceExpeditionChange(serviceExpeditionCost, serviceExpeditionDetails, serviceExpeditionTime); 
-      });
+      element.addEventListener('click', this.handleExpeditionInfoClick); 
     });
-    document.getElementById("addBag").addEventListener('click', (event) => { this.handleAddSaltBag() });
-    document.getElementById("removeBag").addEventListener('click', (event) => { this.handleRemoveSaltBag() });
+    document.getElementById("addBag").addEventListener('click', this.handleAddBagClick);
+    document.getElementById("removeBag").addEventListener('click', this.handleRemoveBagClick);
   }
 
-  handleServiceExpeditionChange(serviceExpeditionCost, serviceExpeditionDetails, serviceExpeditionTime) {
-    this.serviceExpeditionCost = serviceExpeditionCost;
-    this.serviceExpeditionDetails = serviceExpeditionDetails;
-    this.serviceExpeditionTime = serviceExpeditionTime;
-    this.totalDue = this.calculateTotalDue();
-    this.updateTotalDueNode();
+  handleSubmitQuoteClick(event) {
+    event.preventDefault();
   }
 
-  handleAddSaltBag() {
+  handleSearchAddressClick() {
+    $("#submitAddressModal").modal("show");
+  }
+
+  handleAddBagClick() {
     this.saltBagsQuantity += 1;
     this.updateSaltBagsTotals();
-    document.getElementById("displaySaltBags").classList.remove("hidden");
-    document.getElementById("saltBagsQuoteModal").classList.remove("hidden");
+    Dom.showNode(document.getElementById("displaySaltBags"));
+    Dom.showNode(document.getElementById("quoteModalSaltBags"));;
   }
 
-  handleRemoveSaltBag() {
+  handleRemoveBagClick() {
     if (this.saltBagsQuantity > 0) {
       this.saltBagsQuantity -= 1;
     }
     this.updateSaltBagsTotals();
   }
 
+  handleExpeditionInfoClick(event) {
+    const serviceExpeditionCost = Number.parseFloat(event.target.value);
+    const serviceExpeditionLabel = event.target.dataset.label;
+    const serviceExpeditionTime = event.target.id;
+    this.updateServiceExpeditionInfo(serviceExpeditionCost, serviceExpeditionLabel, serviceExpeditionTime); 
+  }
+
+  updateServiceExpeditionInfo(serviceExpeditionCost, serviceExpeditionLabel, serviceExpeditionTime) {
+    this.serviceExpeditionCost = serviceExpeditionCost;
+    this.serviceExpeditionLabel = serviceExpeditionLabel;
+    this.serviceExpeditionTime = serviceExpeditionTime;
+    this.updateGrandTotal();
+  }
+
   updateSaltBagsTotals() {
     this.saltBagsDue = this.saltBagsQuantity * this.saltBagPrice;
     this.updateTotalSaltBagsNode();
-    this.totalDue = this.calculateTotalDue();
-    this.updateTotalDueNode();
+    this.updateGrandTotal();
   }
 
   getData() {
@@ -162,16 +176,12 @@ class QuotingPanel {
       totalAreaInSqFt: this.totalAreaInSqFt, 
       subTotal: this.subTotal,
       serviceExpeditionCost: this.serviceExpeditionCost,
-      serviceExpeditionDetails: this.serviceExpeditionDetails,
+      serviceExpeditionLabel: this.serviceExpeditionLabel,
       serviceExpeditionTime: this.serviceExpeditionTime,
       saltBagsQuantity: this.saltBagsQuantity,
       saltBagsDue: this.saltBagsDue,
       totalDue: this.totalDue,
     }
-  }
-
-  handleSearchAddressClick() {
-    $("#addressSubmitModal").modal("show");
   }
 }
 
