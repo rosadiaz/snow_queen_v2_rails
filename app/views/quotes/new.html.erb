@@ -1,52 +1,204 @@
 <main class="container-fluid">
-  <div class="accordion" id="accordionExample">
-    <div class="card">
-      <div class="card-header" id="headingOne">
-        <h2 class="mb-0">
-          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            <div><b>Step 1:</b> Address</div>
-          </button>
-        </h2>
-      </div>
-
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-        <div class="card-body">
-          <div id="addressSubmitModalLabel">Let's start by searching for your address
+  <div class="row d-flex justify-content-center">
+    <div class="col col-7">
+      <div class="accordion" id="accordionExample">
+        <div class="card"> <!-- Step1: Search Address -->
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMark", class: 'hidden') %>
+              <button id="findAddress" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <div><b>Step 1:</b> Address</div>
+              </button>
+            </h2>
           </div>
-          <form action="" id="AddressSearchModal">
-            <div class="d-flex justify-content-center m-3">
-              <input id="address" type="textbox" placeholder="123 Street Rd, Port Moody" class="w-75">
-              <input id="submit" type="submit" value="Find" class="disabled btn btn-dark ml-3" disabled>
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              <div id="addressSubmitModalLabel"></div>
+              <form action="" id="AddressSearchModal">
+                <div class="d-flex justify-content-center m-3">
+                  <input id="address" type="textbox" placeholder="Start typing your address" class="w-75">
+                  <input id="submit" type="submit" value="Find" class="btn btn-dark ml-3">
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
+        </div>
+        <div class="card"> <!-- Step2: Select Area -->
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMark", class: 'hidden') %>
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <div><b>Step 2:</b> Select service area</div>
+              </button>
+            </h2>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+              <div> 
+                <div class="row">
+                  <div class="col col-6">
+                    <p class="h5">Identify your driveway, front door, and any area that needs to be cleared of snow and salted</p>
+                  </div>
+                  <div class="col col-6">
+                    <%= image_tag('SelectAreaNarrow.gif', alt: 'Select area example animation', height: '70%') %>
+                  </div>
+                  <div class="col col-10 pt-3">
+                    <div class="alert alert-success" role="alert">
+                      Did you know you can select more than one area? Add side paths, backstairs, patio, etc.
+                    </div>
+                  </div>
+                  <div class="col col-2 pt-3">
+                    <button type="button" class="btn btn-dark">Done selecting</button>
+                  </div>
+                  <div class="col col-12">
+                    <%= image_tag('map_mockup.png', alt: 'map mockup', width: '1040px', height: '435px') %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card"> <!-- Step 3: Add ons -->
+          <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+              <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMark", class: 'hidden') %>
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <div><b>Step 3:</b> Additional information </div>
+              </button>
+            </h2>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+              <div class="row pl-5" id="displayServiceExpedition">
+                <div class="col-12 mt-3">
+                  <div><b> How soon do you want the service? </b></div>
+                  <fieldset class="form-group">
+                    <div class="row">
+                      <div class="col-sm-10">
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="serviceExpeditionCost" id="urgent" value="99.99" data-label="URGENT in 3hrs" checked="">
+                            <label class="form-check-label" for="urgent">
+                              URGENT in 3hrs - <b>$99.99</b>
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="serviceExpeditionCost" id="soon" value="49.99" data-label="In the next 8hrs" checked="">
+                            <label class="form-check-label" for="soon">
+                              In the next 8hrs - <b>$49.99</b>
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="serviceExpeditionCost" id="free" value="0" data-label="FREE in 24hrs" checked="">
+                            <label class="form-check-label" for="free">
+                              FREE in 24hrs - <b>$0</b>
+                            </label>
+                          </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="col-12 mt-3">
+                  <div><b> Would you like to add salt bags? </b></div>
+                  <button id="addBag" type="button" class="btn btn-success rounded-circle pl-2 pr-2 pt-0 pb-0">+</button>
+                  <span id="numberOfBags" class="font-weight-bold font-size-35 align-middle">1</span>
+                  <button id="removeBag" type="button" class="btn btn-danger rounded-circle pl-2 pr-2 pt-0 pb-0">-</button>
+                </div>
+                <div class="col-12">
+                  <button type="button" class="btn btn-dark">Next</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card"> <!-- Step 4: Contact info -->
+          <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+              <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMark", class: 'hidden') %>
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                <div><b>Step 4:</b> Contact information </div>
+              </button>
+            </h2>
+          </div>
+          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+            <div class="card-body">
+              <div class="row d-flex justify-content-center ">
+                <div class="col-10 mt-3">
+                  <div class="form-group email required quote_email"><label class="form-control-label email required" for="quote_email">Email <abbr title="required">*</abbr></label>
+                  <input class="form-control string email required" type="email" name="quote[email]" id="quote_email"></div>
+                </div>
+                <div class="col-5">
+                  <div class="form-group string optional quote_first_name">
+                    <label class="form-control-label string optional" for="quote_first_name">First name</label>
+                    <input class="form-control string optional" type="text" name="quote[first_name]" id="quote_first_name">
+                  </div>
+                </div>
+                <div class="col-5">
+                  <div class="form-group string optional quote_last_name">
+                    <label class="form-control-label string optional" for="quote_last_name">Last name</label>
+                    <input class="form-control string optional" type="text" name="quote[last_name]" id="quote_last_name">
+                  </div>
+                </div>
+                <div class="col-10">
+                  <div class="form-group text optional quote_comments">
+                    <label class="form-control-label text optional" for="quote_comments">Comments</label>
+                    <textarea class="form-control text optional" placeholder="How can we best serve you?" name="quote[comments]" id="quote_comments"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center p-3">
+              <button type="button" class="btn btn-lg btn-dark" disabled>Request Service</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card">
-      <div class="card-header" id="headingTwo">
-        <h2 class="mb-0">
-          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            <div><b>Step 2:</b> Select service area</div>
-          </button>
-        </h2>
-      </div>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-        <div class="card-body">
-          <div> Select service area</div>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header" id="headingThree">
-        <h2 class="mb-0">
-          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            <div><b>Step 3:</b> When would you like the service? </div>
-          </button>
-        </h2>
-      </div>
-      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+    <div class="col col-3">
+      <div class="quote card">
+        <div class="card-header">
+          <dl>
+            <div class="hidden">
+              <dt>Address:</dt>
+              <dd>
+                <div class="row displayAddress" id="displayAddress">
+                  <div class="col-12 card-text" id="primaryAddress"><div class="primary-address">3552 Oxford St</div></div>
+                  <div class="col-6 card-text secondary" id="secondaryAddress">
+                    <div class="secondary-address"> Port Coquitlam</div>
+                    <div class="secondary-address"> BC V3B 4E4</div>
+                    <div class="secondary-address"> Canada</div>
+                  </div>
+                  <div class="col-6">
+                    <%= image_tag('mini_map_mockup.png', alt: 'mini map mockup', width:'100%') %>
+                  </div>
+                </div>
+              </dd>
+              <dd>Selected area: <b>1,117 sq ft</b>
+              <dd class="text-right">
+                <span class="font-weight-bold currency-symbol text-secondary">$</span>
+                <span id="subTotalDue" class="font-weight-bold text-secondary font-size-35">402.15</span>
+              </dd>
+              <dd>Service expedited: <b> in the next 8 hrs</b>
+              <dd class="text-right">
+                <span class="font-weight-bold currency-symbol text-secondary">$</span>
+                <span id="subTotalDue" class="font-weight-bold text-secondary font-size-35">49.99</span>
+              </dd>
+              <dd>Added salt bags: <b>1</b>
+              <dd class="text-right">
+                <span class="font-weight-bold currency-symbol text-secondary">$</span>
+                <span id="subTotalDue" class="font-weight-bold text-secondary font-size-35">35.00</span>
+              </dd>
+            </div>
+            <div class="card"> 
+            <div class="card-header"><b>Total due:</b></div>
+              <div class="card-body text-center p-1">
+                <p>
+                  <span class="font-weight-bold currency-symbol text-secondary">$</span>
+                  <span id="totalDue" class="font-weight-bold font-size-35">150.00</span> CAD
+                </p>
+                <p>Minimum charge</p>
+              </div>
+            </div>
+          </dl>
         </div>
       </div>
     </div>
