@@ -1,4 +1,4 @@
-class Map {
+class ShovelSquadMap {
   constructor(config) {
     this.map = this.initMap();
     this.drawingManager = this.initDrawingManager();

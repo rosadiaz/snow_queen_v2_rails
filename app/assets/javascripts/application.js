@@ -40,7 +40,7 @@ function initMap() {
 
 function loadApp() {
   const quotingPanel = new QuotingPanel();
-  new Map({
+  new ShovelSquadMap({
     onGeocodingResponse: quotingPanel.showAddress,
     onPolygonsChanged: quotingPanel.handlePolygonChanged,
   });
