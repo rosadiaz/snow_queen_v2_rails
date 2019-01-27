@@ -111,4 +111,7 @@ Rails.application.configure do
   :authentication => :plain
   }
 
+    # Stripe keys accessing
+    config.stripe_api_key = ENV.fetch("STRIPE_LIVE_KEY")
+
 end

@@ -62,4 +62,7 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # Stripe keys accessing
+  config.stripe_api_key = ENV.fetch("STRIPE_TEST_KEY")
 end

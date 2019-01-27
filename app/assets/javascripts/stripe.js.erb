@@ -1,6 +1,6 @@
 
 // Create a Stripe client.
-const stripe = Stripe('<%= Rails.application.credentials.dig(:stripe, :publishable_key)%>');
+const stripe = Stripe(`<%= Rails.application.config.stripe_api_key %>`);
 
 // Create an instance of Elements.
 const elements = stripe.elements();
