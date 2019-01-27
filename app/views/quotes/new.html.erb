@@ -2,7 +2,7 @@
   <div class="row d-flex justify-content-center">
     <div class="col col-7">
       <div class="accordion" id="accordionExample">
-        <div class="card"> <!-- Step1: Search Address -->
+        <div class="card"> <!-- Step 1: Search Address -->
           <div class="card-header" id="headingOne">
             <h2 class="mb-0">
               <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMark", class: 'hidden') %>
@@ -23,7 +23,7 @@
             </div>
           </div>
         </div>
-        <div class="card"> <!-- Step2: Select Area -->
+        <div class="card"> <!-- Step 2: Select Area -->
           <div class="card-header" id="headingTwo">
             <h2 class="mb-0">
               <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMark", class: 'hidden') %>
@@ -69,8 +69,8 @@
           </div>
           <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
             <div class="card-body">
-              <div class="row pl-5" id="displayServiceExpedition">
-                <div class="col-12 mt-3">
+              <div class="row d-flex justify-content-center" id="displayServiceExpedition">
+                <div class="col-10 mt-3">
                   <div><b> How soon do you want the service? </b></div>
                   <fieldset class="form-group">
                     <div class="row">
@@ -97,13 +97,13 @@
                     </div>
                   </fieldset>
                 </div>
-                <div class="col-12 mt-3">
+                <div class="col-10 mt-3">
                   <div><b> Would you like to add organic de-icer for $35 each? </b></div>
                   <button id="addBag" type="button" class="btn btn-success rounded-circle pl-2 pr-2 pt-0 pb-0">+</button>
                   <span id="numberOfBags" class="font-weight-bold font-size-35 align-middle">1</span>
                   <button id="removeBag" type="button" class="btn btn-danger rounded-circle pl-2 pr-2 pt-0 pb-0">-</button>
                 </div>
-                <div class="col-12">
+                <div class="col-10">
                   <button type="button" class="btn btn-dark">Next</button>
                 </div>
               </div>
@@ -111,7 +111,7 @@
           </div>
         </div>
         <div class="card"> <!-- Step 4: Contact info -->
-          <div class="card-header" id="headingThree">
+          <div class="card-header" id="headingFour">
             <h2 class="mb-0">
               <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMark", class: 'hidden') %>
               <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
@@ -122,38 +122,74 @@
           <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
             <div class="card-body">
               <div class="row d-flex justify-content-center ">
-                <div class="col-10 mt-3">
+                <div class="col-10 mt-3"> <!-- Email -->
                   <div class="form-group email required quote_email"><label class="form-control-label email required" for="quote_email">Email <abbr title="required">*</abbr></label>
                   <input class="form-control string email required" type="email" name="quote[email]" id="quote_email"></div>
                 </div>
-                <div class="col-5">
+                <div class="col-5"> <!-- First Name -->
                   <div class="form-group string optional quote_first_name">
                     <label class="form-control-label string optional" for="quote_first_name">First name</label>
                     <input class="form-control string optional" type="text" name="quote[first_name]" id="quote_first_name">
                   </div>
                 </div>
-                <div class="col-5">
+                <div class="col-5"> <!-- Last Name -->
                   <div class="form-group string optional quote_last_name">
                     <label class="form-control-label string optional" for="quote_last_name">Last name</label>
                     <input class="form-control string optional" type="text" name="quote[last_name]" id="quote_last_name">
                   </div>
                 </div>
-                <div class="col-10">
+                <div class="col-10"> <!-- Comments -->
                   <div class="form-group text optional quote_comments">
                     <label class="form-control-label text optional" for="quote_comments">Comments</label>
                     <textarea class="form-control text optional" placeholder="How can we best serve you?" name="quote[comments]" id="quote_comments"></textarea>
                   </div>
                 </div>
+                <div class="col-10">
+                  <button type="button" class="btn btn-dark">Next</button>
+                </div>
               </div>
             </div>
-            <div class="d-flex justify-content-center p-3">
-              <button type="button" class="btn btn-lg btn-dark" disabled>Request Service</button>
+          </div>
+        </div>
+        <div class="card"> <!-- Step 5: Payment -->
+          <div class="card-header" id="headingFive">
+            <h2 class="mb-0">
+              <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMark", class: 'hidden') %>
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                <div><b>Step 5:</b> Payment </div>
+              </button>
+            </h2>
+          </div>
+          <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+            <div class="card-body">
+              <div class="row d-flex justify-content-center ">
+                <div class="col-10">
+                  <form action="/charge" method="post" id="payment-form">
+                    <div class="form-row">
+                      <div class="col-12">
+                        <label for="card-element">Credit card</label>
+                      </div>
+                      <div class="col-12">
+                        <div id="card-element">
+                          <!-- A Stripe Element will be inserted here. -->
+                        </div>
+                        <!-- Used to display form errors. -->
+                        <div id="card-errors" role="alert">
+                        </div>
+                      </div>
+                      <div class="col-10 pt-3">
+                        <button class="btn btn-lg btn-dark">Submit Payment to Request Service</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col col-3">
+    <div class="col col-3"> <!-- Requested service summary -->
       <div class="quote card">
         <div class="card-header">
           <dl>
