@@ -122,9 +122,13 @@
           <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
             <div class="card-body">
               <div class="row d-flex justify-content-center ">
-                <div class="col-10 mt-3"> <!-- Email -->
+                <div class="col-6 mt-3"> <!-- Email -->
                   <div class="form-group email required quote_email"><label class="form-control-label email required" for="quote_email">Email <abbr title="required">*</abbr></label>
                   <input class="form-control string email required" type="email" name="quote[email]" id="quote_email"></div>
+                </div>
+                <div class="col-4 mt-3"> <!-- Phone number -->
+                  <div class="form-group phone_number required quote_phone_number"><label class="form-control-label phone_number required" for="quote_phone_number">Phone number <abbr title="required">*</abbr></label>
+                  <input class="form-control string phone_number required" type="tel" name="quote[phone_number]" id="quote_phone_number"></div>
                 </div>
                 <div class="col-5"> <!-- First Name -->
                   <div class="form-group string optional quote_first_name">
