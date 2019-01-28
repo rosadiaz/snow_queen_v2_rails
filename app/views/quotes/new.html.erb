@@ -193,8 +193,44 @@
         </div>
       </div>
     </div>
-    <div class="col col-3"> <!-- Requested service summary -->
-      <div class="quote card">
+    <div class="col col-3"> 
+      <div class="accordion" id="leadAccordion"> <!-- New Lead contact info -->
+        <div class="card">
+          <div class="card-header font-weight-bold bg-primary text-white text-shadow" id="lead">
+            <div class="mb-0 d-flex justify-content-between align-items-center"> Having trouble?
+                <button 
+                  type="button" 
+                  class="btn edit-button btn-sm" 
+                  data-toggle="collapse" 
+                  data-target="#collapseLead" 
+                  aria-expanded="true" 
+                  aria-controls="collapseLead"
+                  id="submitLead">
+                    <div> Request a call
+                    </div>
+                </button>
+            </div>
+          </div>
+          <div id="collapseLead" class="collapse" aria-labelledby="lead" data-parent="#leadAccordion">
+            <div class="card-body">
+              <%= simple_form_for(@lead, remote: true) do |form| %>
+                <div class="modal-body">
+                  <div class="hidden modal_errors col-12 p-0" id="lead_modal_errors"></div>
+                  <%= form.input :phone_number %>
+                  <%= form.input :first_name %>
+                  <%= form.input :last_name %>
+                  <div class="text-center">
+                    <%= form.submit "Call me ASAP!", class: 'btn btn-dark m-3' %> 
+                    <div><a href="tel:778-SHOVEL-SQUAD">778-SHOVEL-SQUAD</a>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="quote card"> <!-- Requested service summary -->
         <div class="card-header">
           <dl>
             <div class="hidden">
