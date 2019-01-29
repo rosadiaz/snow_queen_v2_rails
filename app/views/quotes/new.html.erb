@@ -280,3 +280,13 @@
     </div>
   </div>
 </main>
+<script>
+  const priceList = {
+    PRICE_PER_SQ_FT: <%= @price_per_sq_ft %>,
+    MIN_CHARGE: <%= @min_charge %>,
+    PRICE_PER_SALT_BAG: <%= @price_per_salt_bag %>
+  }
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.credentials.google_api%>&libraries=places,drawing&callback=initMap" async defer>
+</script>
