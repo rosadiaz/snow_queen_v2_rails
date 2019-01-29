@@ -49,7 +49,9 @@ To change service expedition times and descriptions, refer to file 'en.yml'
 To change email sender, cc, and bcc, refer to file 'application_mailer.rb'
 <!-- TODO: UPDATE INFORMATION -->
 To change mailing service, refer to file _____________________ 
-To change Google API key, refer to file __________________
+To change Google API key, refer to file credentials.yml.enc, access via terminal: EDITOR='code --wait' rails credentials:edit
+
+<!-- TODO: Give master.key to ShovelSquad manager-->
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
