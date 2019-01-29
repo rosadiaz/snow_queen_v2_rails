@@ -44,8 +44,8 @@ function loadApp() {
   //   onGeocodingResponse: quotingPanel.showAddress,
   //   onPolygonsChanged: quotingPanel.handlePolygonChanged,
   // });
-  // new Quote({
+  new Quote({
   //   onOpen: quotingPanel.getData,
-  // });
+  });
   new Lead();
 }

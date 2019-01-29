@@ -3,19 +3,28 @@ class Quote {
     this.errors = null;
     this.onOpen = config.onOpen;
     this.staticMapURL = null;
+    this.totalDue = 0;
     
     this.handleErrors = this.handleErrors.bind(this);
     this.handleOpenModal = this.handleOpenModal.bind(this);
-    // this.addListeners();
+    this.addListeners();
   }
   
   addListeners() {
-    $("#submitQuoteModal").on("show.bs.modal", this.handleOpenModal);
-    const quoteFormNode = document.getElementById("new_quote");
-    quoteFormNode.addEventListener("ajax:error", this.handleErrors);
-    quoteFormNode.addEventListener("ajax:success", this.handleSuccess);
-    $("#successModal").on("hide.bs.modal", this.handleSuccessModalClose)
+    const grandTotalNode = document.getElementById('totalDue');
+    grandTotalNode.innerText = this.calculateTotalDue();
+    // $("#submitQuoteModal").on("show.bs.modal", this.handleOpenModal);
+    // const quoteFormNode = document.getElementById("new_quote");
+    // quoteFormNode.addEventListener("ajax:error", this.handleErrors);
+    // quoteFormNode.addEventListener("ajax:success", this.handleSuccess);
+    // $("#successModal").on("hide.bs.modal", this.handleSuccessModalClose)
   }
+
+  calculateTotalDue() {
+    // this.totalDue = this.subTotal + this.serviceExpeditionCost + this.saltBagsDue;
+    return Math.max(this.totalDue, priceList.MIN_CHARGE);
+  }
+
 
   handleOpenModal() {
     let quoteData = this.onOpen();
