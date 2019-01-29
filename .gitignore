@@ -23,5 +23,8 @@
 /config/master.key
 /config/initializers/api_keys.rb
 /config/local_env.yml
+/config/ssl/shovelsquad.local.crt
+/config/ssl/shovelsquad.local.key
+
 
 .DS_Store
