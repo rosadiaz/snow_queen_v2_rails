@@ -18,7 +18,7 @@ class QuotingPanel {
     this.handleAddBagClick = this.handleAddBagClick.bind(this);
     this.handleRemoveBagClick = this.handleRemoveBagClick.bind(this);
     this.getData = this.getData.bind(this);
-    this.addListeners();
+    // this.addListeners();
   }
 
   showAddress(geocodedAddress) {

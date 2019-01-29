@@ -17,7 +17,7 @@ class Map {
     this.handlePolygonCreated = this.handlePolygonCreated.bind(this);
     this.handleRemoveLastPolygon = this.handleRemoveLastPolygon.bind(this);
     this.handleRemoveAllPolygons = this.handleRemoveAllPolygons.bind(this);
-    this.addListeners();
+    // this.addListeners();
     this.showAddressModal();
   }
 

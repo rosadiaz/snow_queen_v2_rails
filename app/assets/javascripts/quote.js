@@ -6,7 +6,7 @@ class Quote {
     
     this.handleErrors = this.handleErrors.bind(this);
     this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.addListeners();
+    // this.addListeners();
   }
   
   addListeners() {

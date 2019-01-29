@@ -39,13 +39,13 @@ function initMap() {
 }
 
 function loadApp() {
-  const quotingPanel = new QuotingPanel();
-  new Map({
-    onGeocodingResponse: quotingPanel.showAddress,
-    onPolygonsChanged: quotingPanel.handlePolygonChanged,
-  });
-  new Quote({
-    onOpen: quotingPanel.getData,
-  });
+  // const quotingPanel = new QuotingPanel();
+  // new Map({
+  //   onGeocodingResponse: quotingPanel.showAddress,
+  //   onPolygonsChanged: quotingPanel.handlePolygonChanged,
+  // });
+  // new Quote({
+  //   onOpen: quotingPanel.getData,
+  // });
   new Lead();
 }
