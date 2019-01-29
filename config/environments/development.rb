@@ -64,5 +64,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Stripe keys accessing
-  config.stripe_api_key = ENV.fetch("STRIPE_TEST_KEY")
+  config.stripe_api_key = Rails.application.credentials.dig(:stripe, :test_key)
 end
