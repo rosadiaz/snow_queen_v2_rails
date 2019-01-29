@@ -36,6 +36,10 @@ Design and branding was provided by _________ (in the mean time I will come up w
 
 ## Installation
 
+To setup mailing account, refer to file local_env.yml.example, make a copy of the file and remove extension .example and replace contents.
+To use gmail, generate app specific password
+
+
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 
 ```bash
@@ -48,7 +52,7 @@ To change constanst like the price list, refer to file 'quote.rb'
 To change service expedition times and descriptions, refer to file 'en.yml'
 To change email sender, cc, and bcc, refer to file 'application_mailer.rb'
 <!-- TODO: UPDATE INFORMATION -->
-To change mailing service, refer to file _____________________ 
+To change mailing account, refer to file local_env.yml, replace contents
 To change Google API key, refer to file credentials.yml.enc, access via terminal: EDITOR='code --wait' rails credentials:edit
 
 <!-- TODO: Give master.key to ShovelSquad manager-->

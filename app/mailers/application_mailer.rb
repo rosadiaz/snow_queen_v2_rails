@@ -1,6 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'info@shovelsquad.com'
-  default to: 'info@shovelsquad.com'
+  default from: 'contact@shovelsquad.com'
+  default to: 'contact@shovelsquad.com'
   default bcc: 'rosadiazjara@gmail.com'
   layout 'mailer'
 end
