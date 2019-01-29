@@ -7,7 +7,6 @@ class Lead {
     const leadFormNode = document.getElementById("new_lead");
     leadFormNode.addEventListener("ajax:error", this.handleErrors);
     leadFormNode.addEventListener("ajax:success", this.handleSuccess);
-    $("#successModal").on("hide.bs.modal", this.handleSuccessModalClose)
   }
 
   handleErrors(event) {
@@ -18,6 +17,8 @@ class Lead {
   }
 
   handleSuccess(event) {
-    $("#submitLeadModal").modal("hide");
+    $('#collapseLead').collapse('toggle');
+    $("#successModal").modal("show");
+
   }
 }
