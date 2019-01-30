@@ -112,6 +112,7 @@ Rails.application.configure do
   }
 
     # Stripe keys accessing
-    config.stripe_api_key = Rails.application.credentials.dig(:stripe, :live_key)
+    config.stripe_secret_api_key = Rails.application.credentials.dig(:stripe, :secret_live_key)
+    config.stripe_publishable_api_key = Rails.application.credentials.dig(:stripe, :publishable_live_key)
 
 end
