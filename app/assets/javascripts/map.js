@@ -8,15 +8,15 @@ class ShovelSquadMap {
     this.autocomplete = this.initAutocomplete();
     this.marker = null;
     this.geocodedAddress = null;
-    // this.polygons = [];
+    this.polygons = [];
     // this.onGeocodingResponse = config.onGeocodingResponse;
     // this.onPolygonsChanged = config.onPolygonsChanged;
 
-    // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
-    // this.handleGeocodingResponse = this.handleGeocodingResponse.bind(this);
-    // this.handlePolygonCreated = this.handlePolygonCreated.bind(this);
-    // this.handleRemoveLastPolygon = this.handleRemoveLastPolygon.bind(this);
-    // this.handleRemoveAllPolygons = this.handleRemoveAllPolygons.bind(this);
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    this.handleGeocodingResponse = this.handleGeocodingResponse.bind(this);
+    this.handlePolygonCreated = this.handlePolygonCreated.bind(this);
+    this.handleRemoveLastPolygon = this.handleRemoveLastPolygon.bind(this);
+    this.handleRemoveAllPolygons = this.handleRemoveAllPolygons.bind(this);
     this.addListeners();
     // this.showAddressModal();
   }
@@ -87,7 +87,7 @@ class ShovelSquadMap {
   addListeners() {
     document.getElementById('addressSearchBar').addEventListener('keyup', this.enableFindButton)
     document.getElementById('addressSearchBar').addEventListener('submit', this.handleSearchSubmit);
-    // this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated);
+    this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated);
     // this.removeLastControl.addEventListener('click', this.handleRemoveLastPolygon);
     // this.removeAllControl.addEventListener('click', this.handleRemoveAllPolygons);
   }
@@ -98,22 +98,20 @@ class ShovelSquadMap {
   
   handleSearchSubmit(event) {
     event.preventDefault();
-    // $('#submitAddressModal').modal('hide')
-    debugger;
     document.getElementById('collapseFindAddress').classList.remove('show');
     document.getElementById('collapseMap').classList.add('show');
     
-    // if (this.marker) { this.marker.setMap(null) }
-    // if (this.polygons.length > 0) {
-    //   this.polygons.forEach(p => { p.setMap(null) });
-    //   this.polygons = [];
-    //   // this.onPolygonsChanged(this.polygons);
-    // }
-    // this.geocodeAddress();
+    if (this.marker) { this.marker.setMap(null) }
+    if (this.polygons.length > 0) {
+      this.polygons.forEach(p => { p.setMap(null) });
+      this.polygons = [];
+      this.onPolygonsChanged(this.polygons);
+    }
+    this.geocodeAddress();
   }
 
   geocodeAddress() {
-    let address = document.getElementById('address').value;
+    let address = document.getElementById('addressInput').value;
     this.geocoder.geocode({'address': address, 'region': 'CA'}, this.handleGeocodingResponse);
   }
 
