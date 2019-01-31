@@ -180,9 +180,14 @@
                         <!-- Used to display form errors. -->
                         <div id="card-errors" role="alert">
                         </div>
+                        <% if flash[:error].present? %>
+                          <div id="charge-errors">
+                            <p><%= flash[:error] %></p>
+                          </div>
+                        <% end %>
                       </div>
                       <div class="col-10 pt-3">
-                        <button class="btn btn-lg btn-dark">Submit Payment to Request Service</button>
+                        <input type="submit" class="btn btn-lg btn-dark" value="Submit Payment to Request Service">
                       </div>
                     </div>
                   </form>
