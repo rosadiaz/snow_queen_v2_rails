@@ -6,12 +6,16 @@ class ChargesController < ApplicationController
     token = params[:stripeToken]
 
     charge = Stripe::Charge.create({
-        amount: 999,
+        amount: 99,
         currency: 'cad',
         description: 'Example charge',
         source: token,
     })
 
     render json: params
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to new_quote_path
+
   end
 end

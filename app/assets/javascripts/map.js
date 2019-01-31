@@ -93,7 +93,6 @@ class ShovelSquadMap {
   }
 
   enableFindButton(){
-    console.log("Enabling Find button")
     document.getElementById('addressSubmit').classList.remove('disabled');
   }
   
