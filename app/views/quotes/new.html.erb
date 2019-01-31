@@ -238,36 +238,40 @@
       <div class="quote card"> <!-- Requested service summary -->
         <div class="card-header">
           <dl>
-            <div class="hidden">
-              <dt>Address:</dt>
-              <dd>
-                <div class="row displayAddress" id="displayAddress">
-                  <div class="col-12 card-text" id="primaryAddress"><div class="primary-address">3552 Oxford St</div></div>
-                  <div class="col-6 card-text secondary" id="secondaryAddress">
-                    <div class="secondary-address"> Port Coquitlam</div>
-                    <div class="secondary-address"> BC V3B 4E4</div>
-                    <div class="secondary-address"> Canada</div>
-                  </div>
-                  <div class="col-6">
-                    <%= image_tag('mini_map_mockup.png', alt: 'mini map mockup', width:'100%') %>
+            <div id="summary" class="hidden">
+              <div id="summaryAddress" class="hidden">Address:
+                <div>
+                  <div class="row displayAddress" id="displayAddress">
+                    <div class="col-12 card-text" id="primaryAddress"><div class="primary-address">### Street</div></div>
+                    <div class="col-6 card-text secondary" id="secondaryAddress">
+                      <div class="secondary-address"> City</div>
+                      <div class="secondary-address"> Province Postal Code</div>
+                      <div class="secondary-address"> Country</div>
+                    </div>
+                    <div class="col-6">
+                      <%= image_tag('mini_map_mockup.png', alt: 'mini map mockup', width:'100%') %>
+                    </div>
                   </div>
                 </div>
-              </dd>
-              <dd>Selected area: <b>1,117 sq ft</b>
-              <dd class="text-right">
-                <span class="font-weight-bold currency-symbol text-secondary">$</span>
-                <span id="subTotalDue" class="font-weight-bold text-secondary font-size-35">402.15</span>
-              </dd>
-              <dd>Service expedited: <b> in the next 8 hrs</b>
-              <dd class="text-right">
-                <span class="font-weight-bold currency-symbol text-secondary">$</span>
-                <span id="subTotalDue" class="font-weight-bold text-secondary font-size-35">49.99</span>
-              </dd>
-              <dd>Added salt bags: <b>1</b>
-              <dd class="text-right">
-                <span class="font-weight-bold currency-symbol text-secondary">$</span>
-                <span id="subTotalDue" class="font-weight-bold text-secondary font-size-35">35.00</span>
-              </dd>
+              </div>
+              <div id="summaryArea" class="hidden">Selected area: <b>1,117 sq ft</b>
+                <div class="text-right">
+                  <span class="font-weight-bold currency-symbol text-secondary">$</span>
+                  <span id="subTotalDue" class="font-weight-bold text-secondary font-size-35">402.15</span>
+                </div>
+              </div>
+              <div id="summaryExpeditionTime" class="hidden">Service expedited: <b> in the next 8 hrs</b>
+                <dd class="text-right">
+                  <span class="font-weight-bold currency-symbol text-secondary">$</span>
+                  <span id="subTotalDue" class="font-weight-bold text-secondary font-size-35">49.99</span>
+                </dd>
+              </div>
+              <div id="summarySaltBags" class="hidden">Added salt bags: <b>1</b>
+                <dd class="text-right">
+                  <span class="font-weight-bold currency-symbol text-secondary">$</span>
+                  <span id="subTotalDue" class="font-weight-bold text-secondary font-size-35">35.00</span>
+                </dd>
+              </div>
             </div>
             <div class="card"> 
             <div class="card-header"><b>Total due:</b></div>
