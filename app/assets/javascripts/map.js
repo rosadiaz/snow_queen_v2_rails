@@ -1,4 +1,4 @@
-class Map {
+class ShovelSquadMap {
   constructor(config) {
     this.map = this.initMap();
     this.drawingManager = this.initDrawingManager();
@@ -8,17 +8,17 @@ class Map {
     this.autocomplete = this.initAutocomplete();
     this.marker = null;
     this.geocodedAddress = null;
-    this.polygons = [];
-    this.onGeocodingResponse = config.onGeocodingResponse;
-    this.onPolygonsChanged = config.onPolygonsChanged;
+    // this.polygons = [];
+    // this.onGeocodingResponse = config.onGeocodingResponse;
+    // this.onPolygonsChanged = config.onPolygonsChanged;
 
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
-    this.handleGeocodingResponse = this.handleGeocodingResponse.bind(this);
-    this.handlePolygonCreated = this.handlePolygonCreated.bind(this);
-    this.handleRemoveLastPolygon = this.handleRemoveLastPolygon.bind(this);
-    this.handleRemoveAllPolygons = this.handleRemoveAllPolygons.bind(this);
-    // this.addListeners();
-    this.showAddressModal();
+    // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    // this.handleGeocodingResponse = this.handleGeocodingResponse.bind(this);
+    // this.handlePolygonCreated = this.handlePolygonCreated.bind(this);
+    // this.handleRemoveLastPolygon = this.handleRemoveLastPolygon.bind(this);
+    // this.handleRemoveAllPolygons = this.handleRemoveAllPolygons.bind(this);
+    this.addListeners();
+    // this.showAddressModal();
   }
 
   
@@ -80,35 +80,37 @@ class Map {
       componentRestrictions: {country: 'ca'}
     };
 
-    const input = document.getElementById('address');
+    const input = document.getElementById('addressInput');
     const autocomplete = new google.maps.places.Autocomplete(input, options);
   }
 
   addListeners() {
-    document.getElementById('AddressSearchModal').addEventListener('submit', this.handleSearchSubmit);
-    this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated);
-    this.removeLastControl.addEventListener('click', this.handleRemoveLastPolygon);
-    this.removeAllControl.addEventListener('click', this.handleRemoveAllPolygons);
+    document.getElementById('addressSearchBar').addEventListener('keyup', this.enableFindButton)
+    document.getElementById('addressSearchBar').addEventListener('submit', this.handleSearchSubmit);
+    // this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated);
+    // this.removeLastControl.addEventListener('click', this.handleRemoveLastPolygon);
+    // this.removeAllControl.addEventListener('click', this.handleRemoveAllPolygons);
   }
 
-  showAddressModal(){
-    const submitAddressModal = $('#submitAddressModal')
-    submitAddressModal.modal('show');
-    submitAddressModal.keyup(function() {
-      $('input[type=submit]').removeAttr('disabled').removeClass('disabled');
-    });
+  enableFindButton(){
+    console.log("Enabling Find button")
+    document.getElementById('addressSubmit').classList.remove('disabled');
   }
   
   handleSearchSubmit(event) {
     event.preventDefault();
-    $('#submitAddressModal').modal('hide')
-    if (this.marker) { this.marker.setMap(null) }
-    if (this.polygons.length > 0) {
-      this.polygons.forEach(p => { p.setMap(null) });
-      this.polygons = [];
-      this.onPolygonsChanged(this.polygons);
-    }
-    this.geocodeAddress();
+    // $('#submitAddressModal').modal('hide')
+    debugger;
+    document.getElementById('collapseFindAddress').classList.remove('show');
+    document.getElementById('collapseMap').classList.add('show');
+    
+    // if (this.marker) { this.marker.setMap(null) }
+    // if (this.polygons.length > 0) {
+    //   this.polygons.forEach(p => { p.setMap(null) });
+    //   this.polygons = [];
+    //   // this.onPolygonsChanged(this.polygons);
+    // }
+    // this.geocodeAddress();
   }
 
   geocodeAddress() {
@@ -125,7 +127,7 @@ class Map {
         position: results[0].geometry.location
       });
       this.geocodedAddress = results[0].formatted_address;
-      this.onGeocodingResponse(this.geocodedAddress);
+      // this.onGeocodingResponse(this.geocodedAddress);
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
@@ -133,17 +135,17 @@ class Map {
 
   handlePolygonCreated(polygon){
     this.polygons.push(polygon)
-    this.onPolygonsChanged(this.polygons);
+    // this.onPolygonsChanged(this.polygons);
   }
 
   handleRemoveLastPolygon() {
     this.polygons.pop().setMap(null);
-    this.onPolygonsChanged(this.polygons);
+    // this.onPolygonsChanged(this.polygons);
   }
 
   handleRemoveAllPolygons() {
     this.polygons.forEach(p => p.setMap(null));
     this.polygons = [];
-    this.onPolygonsChanged(this.polygons);
+    // this.onPolygonsChanged(this.polygons);
   }
 }

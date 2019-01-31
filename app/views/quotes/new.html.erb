@@ -3,36 +3,35 @@
     <div class="col col-7">
       <div class="accordion" id="quoteAccordion">
         <div class="card"> <!-- Step 1: Search Address -->
-          <div class="card-header" id="headingOne">
+          <div class="card-header" id="headingFindAddress">
             <h2 class="mb-0">
               <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMark", class: 'hidden') %>
-              <button id="findAddress" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <button id="findAddress" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFindAddress" aria-expanded="true" aria-controls="collapseFindAddress">
                 <div><b>Step 1:</b> Address</div>
               </button>
             </h2>
           </div>
-          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#quoteAccordion">
+          <div id="collapseFindAddress" class="collapse" aria-labelledby="headingFindAddress" data-parent="#quoteAccordion">
             <div class="card-body">
-              <div id="addressSubmitModalLabel"></div>
-              <form action="" id="AddressSearchModal">
+              <form action="" id="addressSearchBar">
                 <div class="d-flex justify-content-center m-3">
-                  <input id="address" type="textbox" placeholder="Start typing your address" class="w-75">
-                  <input id="submit" type="submit" value="Find" class="btn btn-dark ml-3">
+                  <input id="addressInput" type="textbox" placeholder="Start typing your address" class="w-75">
+                  <input id="addressSubmit" type="submit" value="Find" class="btn btn-dark ml-3 disabled">
                 </div>
               </form>
             </div>
           </div>
         </div>
         <div class="card"> <!-- Step 2: Select Area -->
-          <div class="card-header" id="headingTwo">
+          <div class="card-header" id="headingMap">
             <h2 class="mb-0">
               <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMark", class: 'hidden') %>
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseMap" aria-expanded="false" aria-controls="collapseMap">
                 <div><b>Step 2:</b> Select service area</div>
               </button>
             </h2>
           </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#quoteAccordion">
+          <div id="collapseMap" class="collapse show" aria-labelledby="headingMap" data-parent="#quoteAccordion">
             <div class="card-body">
               <div> 
                 <div class="row">
@@ -51,7 +50,8 @@
                     <button type="button" class="btn btn-dark">Done selecting</button>
                   </div>
                   <div class="col col-12">
-                    <%= image_tag('map_mockup.png', alt: 'map mockup', width: '1040px', height: '435px') %>
+                    <div id="map" data-api-key="<%=Rails.application.credentials.google_api%>">
+                    </div>
                   </div>
                 </div>
               </div>
