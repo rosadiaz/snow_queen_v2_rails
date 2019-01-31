@@ -18,7 +18,6 @@ class ShovelSquadMap {
     this.handleRemoveLastPolygon = this.handleRemoveLastPolygon.bind(this);
     this.handleRemoveAllPolygons = this.handleRemoveAllPolygons.bind(this);
     this.addListeners();
-    // this.showAddressModal();
   }
 
   
@@ -107,11 +106,11 @@ class ShovelSquadMap {
       this.polygons = [];
       this.onPolygonsChanged(this.polygons);
     }
-    this.geocodeAddress();
+    let address = document.getElementById('addressInput').value;
+    this.geocodeAddress(address);
   }
 
-  geocodeAddress() {
-    let address = document.getElementById('addressInput').value;
+  geocodeAddress(address) {
     this.geocoder.geocode({'address': address, 'region': 'CA'}, this.handleGeocodingResponse);
   }
 
@@ -125,8 +124,33 @@ class ShovelSquadMap {
       });
       this.geocodedAddress = results[0].formatted_address;
       // this.onGeocodingResponse(this.geocodedAddress);
+      this.updateAddressOnSummary(this.geocodedAddress);
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
+    }
+  }
+
+  updateAddressOnSummary(geocodedAddress) {
+    if (geocodedAddress) {
+      this.geocodedAddress = geocodedAddress;
+      const primaryAddressNode = document.getElementById("primaryAddress");
+      const secondaryAddressNode = document.getElementById("secondaryAddress");
+      while (primaryAddressNode.firstChild) { primaryAddressNode.removeChild(primaryAddressNode.firstChild) }
+      while (secondaryAddressNode.firstChild) { secondaryAddressNode.removeChild(secondaryAddressNode.firstChild) }
+      
+      let splitAddress = geocodedAddress.split(",");
+      const div = document.createElement("div");
+      div.innerText = splitAddress.shift();
+      div.classList.add("primary-address");
+      primaryAddressNode.appendChild(div);
+      splitAddress.forEach(element => {
+        const div = document.createElement("div");
+        div.innerText = element;
+        div.classList.add("secondary-address");
+        secondaryAddressNode.appendChild(div);
+      });
+    Dom.showNode(document.getElementById("summary"));
+    Dom.showNode(document.getElementById("summaryAddress"));
     }
   }
 
