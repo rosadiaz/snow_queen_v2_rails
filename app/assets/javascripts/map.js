@@ -9,6 +9,7 @@ class ShovelSquadMap {
     this.marker = null;
     this.geocodedAddress = null;
     this.polygons = [];
+    this.totalAreaInSqFt = null;
     // this.onGeocodingResponse = config.onGeocodingResponse;
     // this.onPolygonsChanged = config.onPolygonsChanged;
 
@@ -17,6 +18,7 @@ class ShovelSquadMap {
     this.handlePolygonCreated = this.handlePolygonCreated.bind(this);
     this.handleRemoveLastPolygon = this.handleRemoveLastPolygon.bind(this);
     this.handleRemoveAllPolygons = this.handleRemoveAllPolygons.bind(this);
+    this.handlePolygonChanged = this.handlePolygonChanged.bind(this);
     this.addListeners();
   }
 
@@ -104,7 +106,7 @@ class ShovelSquadMap {
     if (this.polygons.length > 0) {
       this.polygons.forEach(p => { p.setMap(null) });
       this.polygons = [];
-      this.onPolygonsChanged(this.polygons);
+      this.handlePolygonChanged(this.polygons);
     }
     let address = document.getElementById('addressInput').value;
     this.geocodeAddress(address);
@@ -156,17 +158,45 @@ class ShovelSquadMap {
 
   handlePolygonCreated(polygon){
     this.polygons.push(polygon)
-    // this.onPolygonsChanged(this.polygons);
+    this.handlePolygonChanged();
   }
 
   handleRemoveLastPolygon() {
     this.polygons.pop().setMap(null);
-    // this.onPolygonsChanged(this.polygons);
+    this.handlePolygonChanged(this.polygons);
   }
 
   handleRemoveAllPolygons() {
     this.polygons.forEach(p => p.setMap(null));
     this.polygons = [];
-    // this.onPolygonsChanged(this.polygons);
+    this.handlePolygonChanged(this.polygons);
+  }
+
+  handlePolygonChanged() {
+    // this.polygons = polygons;
+    this.totalAreaInSqFt = this.convertToSqFt(this.aggregateAreaInMts());
+    console.log("this.totalAreaInSqFt: ", this.totalAreaInSqFt);
+    // this.updateAreaNode();
+    // this.subTotal = this.calculateSubTotal();
+    // this.updateSubTotalNode();
+    // this.showTotalsNode();
+    // this.updateGrandTotal();
+    // Dom.showNode(document.getElementById("displayServiceExpedition"));
+    // Dom.showNode(document.getElementById("grandTotal"));
+  }
+
+  aggregateAreaInMts() {
+    let totalAreaInMts = 0;
+    this.polygons.forEach((p) => { 
+      let areaInMts = google.maps.geometry.spherical.computeArea(p.getPath());
+      totalAreaInMts += areaInMts;
+    });
+    return totalAreaInMts;
+  }
+
+  convertToSqFt(totalAreaInMts) {
+    return totalAreaInMts * constants.SQ_FT_CONVERT;
+  }
+
   }
 }
