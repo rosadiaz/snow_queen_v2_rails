@@ -87,8 +87,8 @@ class ShovelSquadMap {
     document.getElementById('addressSearchBar').addEventListener('keyup', this.enableFindButton)
     document.getElementById('addressSearchBar').addEventListener('submit', this.handleSearchSubmit);
     this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated);
-    // this.removeLastControl.addEventListener('click', this.handleRemoveLastPolygon);
-    // this.removeAllControl.addEventListener('click', this.handleRemoveAllPolygons);
+    this.removeLastControl.addEventListener('click', this.handleRemoveLastPolygon);
+    this.removeAllControl.addEventListener('click', this.handleRemoveAllPolygons);
   }
 
   enableFindButton(){
