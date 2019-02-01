@@ -12,9 +12,9 @@ class ShovelSquadMap {
     this.totalAreaInSqFt = null;
     this.subTotal = 0;
     this.grandTotal = 0;
-    // this.serviceExpeditionCost = 0; // needs improvement to start according to controller variables
-    // this.serviceExpeditionLabel = 'FREE in 24hrs';  // needs improvement to start according to controller variables
-    // this.serviceExpeditionTime = 'free'; // needs improvement to start according to controller variables
+    this.serviceExpeditionCost = 0; // needs improvement to start according to controller variables
+    this.serviceExpeditionLabel = 'FREE in 24hrs';  // needs improvement to start according to controller variables
+    this.serviceExpeditionTime = 'free'; // needs improvement to start according to controller variables
     // this.saltBagsQuantity = 0;
     // this.saltBagPrice = priceList.PRICE_PER_SALT_BAG;
     // this.saltBagsDue = null;
@@ -29,6 +29,7 @@ class ShovelSquadMap {
     this.handleRemoveAllPolygons = this.handleRemoveAllPolygons.bind(this);
     this.handlePolygonChanged = this.handlePolygonChanged.bind(this);
     this.handleDoneSelecting = this.handleDoneSelecting.bind(this);
+    this.handleExpeditionInfoClick = this.handleExpeditionInfoClick.bind(this);
     this.addListeners();
     this.updateGrandTotal();
   }
@@ -103,6 +104,10 @@ class ShovelSquadMap {
     this.removeLastControl.addEventListener('click', this.handleRemoveLastPolygon);
     this.removeAllControl.addEventListener('click', this.handleRemoveAllPolygons);
     document.getElementById('doneSelectingArea').addEventListener('click', this.handleDoneSelecting);
+    const shovelSquadMap = this;
+    document.getElementsByName("serviceExpeditionCost").forEach((element) => { 
+      element.addEventListener('click', this.handleExpeditionInfoClick); 
+    });
   }
 
   enableFindButton(){
@@ -122,14 +127,45 @@ class ShovelSquadMap {
     this.geocodeAddress(address);
   }
 
-  handleDoneSelecting() {
-    this.showNextSection('collapseMap', 'collapseAddOns');
-  }
-  
   showNextSection(collapseNode, showNode) {
     event.preventDefault();
     document.getElementById(collapseNode).classList.remove('show');
     document.getElementById(showNode).classList.add('show');
+  }
+
+  handlePolygonChanged() {
+    this.totalAreaInSqFt = this.convertToSqFt(this.aggregateAreaInMts());
+    this.subTotal = this.calculateSubTotal();
+    this.updateAreaOnSummary();
+    this.updateGrandTotal();
+  }
+
+  convertToSqFt(totalAreaInMts) {
+    return totalAreaInMts * constants.SQ_FT_CONVERT;
+  }
+
+  aggregateAreaInMts() {
+    let totalAreaInMts = 0;
+    this.polygons.forEach((p) => { 
+      let areaInMts = google.maps.geometry.spherical.computeArea(p.getPath());
+      totalAreaInMts += areaInMts;
+    });
+    return totalAreaInMts;
+  }
+
+  calculateSubTotal() {
+    return this.totalAreaInSqFt * priceList.PRICE_PER_SQ_FT;
+  }
+
+  updateAreaOnSummary() {
+    Dom.showNode(document.getElementById('summaryArea'))
+    this.updateAmount('areaInSqFt', this.totalAreaInSqFt, 0)
+    this.updateAmount('subTotalDue', this.subTotal, 2)
+  }
+
+  updateAmount(id, amount, precision) {
+    const node = document.getElementById(id);
+    node.innerText = `${amount.toLocaleString(undefined, {maximumFractionDigits: precision})}`;
   }
 
   geocodeAddress(address) {
@@ -145,7 +181,6 @@ class ShovelSquadMap {
         position: results[0].geometry.location
       });
       this.geocodedAddress = results[0].formatted_address;
-      // this.onGeocodingResponse(this.geocodedAddress);
       this.updateAddressOnSummary(this.geocodedAddress);
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
@@ -192,54 +227,22 @@ class ShovelSquadMap {
     this.handlePolygonChanged(this.polygons);
   }
 
-  handlePolygonChanged() {
-    this.totalAreaInSqFt = this.convertToSqFt(this.aggregateAreaInMts());
-    this.updateAreaOnSummary();
-    // this.subTotal = this.calculateSubTotal();
-    // this.updateSubTotalNode();
-    // this.showTotalsNode();
-    // this.updateGrandTotal();
-    // Dom.showNode(document.getElementById("displayServiceExpedition"));
-    // Dom.showNode(document.getElementById("grandTotal"));
+  handleDoneSelecting() {
+    this.showNextSection('collapseMap', 'collapseAddOns');
   }
 
-  aggregateAreaInMts() {
-    let totalAreaInMts = 0;
-    this.polygons.forEach((p) => { 
-      let areaInMts = google.maps.geometry.spherical.computeArea(p.getPath());
-      totalAreaInMts += areaInMts;
-    });
-    return totalAreaInMts;
-  }
-
-  convertToSqFt(totalAreaInMts) {
-    return totalAreaInMts * constants.SQ_FT_CONVERT;
-  }
-
-  updateAreaNode() {
-    const areaNode = document.getElementById('calculatedArea');
-    areaNode.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
-  }
-
-  updateAreaOnSummary() {
-    this.subTotal = this.calculateSubTotal();
+  handleExpeditionInfoClick(event) {
+    Dom.showNode(document.getElementById('summaryExpeditionOptions'));
+    this.serviceExpeditionCost = Number.parseFloat(event.target.value);
+    this.serviceExpeditionLabel = event.target.dataset.label;
+    this.serviceExpeditionTime = event.target.id;
+    document.getElementById('summaryServiceExpeditionTime').innerText = this.serviceExpeditionLabel
+    this.updateAmount('serviceExpeditionDue', this.serviceExpeditionCost, 2)
     this.updateGrandTotal();
-    Dom.showNode(document.getElementById('summaryArea'))
-    this.updateAmount('areaInSqFt', this.totalAreaInSqFt, 0)
-    this.updateAmount('subTotalDue', this.subTotal, 2)
-  }
-
-  updateAmount(id, amount, precision) {
-    const node = document.getElementById(id);
-    node.innerText = `${amount.toLocaleString(undefined, {maximumFractionDigits: precision})}`;
-  }
-
-  calculateSubTotal() {
-    return this.totalAreaInSqFt * priceList.PRICE_PER_SQ_FT;
   }
 
   updateGrandTotal() {
-    let grandTotal = this.subTotal // + this.serviceExpeditionCost + this.saltBagsDue;
+    let grandTotal = this.subTotal + this.serviceExpeditionCost //+ this.saltBagsDue;
     this.grandTotal = Math.max(grandTotal, priceList.MIN_CHARGE);
     if (this.grandTotal > priceList.MIN_CHARGE) {
       Dom.hideNode(document.getElementById('minChargeNote'))
