@@ -47,7 +47,7 @@
                     </div>
                   </div>
                   <div class="col col-2 pt-3">
-                    <button type="button" class="btn btn-dark">Done selecting</button>
+                    <button id="doneSelectingArea" type="button" class="btn btn-dark">Done selecting</button>
                   </div>
                   <div class="col col-12">
                     <div id="map" data-api-key="<%=Rails.application.credentials.google_api%>">
@@ -59,15 +59,15 @@
           </div>
         </div>
         <div class="card"> <!-- Step 3: Add ons -->
-          <div class="card-header" id="headingThree">
+          <div class="card-header" id="headingAddOns">
             <h2 class="mb-0">
               <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMark", class: 'hidden') %>
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAddOns" aria-expanded="false" aria-controls="collapseAddOns">
                 <div><b>Step 3:</b> Additional information </div>
               </button>
             </h2>
           </div>
-          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#quoteAccordion">
+          <div id="collapseAddOns" class="collapse" aria-labelledby="headingAddOns" data-parent="#quoteAccordion">
             <div class="card-body">
               <div class="row d-flex justify-content-center" id="displayServiceExpedition">
                 <div class="col-10 mt-3">
@@ -75,22 +75,11 @@
                   <fieldset class="form-group">
                     <div class="row">
                       <div class="col-sm-10">
+                        <% Quote::SERVICE_EXPEDITION_OPTIONS.each do |time, price| %>
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="serviceExpeditionCost" id="urgent" value="99.99" data-label="URGENT in 3hrs" checked="">
-                            <label class="form-check-label" for="urgent">
-                              URGENT in 3hrs add <b>$99.99</b>
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="serviceExpeditionCost" id="soon" value="49.99" data-label="In the next 8hrs" checked="">
-                            <label class="form-check-label" for="soon">
-                              In the next 8hrs add <b>$49.99</b>
-                            </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="serviceExpeditionCost" id="free" value="0" data-label="FREE in 24hrs" checked="">
-                            <label class="form-check-label" for="free">
-                              <b>FREE</b> in 24hrs
+                            <input class="form-check-input" type="radio" name="serviceExpeditionCost" id="<%= time %>" value="<%= price %>" data-label="<%= t("service_expedition_labels.#{time}") %>" checked>
+                            <label class="form-check-label" for="<%= time %>">
+                              <%= t("service_expedition_labels.#{time}") %> - <b>$<%= price %></b>
                             </label>
                           </div>
                       </div>

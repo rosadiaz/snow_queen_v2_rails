@@ -28,6 +28,7 @@ class ShovelSquadMap {
     this.handleRemoveLastPolygon = this.handleRemoveLastPolygon.bind(this);
     this.handleRemoveAllPolygons = this.handleRemoveAllPolygons.bind(this);
     this.handlePolygonChanged = this.handlePolygonChanged.bind(this);
+    this.handleDoneSelecting = this.handleDoneSelecting.bind(this);
     this.addListeners();
     this.updateGrandTotal();
   }
@@ -101,6 +102,7 @@ class ShovelSquadMap {
     this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated);
     this.removeLastControl.addEventListener('click', this.handleRemoveLastPolygon);
     this.removeAllControl.addEventListener('click', this.handleRemoveAllPolygons);
+    document.getElementById('doneSelectingArea').addEventListener('click', this.handleDoneSelecting);
   }
 
   enableFindButton(){
@@ -108,9 +110,7 @@ class ShovelSquadMap {
   }
   
   handleSearchSubmit(event) {
-    event.preventDefault();
-    document.getElementById('collapseFindAddress').classList.remove('show');
-    document.getElementById('collapseMap').classList.add('show');
+    this.showNextSection('collapseFindAddress', 'collapseMap');
     
     if (this.marker) { this.marker.setMap(null) }
     if (this.polygons.length > 0) {
@@ -120,6 +120,16 @@ class ShovelSquadMap {
     }
     let address = document.getElementById('addressInput').value;
     this.geocodeAddress(address);
+  }
+
+  handleDoneSelecting() {
+    this.showNextSection('collapseMap', 'collapseAddOns');
+  }
+  
+  showNextSection(collapseNode, showNode) {
+    event.preventDefault();
+    document.getElementById(collapseNode).classList.remove('show');
+    document.getElementById(showNode).classList.add('show');
   }
 
   geocodeAddress(address) {
