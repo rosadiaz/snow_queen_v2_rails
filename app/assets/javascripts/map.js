@@ -15,9 +15,9 @@ class ShovelSquadMap {
     this.serviceExpeditionCost = 0; // needs improvement to start according to controller variables
     this.serviceExpeditionLabel = 'FREE in 24hrs';  // needs improvement to start according to controller variables
     this.serviceExpeditionTime = 'free'; // needs improvement to start according to controller variables
-    // this.saltBagsQuantity = 0;
-    // this.saltBagPrice = priceList.PRICE_PER_SALT_BAG;
-    // this.saltBagsDue = null;
+    this.saltBagsQuantity = 0;
+    this.saltBagPrice = priceList.PRICE_PER_SALT_BAG;
+    this.saltBagsDue = null;
     // this.totalDue = null;
     // this.onGeocodingResponse = config.onGeocodingResponse;
     // this.onPolygonsChanged = config.onPolygonsChanged;
@@ -27,11 +27,13 @@ class ShovelSquadMap {
     this.handlePolygonCreated = this.handlePolygonCreated.bind(this);
     this.handleRemoveLastPolygon = this.handleRemoveLastPolygon.bind(this);
     this.handleRemoveAllPolygons = this.handleRemoveAllPolygons.bind(this);
-    this.handlePolygonChanged = this.handlePolygonChanged.bind(this);
     this.handleDoneSelecting = this.handleDoneSelecting.bind(this);
     this.handleExpeditionInfoClick = this.handleExpeditionInfoClick.bind(this);
+    this.handleAddBagClick = this.handleAddBagClick.bind(this);
     this.addListeners();
     this.updateGrandTotal();
+
+    const shovelSquadMap = this; 
   }
 
   
@@ -104,10 +106,10 @@ class ShovelSquadMap {
     this.removeLastControl.addEventListener('click', this.handleRemoveLastPolygon);
     this.removeAllControl.addEventListener('click', this.handleRemoveAllPolygons);
     document.getElementById('doneSelectingArea').addEventListener('click', this.handleDoneSelecting);
-    const shovelSquadMap = this;
     document.getElementsByName("serviceExpeditionCost").forEach((element) => { 
       element.addEventListener('click', this.handleExpeditionInfoClick); 
     });
+    document.getElementById("addBag").addEventListener('click', this.handleAddBagClick);
   }
 
   enableFindButton(){
@@ -241,8 +243,24 @@ class ShovelSquadMap {
     this.updateGrandTotal();
   }
 
+  handleAddBagClick() {
+    this.saltBagsQuantity += 1;
+    this.updateSaltBagsTotals();
+  }
+  
+  updateSaltBagsTotals() {
+    this.saltBagsDue = this.saltBagsQuantity * this.saltBagPrice;
+    this.updateTotalSaltBagsSummary();
+    this.updateGrandTotal();
+  }
+  
+  updateTotalSaltBagsSummary() {
+    Dom.showNode(document.getElementById("summarySaltBags"));
+    this.updateAmount('numberOfBags', this.saltBagsDue, 2)
+  }
+
   updateGrandTotal() {
-    let grandTotal = this.subTotal + this.serviceExpeditionCost //+ this.saltBagsDue;
+    let grandTotal = this.subTotal + this.serviceExpeditionCost + this.saltBagsDue;
     this.grandTotal = Math.max(grandTotal, priceList.MIN_CHARGE);
     if (this.grandTotal > priceList.MIN_CHARGE) {
       Dom.hideNode(document.getElementById('minChargeNote'))
