@@ -10,6 +10,15 @@ class ShovelSquadMap {
     this.geocodedAddress = null;
     this.polygons = [];
     this.totalAreaInSqFt = null;
+    this.subTotal = 0;
+    this.grandTotal = 0;
+    // this.serviceExpeditionCost = 0; // needs improvement to start according to controller variables
+    // this.serviceExpeditionLabel = 'FREE in 24hrs';  // needs improvement to start according to controller variables
+    // this.serviceExpeditionTime = 'free'; // needs improvement to start according to controller variables
+    // this.saltBagsQuantity = 0;
+    // this.saltBagPrice = priceList.PRICE_PER_SALT_BAG;
+    // this.saltBagsDue = null;
+    // this.totalDue = null;
     // this.onGeocodingResponse = config.onGeocodingResponse;
     // this.onPolygonsChanged = config.onPolygonsChanged;
 
@@ -20,6 +29,7 @@ class ShovelSquadMap {
     this.handleRemoveAllPolygons = this.handleRemoveAllPolygons.bind(this);
     this.handlePolygonChanged = this.handlePolygonChanged.bind(this);
     this.addListeners();
+    this.updateGrandTotal();
   }
 
   
@@ -173,10 +183,8 @@ class ShovelSquadMap {
   }
 
   handlePolygonChanged() {
-    // this.polygons = polygons;
     this.totalAreaInSqFt = this.convertToSqFt(this.aggregateAreaInMts());
-    console.log("this.totalAreaInSqFt: ", this.totalAreaInSqFt);
-    // this.updateAreaNode();
+    this.updateAreaOnSummary();
     // this.subTotal = this.calculateSubTotal();
     // this.updateSubTotalNode();
     // this.showTotalsNode();
@@ -198,5 +206,37 @@ class ShovelSquadMap {
     return totalAreaInMts * constants.SQ_FT_CONVERT;
   }
 
+  updateAreaNode() {
+    const areaNode = document.getElementById('calculatedArea');
+    areaNode.innerText = `${this.totalAreaInSqFt.toLocaleString(undefined, {maximumFractionDigits: 0})}`;
   }
+
+  updateAreaOnSummary() {
+    this.subTotal = this.calculateSubTotal();
+    this.updateGrandTotal();
+    Dom.showNode(document.getElementById('summaryArea'))
+    this.updateAmount('areaInSqFt', this.totalAreaInSqFt, 0)
+    this.updateAmount('subTotalDue', this.subTotal, 2)
+  }
+
+  updateAmount(id, amount, precision) {
+    const node = document.getElementById(id);
+    node.innerText = `${amount.toLocaleString(undefined, {maximumFractionDigits: precision})}`;
+  }
+
+  calculateSubTotal() {
+    return this.totalAreaInSqFt * priceList.PRICE_PER_SQ_FT;
+  }
+
+  updateGrandTotal() {
+    let grandTotal = this.subTotal // + this.serviceExpeditionCost + this.saltBagsDue;
+    this.grandTotal = Math.max(grandTotal, priceList.MIN_CHARGE);
+    if (this.grandTotal > priceList.MIN_CHARGE) {
+      Dom.hideNode(document.getElementById('minChargeNote'))
+    } else {
+      Dom.showNode(document.getElementById('minChargeNote'))
+    }
+    this.updateAmount('totalDue', this.grandTotal, 2)
+  }
+
 }
