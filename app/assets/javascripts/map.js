@@ -145,24 +145,24 @@ class ShovelSquadMap {
   updateAddressOnSummary(geocodedAddress) {
     if (geocodedAddress) {
       this.geocodedAddress = geocodedAddress;
-      const primaryAddressNode = document.getElementById("primaryAddress");
-      const secondaryAddressNode = document.getElementById("secondaryAddress");
+      const primaryAddressNode = document.getElementById('primaryAddress');
+      const secondaryAddressNode = document.getElementById('secondaryAddress');
       while (primaryAddressNode.firstChild) { primaryAddressNode.removeChild(primaryAddressNode.firstChild) }
       while (secondaryAddressNode.firstChild) { secondaryAddressNode.removeChild(secondaryAddressNode.firstChild) }
       
-      let splitAddress = geocodedAddress.split(",");
-      const div = document.createElement("div");
+      let splitAddress = geocodedAddress.split(',');
+      const div = document.createElement('div');
       div.innerText = splitAddress.shift();
-      div.classList.add("primary-address");
+      div.classList.add('primary-address');
       primaryAddressNode.appendChild(div);
       splitAddress.forEach(element => {
-        const div = document.createElement("div");
+        const div = document.createElement('div');
         div.innerText = element;
-        div.classList.add("secondary-address");
+        div.classList.add('secondary-address');
         secondaryAddressNode.appendChild(div);
       });
-    Dom.showNode(document.getElementById("summary"));
-    Dom.showNode(document.getElementById("summaryAddress"));
+    Dom.showNode(document.getElementById('summary'));
+    Dom.showNode(document.getElementById('summaryAddress'));
     }
   }
 
