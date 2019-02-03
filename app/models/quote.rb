@@ -17,17 +17,33 @@ class Quote < ApplicationRecord
     self.price_per_sq_ft = PRICE_PER_SQ_FT
     self.price_per_salt_bag = PRICE_PER_SALT_BAG
     self.min_charge = MIN_CHARGE
-    self.total = self.area * self.price_per_sq_ft
-    self.service_expedition_cost = SERVICE_EXPEDITION_OPTIONS.fetch(self.service_expedition_time.to_sym)
-    self.total += self.service_expedition_cost
-    self.total += self.salt_bags_quantity * self.price_per_salt_bag
-    self.total = [self.total, self.min_charge].max
+    self.total = area * price_per_sq_ft
+    self.service_expedition_cost = SERVICE_EXPEDITION_OPTIONS.fetch(service_expedition_time.to_sym)
+    self.total += service_expedition_cost
+    self.total += salt_bags_quantity * price_per_salt_bag
+    self.total = [total, min_charge].max
   end
 
   before_update do
     # When allowing previous quote updates, make sure the prices are persistent to the original quote
-    self.errors.add(:base, "Quote changes have not been implemented")
+    errors.add(:base, "Quote changes have not been implemented")
     throw :abort
   end
+
+  def total_in_cents
+    (total * 100).to_i 
+  end
+
+  def add_payment_id(charge_id)
+    raise "Payment ID already exists" if payment_id
+    # This skips validations because the quote needs to have a payment id after saving quote
+    update_column(:payment_id, charge_id)
+  end
+
+  # def static_map_URL
+  #   # TODO
+  #   "TODO add static map URL"
+  #   "https://photos.smugmug.com/Galleries/Dogs/A-G/Dexter-Hunter/i-3gb2KCf/0/d7db90ce/X5/20190124-michelle-15-X5.jpg"
+  # end
 
 end

@@ -18,9 +18,6 @@ class ShovelSquadMap {
     this.saltBagsQuantity = 0;
     this.saltBagPrice = priceList.PRICE_PER_SALT_BAG;
     this.saltBagsDue = null;
-    // this.totalDue = null;
-    // this.onGeocodingResponse = config.onGeocodingResponse;
-    // this.onPolygonsChanged = config.onPolygonsChanged;
 
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleGeocodingResponse = this.handleGeocodingResponse.bind(this);
@@ -112,8 +109,7 @@ class ShovelSquadMap {
     });
     document.getElementById("addBag").addEventListener('click', this.handleAddBagClick);
     document.getElementById("removeBag").addEventListener('click', this.handleRemoveBagClick);
-    document.getElementById('submitContactInfo').addEventListener('submit', this.handleSaveQuote);
-    document.getElementById('payment-form').addEventListener('submit', this.handlePaymentSubmit);
+    document.getElementById('contact-info-form').addEventListener('submit', this.handlePaymentSubmit);
   }
 
   enableFindButton(){
@@ -281,62 +277,49 @@ class ShovelSquadMap {
     this.updateAmount('totalDue', this.grandTotal, 2)
   }
 
-  handleSaveQuote(event) {
-    event.preventDefault();
-
-    const form = document.getElementById('contact-info-form');
-    console.log("form: ", form);
-//     fetch(form.action, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       body: JSON.stringify({ 
-//         email: token.id,
-//         email: email,
-//         totalAreaInSqFt: this.totalAreaInSqFt,
-//       })
-//     }).then( res => res.json()).then( data => {
-// // TODO display error if data.error else 
-//       console.log(data)
-//     })
-  }
-
   handlePaymentSubmit(event) {
     event.preventDefault();
     
     this.stripe.getToken(this.handleTokenReceived)
-    // .then(function(result) {
-    //   if (result.error) {
-    //     // Inform the user if there was an error.
-    //     const errorElement = document.getElementById('card-errors');
-    //     errorElement.textContent = result.error.message;
-    //   } else {
-    //     // Send the token to your server.
-    //     stripeTokenHandler(result.token); 
-    //   }
-    // });
-    // return false;
+// TODO disable button, change text to wait for payment
+// TODO enable button if errors after payment
   }
 
   handleTokenReceived(token) {
-    // Making a POST to /charges
-    const form = document.getElementById('payment-form');
-    const email = document.getElementById('quote_email').value
+    const form = document.getElementById('contact-info-form');
+    const formData = new FormData(form);
+
+    const postData = {
+      quote: {
+        email: formData.get("quote[email]"),
+        phone_number: formData.get("quote[phone_number]"),
+        first_name: formData.get("quote[first_name]"),
+        last_name: formData.get("quote[last_name]"),
+        comments: formData.get("quote[comments]"),
+        address: this.geocodedAddress,
+        area: this.totalAreaInSqFt,
+        // polygons: this.polygons, TODO SEND ONLY LAT LNG ARRAY
+        // static_map_URL: _____
+        service_expedition_time: this.serviceExpeditionTime,
+        salt_bags_quantity: this.saltBagsQuantity,
+      },
+      token_id: token.id,
+    };
 
     fetch(form.action, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ 
-        stripeToken: token.id,
-        email: email,
-        totalAreaInSqFt: this.totalAreaInSqFt,
-      })
+      body: JSON.stringify(postData)
     }).then( res => res.json()).then( data => {
-// TODO display error if data.error else 
       console.log(data)
+      if (data.error) {
+        // TODO show hidden field con data.error
+      } else {
+        // TODO show success modal with quote id --> data.id
+        // TODO reload page when closing modal
+      }
     })
   }
 

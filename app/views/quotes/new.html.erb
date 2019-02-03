@@ -100,12 +100,12 @@
             </div>
           </div>
         </div>
-        <div class="card"> <!-- Step 4: Contact info -->
+        <div class="card"> <!-- Step 4: Contact info and payment -->
           <div class="card-header" id="headingFour">
             <h2 class="mb-0">
               <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMark", class: 'hidden') %>
               <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                <div><b>Step 4:</b> Contact information </div>
+                <div><b>Step 4:</b> Contact and payment information </div>
               </button>
             </h2>
           </div>
@@ -140,51 +140,26 @@
                     </div>
                   </div>
                   <div class="col-10">
-                    <button type="submit" class="btn btn-dark" id="submitContactInfo">Next</button>
+                    <label for="card-element">Credit card</label>
+                  </div>
+                  <div class="col-10">
+                    <div id="card-element">
+                      <!-- A Stripe Element will be inserted here. -->
+                    </div>
+                    <!-- Used to display form errors. -->
+                    <div id="card-errors" role="alert">
+                    </div>
+                    <% if flash[:error].present? %>
+                      <div id="charge-errors">
+                        <p><%= flash[:error] %></p>
+                      </div>
+                    <% end %>
+                  </div>
+                  <div class="col-10 pt-3">
+                    <input type="submit" class="btn btn-lg btn-dark" value="Submit Payment to Request Service">
                   </div>
                 </div>
               </form>
-            </div>
-          </div>
-        </div>
-        <div class="card"> <!-- Step 5: Payment -->
-          <div class="card-header" id="headingFive">
-            <h2 class="mb-0">
-              <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMark", class: 'hidden') %>
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                <div><b>Step 5:</b> Payment </div>
-              </button>
-            </h2>
-          </div>
-          <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#quoteAccordion">
-            <div class="card-body">
-              <div class="row d-flex justify-content-center ">
-                <div class="col-10">
-                  <form action="/charge" method="post" id="payment-form">
-                    <div class="form-row">
-                      <div class="col-12">
-                        <label for="card-element">Credit card</label>
-                      </div>
-                      <div class="col-12">
-                        <div id="card-element">
-                          <!-- A Stripe Element will be inserted here. -->
-                        </div>
-                        <!-- Used to display form errors. -->
-                        <div id="card-errors" role="alert">
-                        </div>
-                        <% if flash[:error].present? %>
-                          <div id="charge-errors">
-                            <p><%= flash[:error] %></p>
-                          </div>
-                        <% end %>
-                      </div>
-                      <div class="col-10 pt-3">
-                        <input type="submit" class="btn btn-lg btn-dark" value="Submit Payment to Request Service">
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
             </div>
           </div>
         </div>

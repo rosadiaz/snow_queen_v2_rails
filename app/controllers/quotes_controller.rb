@@ -10,21 +10,20 @@ class QuotesController < ApplicationController
   end
 
   def create
-    # token = params[:stripeToken]
-
-    # charge = Stripe::Charge.create({
-    #     amount: 99,
-    #     currency: 'cad',
-    #     description: 'Example charge',
-    #     source: token,
-    # })
-
     @quote = Quote.new quote_params
     if @quote.save
-      # @quote.payment_id = charge.id
+      token = params[:token_id]
+  
+      charge = Stripe::Charge.create({
+          amount: @quote.total_in_cents,
+          currency: 'cad',
+          description: "Shovel Squad service # #{@quote.id}",
+          source: token,
+      })
+      @quote.add_payment_id(charge["id"])
       # TODO: hacking handling errors
       QuoteMailer.new_quote(@quote).deliver
-      render json: {}, status: :ok
+      render json: { id: @quote.id }, status: :ok
     else
       render json: { errors: @quote.errors.full_messages}, status: :unprocessable_entity
     end

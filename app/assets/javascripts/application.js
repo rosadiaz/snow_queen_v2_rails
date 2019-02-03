@@ -39,13 +39,6 @@ function initMap() {
 }
 
 function loadApp() {
-  // const quotingPanel = new QuotingPanel();
-  new ShovelSquadMap({
-    // onGeocodingResponse: quotingPanel.showAddress,
-    // onPolygonsChanged: quotingPanel.handlePolygonChanged,
-  });
-  // new Quote({
-  // //   onOpen: quotingPanel.getData,
-  // });
+  new ShovelSquadMap();
   new Lead();
 }
