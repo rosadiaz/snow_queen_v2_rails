@@ -94,22 +94,22 @@
                   <button id="removeBag" type="button" class="btn btn-danger rounded-circle pl-2 pr-2 pt-0 pb-0">-</button>
                 </div>
                 <div class="col-10">
-                  <button type="button" class="btn btn-dark">Next</button>
+                  <button id="doneAddOns" type="button" class="btn btn-dark">Next</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="card"> <!-- Step 4: Contact info and payment -->
-          <div class="card-header" id="headingFour">
+          <div class="card-header" id="headingContactAndPaymentInfo">
             <h2 class="mb-0">
               <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMark", class: 'hidden') %>
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseContactAndPaymentInfo" aria-expanded="false" aria-controls="collapseContactAndPaymentInfo">
                 <div><b>Step 4:</b> Contact and payment information </div>
               </button>
             </h2>
           </div>
-          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#quoteAccordion">
+          <div id="collapseContactAndPaymentInfo" class="collapse" aria-labelledby="headingContactAndPaymentInfo" data-parent="#quoteAccordion">
             <div class="card-body">
               <form action="/quotes" method="post" id="contact-info-form">
                 <div class="row d-flex justify-content-center ">

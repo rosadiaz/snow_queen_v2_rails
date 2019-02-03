@@ -28,6 +28,7 @@ class ShovelSquadMap {
     this.handleExpeditionInfoClick = this.handleExpeditionInfoClick.bind(this);
     this.handleAddBagClick = this.handleAddBagClick.bind(this);
     this.handleRemoveBagClick = this.handleRemoveBagClick.bind(this);
+    this.handleDoneAddOns = this.handleDoneAddOns.bind(this);
     this.handlePaymentSubmit = this.handlePaymentSubmit.bind(this);
     this.handleTokenReceived = this.handleTokenReceived.bind(this);
     this.addListeners();
@@ -109,6 +110,7 @@ class ShovelSquadMap {
     });
     document.getElementById("addBag").addEventListener('click', this.handleAddBagClick);
     document.getElementById("removeBag").addEventListener('click', this.handleRemoveBagClick);
+    document.getElementById("doneAddOns").addEventListener('click', this.handleDoneAddOns);
     document.getElementById('contact-info-form').addEventListener('submit', this.handlePaymentSubmit);
   }
 
@@ -266,6 +268,10 @@ class ShovelSquadMap {
     Dom.showNode(document.getElementById("summarySaltBags"));
     this.updateAmount('summaryNumberOfBags', this.saltBagsQuantity, 0);
     this.updateAmount('saltBagsDue', this.saltBagsDue, 2);
+  }
+
+  handleDoneAddOns() {
+    this.showNextSection('collapseAddOns', 'collapseContactAndPaymentInfo');
   }
 
   updateGrandTotal() {
