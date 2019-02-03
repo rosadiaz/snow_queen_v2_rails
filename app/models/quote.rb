@@ -4,7 +4,7 @@ class Quote < ApplicationRecord
   validates :phone_number, presence: true, telephone_number: {country: proc{|record| :ca}, types: [:fixed_line, :mobile, :area_code_optional]}
 
   # PRICES SET BY SHOVEL SQUAD 
-  PRICE_PER_SQ_FT = 0.36
+  PRICE_PER_SQ_FT = 0.25
   PRICE_PER_SALT_BAG = 35
   MIN_CHARGE = 150
   SERVICE_EXPEDITION_OPTIONS = {
