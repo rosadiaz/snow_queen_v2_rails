@@ -252,13 +252,15 @@ class ShovelSquadMap {
   
   updateSaltBagsTotals() {
     this.saltBagsDue = this.saltBagsQuantity * this.saltBagPrice;
-    this.updateTotalSaltBagsSummary();
+    this.updateTotalSaltBags();
     this.updateGrandTotal();
   }
   
-  updateTotalSaltBagsSummary() {
+  updateTotalSaltBags() {
+    this.updateAmount('numberOfBags', this.saltBagsQuantity, 0);
     Dom.showNode(document.getElementById("summarySaltBags"));
-    this.updateAmount('numberOfBags', this.saltBagsDue, 2)
+    this.updateAmount('summaryNumberOfBags', this.saltBagsQuantity, 0);
+    this.updateAmount('saltBagsDue', this.saltBagsDue, 2);
   }
 
   updateGrandTotal() {
