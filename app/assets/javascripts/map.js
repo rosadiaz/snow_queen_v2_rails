@@ -30,6 +30,7 @@ class ShovelSquadMap {
     this.handleDoneSelecting = this.handleDoneSelecting.bind(this);
     this.handleExpeditionInfoClick = this.handleExpeditionInfoClick.bind(this);
     this.handleAddBagClick = this.handleAddBagClick.bind(this);
+    this.handleRemoveBagClick = this.handleRemoveBagClick.bind(this);
     this.handlePaymentSubmit = this.handlePaymentSubmit.bind(this);
     this.handleTokenReceived = this.handleTokenReceived.bind(this);
     this.addListeners();
@@ -110,6 +111,7 @@ class ShovelSquadMap {
       element.addEventListener('click', this.handleExpeditionInfoClick); 
     });
     document.getElementById("addBag").addEventListener('click', this.handleAddBagClick);
+    document.getElementById("removeBag").addEventListener('click', this.handleRemoveBagClick);
     document.getElementById('submitContactInfo').addEventListener('submit', this.handleSaveQuote);
     document.getElementById('payment-form').addEventListener('submit', this.handlePaymentSubmit);
   }
@@ -247,6 +249,11 @@ class ShovelSquadMap {
 
   handleAddBagClick() {
     this.saltBagsQuantity += 1;
+    this.updateSaltBagsTotals();
+  }
+
+  handleRemoveBagClick() {
+    this.saltBagsQuantity -= 1;
     this.updateSaltBagsTotals();
   }
   
