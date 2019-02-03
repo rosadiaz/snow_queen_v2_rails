@@ -82,6 +82,7 @@
                               <%= t("service_expedition_labels.#{time}") %> - <b>$<%= price %></b>
                             </label>
                           </div>
+                        <% end %>
                       </div>
                     </div>
                   </fieldset>
@@ -110,37 +111,39 @@
           </div>
           <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#quoteAccordion">
             <div class="card-body">
-              <div class="row d-flex justify-content-center ">
-                <div class="col-6 mt-3"> <!-- Email -->
-                  <div class="form-group email required quote_email"><label class="form-control-label email required" for="quote_email">Email <abbr title="required">*</abbr></label>
-                  <input class="form-control string email required" type="email" name="quote[email]" id="quote_email"></div>
-                </div>
-                <div class="col-4 mt-3"> <!-- Phone number -->
-                  <div class="form-group phone_number required quote_phone_number"><label class="form-control-label phone_number required" for="quote_phone_number">Phone number <abbr title="required">*</abbr></label>
-                  <input class="form-control string phone_number required" type="tel" name="quote[phone_number]" id="quote_phone_number"></div>
-                </div>
-                <div class="col-5"> <!-- First Name -->
-                  <div class="form-group string optional quote_first_name">
-                    <label class="form-control-label string optional" for="quote_first_name">First name</label>
-                    <input class="form-control string optional" type="text" name="quote[first_name]" id="quote_first_name">
+              <form action="/quotes" method="post" id="contact-info-form">
+                <div class="row d-flex justify-content-center ">
+                  <div class="col-6 mt-3"> <!-- Email -->
+                    <div class="form-group email required quote_email"><label class="form-control-label email required" for="quote_email">Email <abbr title="required">*</abbr></label>
+                    <input class="form-control string email required" type="email" name="quote[email]" id="quote_email"></div>
+                  </div>
+                  <div class="col-4 mt-3"> <!-- Phone number -->
+                    <div class="form-group phone_number required quote_phone_number"><label class="form-control-label phone_number required" for="quote_phone_number">Phone number <abbr title="required">*</abbr></label>
+                    <input class="form-control string phone_number required" type="tel" name="quote[phone_number]" id="quote_phone_number"></div>
+                  </div>
+                  <div class="col-5"> <!-- First Name -->
+                    <div class="form-group string optional quote_first_name">
+                      <label class="form-control-label string optional" for="quote_first_name">First name</label>
+                      <input class="form-control string optional" type="text" name="quote[first_name]" id="quote_first_name">
+                    </div>
+                  </div>
+                  <div class="col-5"> <!-- Last Name -->
+                    <div class="form-group string optional quote_last_name">
+                      <label class="form-control-label string optional" for="quote_last_name">Last name</label>
+                      <input class="form-control string optional" type="text" name="quote[last_name]" id="quote_last_name">
+                    </div>
+                  </div>
+                  <div class="col-10"> <!-- Comments -->
+                    <div class="form-group text optional quote_comments">
+                      <label class="form-control-label text optional" for="quote_comments">Comments</label>
+                      <textarea class="form-control text optional" placeholder="How can we best serve you?" name="quote[comments]" id="quote_comments"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-10">
+                    <button type="submit" class="btn btn-dark" id="submitContactInfo">Next</button>
                   </div>
                 </div>
-                <div class="col-5"> <!-- Last Name -->
-                  <div class="form-group string optional quote_last_name">
-                    <label class="form-control-label string optional" for="quote_last_name">Last name</label>
-                    <input class="form-control string optional" type="text" name="quote[last_name]" id="quote_last_name">
-                  </div>
-                </div>
-                <div class="col-10"> <!-- Comments -->
-                  <div class="form-group text optional quote_comments">
-                    <label class="form-control-label text optional" for="quote_comments">Comments</label>
-                    <textarea class="form-control text optional" placeholder="How can we best serve you?" name="quote[comments]" id="quote_comments"></textarea>
-                  </div>
-                </div>
-                <div class="col-10">
-                  <button type="button" class="btn btn-dark">Next</button>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -157,7 +160,7 @@
             <div class="card-body">
               <div class="row d-flex justify-content-center ">
                 <div class="col-10">
-                  <form action="/charges" method="post" id="payment-form">
+                  <form action="/charge" method="post" id="payment-form">
                     <div class="form-row">
                       <div class="col-12">
                         <label for="card-element">Credit card</label>

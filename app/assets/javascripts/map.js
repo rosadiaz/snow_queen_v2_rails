@@ -30,12 +30,12 @@ class ShovelSquadMap {
     this.handleDoneSelecting = this.handleDoneSelecting.bind(this);
     this.handleExpeditionInfoClick = this.handleExpeditionInfoClick.bind(this);
     this.handleAddBagClick = this.handleAddBagClick.bind(this);
+    this.handlePaymentSubmit = this.handlePaymentSubmit.bind(this);
+    this.handleTokenReceived = this.handleTokenReceived.bind(this);
     this.addListeners();
     this.updateGrandTotal();
-
-    const shovelSquadMap = this; 
+    this.stripe = new ShovelSquadStripe();
   }
-
   
   initMap() {
     return new google.maps.Map(document.getElementById('map'), {
@@ -110,6 +110,8 @@ class ShovelSquadMap {
       element.addEventListener('click', this.handleExpeditionInfoClick); 
     });
     document.getElementById("addBag").addEventListener('click', this.handleAddBagClick);
+    document.getElementById('submitContactInfo').addEventListener('submit', this.handleSaveQuote);
+    document.getElementById('payment-form').addEventListener('submit', this.handlePaymentSubmit);
   }
 
   enableFindButton(){
@@ -268,6 +270,65 @@ class ShovelSquadMap {
       Dom.showNode(document.getElementById('minChargeNote'))
     }
     this.updateAmount('totalDue', this.grandTotal, 2)
+  }
+
+  handleSaveQuote(event) {
+    event.preventDefault();
+
+    const form = document.getElementById('contact-info-form');
+    console.log("form: ", form);
+//     fetch(form.action, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify({ 
+//         email: token.id,
+//         email: email,
+//         totalAreaInSqFt: this.totalAreaInSqFt,
+//       })
+//     }).then( res => res.json()).then( data => {
+// // TODO display error if data.error else 
+//       console.log(data)
+//     })
+  }
+
+  handlePaymentSubmit(event) {
+    event.preventDefault();
+    
+    this.stripe.getToken(this.handleTokenReceived)
+    // .then(function(result) {
+    //   if (result.error) {
+    //     // Inform the user if there was an error.
+    //     const errorElement = document.getElementById('card-errors');
+    //     errorElement.textContent = result.error.message;
+    //   } else {
+    //     // Send the token to your server.
+    //     stripeTokenHandler(result.token); 
+    //   }
+    // });
+    // return false;
+  }
+
+  handleTokenReceived(token) {
+    // Making a POST to /charges
+    const form = document.getElementById('payment-form');
+    const email = document.getElementById('quote_email').value
+
+    fetch(form.action, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ 
+        stripeToken: token.id,
+        email: email,
+        totalAreaInSqFt: this.totalAreaInSqFt,
+      })
+    }).then( res => res.json()).then( data => {
+// TODO display error if data.error else 
+      console.log(data)
+    })
   }
 
 }
