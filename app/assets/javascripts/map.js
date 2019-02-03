@@ -249,8 +249,10 @@ class ShovelSquadMap {
   }
 
   handleRemoveBagClick() {
-    this.saltBagsQuantity -= 1;
-    this.updateSaltBagsTotals();
+    if (this.saltBagsQuantity > 0) {
+      this.saltBagsQuantity -= 1;
+      this.updateSaltBagsTotals();
+    }
   }
   
   updateSaltBagsTotals() {
