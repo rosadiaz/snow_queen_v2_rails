@@ -18,6 +18,7 @@ class ShovelSquadMap {
     this.saltBagsQuantity = 0;
     this.saltBagPrice = priceList.PRICE_PER_SALT_BAG;
     this.saltBagsDue = null;
+    this.discount = priceList.DISCOUNT;
     this.isCreditCardComplete = false;
 
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
@@ -313,14 +314,20 @@ class ShovelSquadMap {
   }
 
   updateGrandTotal() {
-    let grandTotal = this.subTotal + this.serviceExpeditionCost + this.saltBagsDue;
-    this.grandTotal = Math.max(grandTotal, priceList.MIN_CHARGE);
+    let grandTotalBeforeDiscount = this.subTotal + this.serviceExpeditionCost + this.saltBagsDue;
+    this.updateDiscount(grandTotalBeforeDiscount);
+    this.grandTotal = Math.max(grandTotalBeforeDiscount, priceList.MIN_CHARGE) * this.discount;
     if (this.grandTotal > priceList.MIN_CHARGE) {
       Dom.hideNode(document.getElementById('minChargeNote'))
     } else {
       Dom.showNode(document.getElementById('minChargeNote'))
     }
     this.updateAmount('totalDue', this.grandTotal, 2)
+  }
+
+  updateDiscount(grandTotalBeforeDiscount) {
+    this.updateAmount('summaryDiscountAmount', this.discount * 100, 0)
+    this.updateAmount('totalDiscount', grandTotalBeforeDiscount * (- this.discount), 2)
   }
 
   onCreditCardInputChange(cardInputIsComplete) {
