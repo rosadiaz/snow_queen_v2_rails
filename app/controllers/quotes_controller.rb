@@ -31,7 +31,7 @@ class QuotesController < ApplicationController
   rescue Exception => e
     Rails.logger.debug e.inspect
     Rails.logger.debug e.message
-    render json: { error: e.message}, status: :unprocessable_entity  
+    render json: { errors: [e.message]}, status: :unprocessable_entity  
   end
 
   private
