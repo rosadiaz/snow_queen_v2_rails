@@ -20,6 +20,10 @@
   <dt>Added salt bags:</dt>
   <dd><%= @quote.salt_bags_quantity %> </dd><br/>
 
+  <dt>Discounts applied:</dt>
+  <dd><%= @quote.discount * -100 %>% </dd><br/>
+
+
   <dt>Total charged to your credit card:</dt>
   <dd> <b><%= number_to_currency(@quote.total) %></b> </dd><br/>
 
