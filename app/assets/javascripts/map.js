@@ -381,9 +381,9 @@ class ShovelSquadMap {
         Dom.showNode(errorNode);
         errorNode.innerText = data.errors.join(".\n");
       } else {
-
-        // TODO show success modal with quote id --> data.id
-        // TODO reload page when closing modal
+        $('#collapseContactAndPaymentInfo').collapse('toggle');
+        $("#successModal").modal("show");
+        location.reload();
       }
     })
   }
