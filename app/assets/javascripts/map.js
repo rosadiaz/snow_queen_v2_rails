@@ -153,7 +153,14 @@ class ShovelSquadMap {
     this.subTotal = this.calculateSubTotal();
     this.updateAreaOnSummary();
     this.updateGrandTotal();
-    document.getElementById('doneSelectingArea').classList.remove('disabled');
+    if (this.totalAreaInSqFt <= 0) {
+      document.getElementById('checkMarkArea').classList.add('hidden');
+      document.getElementById('doneSelectingArea').classList.add('disabled');
+    } else {
+      document.getElementById('checkMarkArea').classList.remove('hidden');
+      document.getElementById('doneSelectingArea').classList.remove('disabled');
+
+    }
     document.getElementById('areaSelectHint').classList.remove('hidden');
 
   }
@@ -247,7 +254,6 @@ class ShovelSquadMap {
 
   handleDoneSelecting() {
     this.showNextSection('collapseMap', 'collapseAddOns');
-    document.getElementById('checkMarkArea').classList.remove('hidden');
     this.updateStaticMapOnSummary(this.polygons);
   }
 
