@@ -130,6 +130,7 @@ class ShovelSquadMap {
   
   handleSearchSubmit(event) {
     this.showNextSection('collapseFindAddress', 'collapseMap');
+    document.getElementById('checkMarkAddress').classList.remove('hidden');
     
     if (this.marker) { this.marker.setMap(null) }
     if (this.polygons.length > 0) {
@@ -246,6 +247,7 @@ class ShovelSquadMap {
 
   handleDoneSelecting() {
     this.showNextSection('collapseMap', 'collapseAddOns');
+    document.getElementById('checkMarkArea').classList.remove('hidden');
     this.updateStaticMapOnSummary(this.polygons);
   }
 
@@ -313,6 +315,8 @@ class ShovelSquadMap {
 
   handleDoneAddOns() {
     this.showNextSection('collapseAddOns', 'collapseContactAndPaymentInfo');
+    document.getElementById('checkMarkAddOns').classList.remove('hidden');
+
   }
 
   updateGrandTotal() {
@@ -391,6 +395,7 @@ class ShovelSquadMap {
         errorNode.innerText = data.errors.join(".\n");
       } else {
         $('#collapseContactAndPaymentInfo').collapse('toggle');
+        document.getElementById('checkMarkPayment').classList.remove('hidden');
         $("#successModal").modal("show");
         location.reload();
       }
