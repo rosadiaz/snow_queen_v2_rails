@@ -130,3 +130,7 @@ main {
 #card-errors {
   color: #fa755a;
 }
+
+.btn.disabled, .btn:disabled {
+  opacity: 0.3;
+}

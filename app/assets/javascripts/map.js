@@ -18,6 +18,7 @@ class ShovelSquadMap {
     this.saltBagsQuantity = 0;
     this.saltBagPrice = priceList.PRICE_PER_SALT_BAG;
     this.saltBagsDue = null;
+    this.isCreditCardComplete = false;
 
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleGeocodingResponse = this.handleGeocodingResponse.bind(this);
@@ -29,11 +30,14 @@ class ShovelSquadMap {
     this.handleAddBagClick = this.handleAddBagClick.bind(this);
     this.handleRemoveBagClick = this.handleRemoveBagClick.bind(this);
     this.handleDoneAddOns = this.handleDoneAddOns.bind(this);
+    this.onCreditCardInputChange = this.onCreditCardInputChange.bind(this);
     this.handlePaymentSubmit = this.handlePaymentSubmit.bind(this);
     this.handleTokenReceived = this.handleTokenReceived.bind(this);
     this.addListeners();
     this.updateGrandTotal();
-    this.stripe = new ShovelSquadStripe();
+    this.stripe = new ShovelSquadStripe({
+      onCreditCardInputChange: this.onCreditCardInputChange,
+    });
   }
   
   initMap() {
@@ -111,6 +115,8 @@ class ShovelSquadMap {
     document.getElementById("addBag").addEventListener('click', this.handleAddBagClick);
     document.getElementById("removeBag").addEventListener('click', this.handleRemoveBagClick);
     document.getElementById("doneAddOns").addEventListener('click', this.handleDoneAddOns);
+    document.getElementById("quote_email").addEventListener('keyup', () => this.enableSubmitButton);
+    document.getElementById("quote_phone_number").addEventListener('keyup', () => this.enableSubmitButton);
     document.getElementById('contact-info-form').addEventListener('submit', this.handlePaymentSubmit);
   }
 
@@ -283,6 +289,21 @@ class ShovelSquadMap {
       Dom.showNode(document.getElementById('minChargeNote'))
     }
     this.updateAmount('totalDue', this.grandTotal, 2)
+  }
+
+  onCreditCardInputChange(cardInputIsComplete) {
+    this.isCreditCardComplete = cardInputIsComplete;
+    this.enableSubmitButton();
+  }
+
+  enableSubmitButton() {
+    const requiredFieldsAreNotEmpty = ['quote_email', 'quote_phone_number'].every((id) => {
+      return document.getElementById(id).value !== "";
+    });
+
+    if (requiredFieldsAreNotEmpty && this.isCreditCardComplete) {
+      document.getElementById('submitPayment').classList.remove('disabled');
+    }
   }
 
   handlePaymentSubmit(event) {

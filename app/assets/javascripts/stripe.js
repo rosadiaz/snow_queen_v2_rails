@@ -1,9 +1,9 @@
 class ShovelSquadStripe {
   constructor(config) {
     this.stripe = Stripe(stripeKey);
+    this.onStripeChange = config.onCreditCardInputChange;
 
     const elements = this.stripe.elements();
-
     // Custom styling can be passed to options when creating an Element.
     const style = {
       base: {
@@ -26,7 +26,8 @@ class ShovelSquadStripe {
     this.card.mount('#card-element');
     
     // Handle real-time validation errors from the card Element.
-    this.card.addEventListener('change', function(event) {
+    this.card.addEventListener('change', (event) => {
+      this.onStripeChange(event.complete);
       const displayError = document.getElementById('card-errors');
       if (event.error) {
         displayError.textContent = event.error.message;
