@@ -7,6 +7,7 @@ class QuotesController < ApplicationController
     @price_per_salt_bag = Quote::PRICE_PER_SALT_BAG
     @price_per_sq_ft = Quote::PRICE_PER_SQ_FT
     @min_charge = Quote::MIN_CHARGE
+    @discount = Quote::DISCOUNT
   end
 
   def create

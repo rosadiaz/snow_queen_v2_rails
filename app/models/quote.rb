@@ -12,16 +12,18 @@ class Quote < ApplicationRecord
     (SERVICE_TIME_SOON = :soon) => 49.99,
     (SERVICE_TIME_FREE = :free) => 0,
   }
+  DISCOUNT = 0.5
 
   before_create do
     self.price_per_sq_ft = PRICE_PER_SQ_FT
     self.price_per_salt_bag = PRICE_PER_SALT_BAG
     self.min_charge = MIN_CHARGE
+    self.discount = DISCOUNT
     self.total = area * price_per_sq_ft
     self.service_expedition_cost = SERVICE_EXPEDITION_OPTIONS.fetch(service_expedition_time.to_sym)
     self.total += service_expedition_cost
     self.total += salt_bags_quantity * price_per_salt_bag
-    self.total = [total, min_charge].max
+    self.total = [total, min_charge].max * discount
   end
 
   before_update do
