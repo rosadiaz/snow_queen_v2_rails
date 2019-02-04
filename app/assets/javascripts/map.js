@@ -26,6 +26,7 @@ class ShovelSquadMap {
     this.handleRemoveLastPolygon = this.handleRemoveLastPolygon.bind(this);
     this.handleRemoveAllPolygons = this.handleRemoveAllPolygons.bind(this);
     this.handleDoneSelecting = this.handleDoneSelecting.bind(this);
+    this.updateStaticMapOnSummary = this.updateStaticMapOnSummary.bind(this);
     this.handleExpeditionInfoClick = this.handleExpeditionInfoClick.bind(this);
     this.handleAddBagClick = this.handleAddBagClick.bind(this);
     this.handleRemoveBagClick = this.handleRemoveBagClick.bind(this);
@@ -242,6 +243,34 @@ class ShovelSquadMap {
 
   handleDoneSelecting() {
     this.showNextSection('collapseMap', 'collapseAddOns');
+    this.updateStaticMapOnSummary(this.polygons);
+  }
+
+  updateStaticMapOnSummary(polygons) {
+    const APIkey = document.getElementById("map").getAttribute("data-api-key");
+    const base_URL = "https://maps.googleapis.com/maps/api/staticmap?";
+    const polygon_options = "path=color:0x61D5DD|fillcolor:0x61D5DD|weight:5|";
+    const polygons_string = polygons.map(p => { 
+      let coordString = this.vertexToString(p);
+      return polygon_options + coordString;
+    }).join('&');
+    const zoom = "20";
+    const size = "512x512";
+    const map_type = "satellite";
+
+    const staticMapURL = `${base_URL}${polygons_string}&zoom=${zoom}&size=${size}&maptype=${map_type}&key=${APIkey}`
+    document.getElementById("staticMap").setAttribute("src", staticMapURL)
+    document.getElementById("staticMap").classList.remove("hidden");
+  }
+
+  vertexToString(polygon) {
+    let vertexArray = polygon.getPath().getArray();
+    let coordArray =  vertexArray.map(vertex => { 
+      return [vertex.lat(), vertex.lng()].join(",");
+    });
+    let firstCoord = [vertexArray[0].lat(), vertexArray[0].lng()].join(",")
+    coordArray.push(firstCoord);
+    return coordArray.join("|");
   }
 
   handleExpeditionInfoClick(event) {
@@ -313,13 +342,14 @@ class ShovelSquadMap {
     event.preventDefault();
     
     this.stripe.getToken(this.handleTokenReceived)
-// TODO disable button, change text to wait for payment
-// TODO enable button if errors after payment
   }
 
   handleTokenReceived(token) {
     const form = document.getElementById('contact-info-form');
     const formData = new FormData(form);
+    const coordinates = this.polygons.map(p => { 
+      return p.getPath().getArray().map(vertex => { return vertex.toJSON() })
+    });
 
     const postData = {
       quote: {
@@ -330,8 +360,7 @@ class ShovelSquadMap {
         comments: formData.get("quote[comments]"),
         address: this.geocodedAddress,
         area: this.totalAreaInSqFt,
-        // polygons: this.polygons, TODO SEND ONLY LAT LNG ARRAY
-        // static_map_URL: _____
+        polygons_coordinates: JSON.stringify(coordinates),
         service_expedition_time: this.serviceExpeditionTime,
         salt_bags_quantity: this.saltBagsQuantity,
       },

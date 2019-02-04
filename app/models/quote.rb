@@ -40,10 +40,4 @@ class Quote < ApplicationRecord
     update_column(:payment_id, charge_id)
   end
 
-  # def static_map_URL
-  #   # TODO
-  #   "TODO add static map URL"
-  #   "https://photos.smugmug.com/Galleries/Dogs/A-G/Dexter-Hunter/i-3gb2KCf/0/d7db90ce/X5/20190124-michelle-15-X5.jpg"
-  # end
-
 end

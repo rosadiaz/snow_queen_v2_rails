@@ -44,8 +44,7 @@ class QuotesController < ApplicationController
       :address, 
       :area, # TODO: remove
       :comments, 
-      :polygons, 
-      :static_map_URL, # TODO: remove
+      :polygons_coordinates, 
       :service_expedition_time,
       :salt_bags_quantity,
       )  

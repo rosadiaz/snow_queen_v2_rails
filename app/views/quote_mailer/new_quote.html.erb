@@ -12,7 +12,7 @@
 
   <p>Expect one of our hard working squad members to show up within the next <b><%= t("service_expedition_times.#{@quote.service_expedition_time}") %></b> </p>
 
-  <img alt="Selected area map" src="<%= @quote.static_map_URL.html_safe %>"><br/>
+  <img alt="Selected area map" src="<%= @static_map_URL.html_safe %>"><br/>
 
   <dt>Area to be serviced:</dt>
   <dd><%= number_with_precision(@quote.area, precision: 0, delimiter: ",") %> sq ft</dd><br/>
@@ -20,7 +20,7 @@
   <dt>Added salt bags:</dt>
   <dd><%= @quote.salt_bags_quantity %> </dd><br/>
 
-  <dt>Total due:</dt>
+  <dt>Total charged to your credit card:</dt>
   <dd> <b><%= number_to_currency(@quote.total) %></b> </dd><br/>
 
   <dt>Comments:</dt>
