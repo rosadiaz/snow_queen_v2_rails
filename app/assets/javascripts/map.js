@@ -122,6 +122,7 @@ class ShovelSquadMap {
     document.getElementById("quote_email").addEventListener('keyup', () => this.enableSubmitButton);
     document.getElementById("quote_phone_number").addEventListener('keyup', () => this.enableSubmitButton);
     document.getElementById('contact-info-form').addEventListener('submit', this.handlePaymentSubmit);
+    document.getElementById('closeSuccess').addEventListener('click', this.reloadPage);
   }
 
   enableFindButton(){
@@ -403,9 +404,12 @@ class ShovelSquadMap {
         $('#collapseContactAndPaymentInfo').collapse('toggle');
         document.getElementById('checkMarkPayment').classList.remove('hidden');
         $("#successModal").modal("show");
-        location.reload();
       }
     })
+  }
+  
+  reloadPage() {
+    location.reload();
   }
 
 }
