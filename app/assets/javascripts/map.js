@@ -326,6 +326,7 @@ class ShovelSquadMap {
   onCreditCardInputChange(cardInputIsComplete) {
     this.isCreditCardComplete = cardInputIsComplete;
     this.enableSubmitButton();
+    Dom.hideNode(document.getElementById("contact_info_errors"))
   }
 
   enableSubmitButton() {
