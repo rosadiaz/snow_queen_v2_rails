@@ -54,6 +54,8 @@ To change email sender, cc, and bcc, refer to file 'application_mailer.rb'
 <!-- TODO: UPDATE INFORMATION -->
 To change mailing account, refer to file local_env.yml, replace contents
 To change Google API key, refer to file credentials.yml.enc, access via terminal: EDITOR='code --wait' rails credentials:edit
+<!-- TODO set static map options in one location -->
+To change static map options update constants in map.js and quote_mailer.rb
 
 <!-- TODO: Give master.key to ShovelSquad manager-->
 
