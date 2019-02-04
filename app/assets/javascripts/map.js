@@ -348,8 +348,8 @@ class ShovelSquadMap {
 
   handlePaymentSubmit(event) {
     event.preventDefault();
-    
-    this.stripe.getToken(this.handleTokenReceived)
+    document.getElementById('submitPayment').classList.add('disabled');
+    this.stripe.getToken(this.handleTokenReceived);
   }
 
   handleTokenReceived(token) {
