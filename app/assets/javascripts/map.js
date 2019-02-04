@@ -322,8 +322,10 @@ class ShovelSquadMap {
       body: JSON.stringify(postData)
     }).then( res => res.json()).then( data => {
       console.log(data)
-      if (data.error) {
-        // TODO show hidden field con data.error
+      if (data.errors) {
+        const errorNode = document.getElementById("contact_info_errors");
+        Dom.showNode(errorNode);
+        errorNode.innerText = data.errors.join(".\n");
       } else {
         // TODO show success modal with quote id --> data.id
         // TODO reload page when closing modal

@@ -11,9 +11,9 @@ class Lead {
 
   handleErrors(event) {
     this.errors = event.detail[0].errors;
-    const errorNode = document.getElementById("lead_modal_errors");
+    const errorNode = document.getElementById("lead_errors");
     Dom.showNode(errorNode);
-    errorNode.innerText = this.errors.join("\n");
+    errorNode.innerText = this.errors.join(".\n");
   }
 
   handleSuccess(event) {

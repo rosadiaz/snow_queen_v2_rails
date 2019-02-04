@@ -113,6 +113,7 @@
             <div class="card-body">
               <form action="/quotes" method="post" id="contact-info-form">
                 <div class="row d-flex justify-content-center ">
+                  <div class="hidden errors col-10" id="contact_info_errors">errors</div> <!-- Display form erros if required fields are empty -->
                   <div class="col-6 mt-3"> <!-- Email -->
                     <div class="form-group email required quote_email"><label class="form-control-label email required" for="quote_email">Email <abbr title="required">*</abbr></label>
                     <input class="form-control string email required" type="email" name="quote[email]" id="quote_email"></div>
@@ -186,11 +187,11 @@
           <div id="collapseLead" class="collapse" aria-labelledby="lead" data-parent="#leadAccordion">
             <div class="card-body">
               <%= simple_form_for(@lead, remote: true) do |form| %>
-                <div class="modal-body">
+                <div class="body">
+                  <div class="hidden errors col-12 p-0" id="lead_errors">errors</div>
                   <%= form.input :phone_number %>
                   <%= form.input :first_name %>
                   <%= form.input :last_name %>
-                  <div class="hidden modal_errors col-12 p-0" id="lead_modal_errors">errors</div>
                   <div class="text-center">
                     <%= form.submit "Call me ASAP!", class: 'btn btn-dark m-3', id: "submitLead" %> 
                     <div><a href="tel:778-SHOVEL-SQUAD">778-SHOVEL-SQUAD</a>
