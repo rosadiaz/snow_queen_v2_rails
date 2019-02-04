@@ -41,4 +41,5 @@ function initMap() {
 function loadApp() {
   new ShovelSquadMap();
   new Lead();
+  $('#addressInput').focus(); //TODO not working
 }

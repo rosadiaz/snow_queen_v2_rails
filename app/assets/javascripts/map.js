@@ -102,6 +102,8 @@ class ShovelSquadMap {
 
     const input = document.getElementById('addressInput');
     const autocomplete = new google.maps.places.Autocomplete(input, options);
+    // TODO execute search when autocomplete option has been selected doesnt work
+    // autocomplete.addListener('place_changed', this.handleSearchSubmit);
   }
 
   addListeners() {
