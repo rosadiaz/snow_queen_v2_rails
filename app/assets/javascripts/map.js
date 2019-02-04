@@ -148,6 +148,9 @@ class ShovelSquadMap {
     this.subTotal = this.calculateSubTotal();
     this.updateAreaOnSummary();
     this.updateGrandTotal();
+    document.getElementById('doneSelectingArea').classList.remove('disabled');
+    document.getElementById('areaSelectHint').classList.remove('hidden');
+
   }
 
   convertToSqFt(totalAreaInMts) {
