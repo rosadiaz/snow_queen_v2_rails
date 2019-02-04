@@ -75,7 +75,7 @@ class ShovelSquadMap {
   
   initRemoveControls(title, label) {
     const removeControlDiv = document.createElement('button');
-    removeControlDiv.classList.add('map-btn')
+    removeControlDiv.classList.add('map-btn', 'btn-lg', 'btn-dark', 'm-1', 'font-weight-bold')
     removeControlDiv.title = title;
     removeControlDiv.innerHTML = label;
 
