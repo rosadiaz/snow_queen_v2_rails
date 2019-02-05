@@ -36,15 +36,20 @@
               <div> 
                 <div class="row">
                   <div class="col col-6">
-                    <p>On the map below, single click each corner to delineate the area you wish to be <b>cleared of snow and sprinkled with de-icer</b>:</p>
-                    <b>Be as precise as possible!</b>
+                    <p>In the map below, select the area for Shovel Squad to clear and salt or de-ice. </p>
+                    <ul>
+                      <li> Use single clicks to draw an outline and click to close when complete</li>
+                      <li> This will tell our team the area and square footage to be cleared</li>
+                    </ul>
+                    <p>Note all areas that are cleared of snow will have our organic salting-agent laid down</p>
                   </div>
                   <div class="col col-6">
-                    <%= image_tag('SelectAreaNarrow.gif', alt: 'Select area example animation', height: '70%') %>
+                    <%= image_tag('SelectAreaNarrow.gif', alt: 'Select area example animation', width: '90%') %>
                   </div>
-                  <div class="col col-10 pt-3">
+                  <div class="col col-7 pt-3">
                     <div id="areaSelectHint" class="hidden alert alert-success" role="alert">
-                      Did you know you can select more than one area? Add side paths, backstairs, patio, etc.
+                      <p>Did you know you can select more than one area?</p>
+                      <p> Add side paths, backstairs, patio, etc.</p>
                     </div>
                   </div>
                   <div class="col col-2 pt-3">
@@ -72,7 +77,7 @@
             <div class="card-body">
               <div class="row d-flex justify-content-center" id="displayServiceExpedition">
                 <div class="col-10 mt-3">
-                  <div><b> How soon do you want the service? </b></div>
+                  <div><b> When should Shovel Squad arrive? </b></div>
                   <fieldset class="form-group">
                     <div class="row">
                       <div class="col-sm-10">
@@ -89,7 +94,7 @@
                   </fieldset>
                 </div>
                 <div class="col-10 mt-3">
-                  <div><b> Would you like additional organic de-icer bags for $35 each? </b></div>
+                  <div><b> $35 each: Add a bag of our organic, pet-friendly and environmentally safe salting-agent </b></div>
                   <button id="addBag" type="button" class="btn btn-success rounded-circle pl-2 pr-2 pt-0 pb-0">+</button>
                   <span id="numberOfBags" class="font-weight-bold font-size-35 align-middle">0</span>
                   <button id="removeBag" type="button" class="btn btn-danger rounded-circle pl-2 pr-2 pt-0 pb-0">-</button>
@@ -141,6 +146,12 @@
                       <textarea class="form-control text optional" placeholder="How can we best serve you?" name="quote[comments]" id="quote_comments"></textarea>
                     </div>
                   </div>
+                  <div> <!-- Accept Terms and Conditions -->
+                    <div class="quote_accept_terms">
+                      <input class="form-check-input" type="checkbox" name="quote[accept_terms]" id="quote_accept_terms">
+                      <label class="form-check-label" for="quote_accept_terms">I accept the Terms and Conditions</label>
+                    </div>
+                  </div>
                   <div class="col-10">
                     <label for="card-element">Credit card</label>
                   </div>
@@ -159,6 +170,9 @@
                   </div>
                   <div class="col-10 pt-3">
                     <input id="submitPayment" type="submit" class="disabled btn btn-lg btn-dark" value="Submit Payment to Request Service">
+                  </div>
+                  <div class="col-10 pt-3">
+                    <p>Our team will be in touch with you to confirm your request and dispatch a member of our Shovel Squad to the address provided. </p>
                   </div>
                 </div>
               </form>
@@ -257,9 +271,9 @@
                   <span class="font-weight-bold currency-symbol text-secondary">$</span>
                   <span id="totalDue" class="font-weight-bold font-size-35">MIN_CHARGE</span> CAD
                 </p>
-                <p id="minChargeNote">(Minimum charge before discount $150)</p>
+                <p id="minChargeNote"style="font-size: 75%">(Minimum charge, waived once $150 reached)</p>
                 <div class="alert alert-success m-2">
-                  <b> Special 50% Discount for Beta testers already applied </b>
+                  <b> Promotional 50% discount automatically applied to your total </b>
                 </div>
               </div>
             </div>
