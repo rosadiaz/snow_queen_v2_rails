@@ -130,6 +130,7 @@ class ShovelSquadMap {
   }
   
   handleSearchSubmit(event) {
+    event.preventDefault();
     this.showNextSection('collapseFindAddress', 'collapseMap');
     document.getElementById('checkMarkAddress').classList.remove('hidden');
     
@@ -144,7 +145,6 @@ class ShovelSquadMap {
   }
 
   showNextSection(collapseNode, showNode) {
-    event.preventDefault();
     document.getElementById(collapseNode).classList.remove('show');
     document.getElementById(showNode).classList.add('show');
   }
