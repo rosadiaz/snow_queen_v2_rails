@@ -52,8 +52,9 @@ To change constants like the price list, refer to file 'quote.rb'
 To change service expedition times and descriptions, refer to file 'en.yml'
 To change email sender, cc, and bcc, refer to file 'application_mailer.rb'
 <!-- TODO: UPDATE INFORMATION -->
-To change mailing account, refer to file local_env.yml, replace contents
+To change mailing account, refer to file local_env.yml, replace contents and add same information in Heroku `heroku config:set EMAIL_USERNAME=example@email.com EMAIL_APP_PASSWORD=password'
 To change Google API key, refer to file credentials.yml.enc, access via terminal: EDITOR='code --wait' rails credentials:edit
+Stripe
 <!-- TODO set static map options in one location -->
 To change static map options update constants in map.js and quote_mailer.rb
 

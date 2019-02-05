@@ -8,7 +8,7 @@ class QuoteMailer < ApplicationMailer
     zoom = "20"
     size = "512x512"
     map_type = "satellite"
-    api_key = "AIzaSyDafFObZ3lBKKVKjYwxGL2xcvqVEwC68XY"
+    api_key = "AIzaSyDTUlZw7oIzOwoDws0-jOOlbfCK_9rmT5s "
     @static_map_URL = "#{base_URL}#{polygons}&zoom=#{zoom}&size=#{size}&maptype=#{map_type}&key=#{api_key}"
     
     mail(
