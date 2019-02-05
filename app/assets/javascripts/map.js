@@ -391,7 +391,8 @@ class ShovelSquadMap {
     fetch(form.action, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        'X-CSRF-Token': Rails.csrfToken(),
       },
       body: JSON.stringify(postData)
     }).then( res => res.json()).then( data => {
