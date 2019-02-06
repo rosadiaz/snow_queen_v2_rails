@@ -1,9 +1,19 @@
 <h1>Shovel Squad service request #<%= @quote.id %></h1>
 
-<h2>Hi <%= @quote.first_name %></h2>
+<h2>Hello <%= @quote.first_name %></h2>
 
 <p>
-  Thank you for choosing Shovel Squad to fulfill your winter snow clearing and salting needs! <br>
+  This email is to confirm that our team has received your service request. Once the it has been approved, 
+  we will email you to let you know once a member of the Shovel Squad is on their way.
+</p>
+<ul>Important things to keep in mind:
+  <li>All requests are handled in a sequential manner.</li>
+  <li>Should  there be any issues with your request, a manager will be in touch with you via the telephone <b> <%= @quote.phone_number %></b>.</li>
+  <li>We will not be answering calls during peak times, please email if you have any questions rather than calling dispatch.
+</li>
+</ul>
+
+<p>
   For your reference, here are the details of the service you requested on <%= @quote.created_at %>:
 </p>
 <dl>
@@ -12,7 +22,6 @@
 
   <p>Expect one of our hard working squad members to show up within the next <b><%= t("service_expedition_times.#{@quote.service_expedition_time}") %></b> </p>
 
-  <img alt="Selected area map" src="<%= @static_map_URL.html_safe %>"><br/>
 
   <dt>Area to be serviced:</dt>
   <dd><%= number_with_precision(@quote.area, precision: 0, delimiter: ",") %> sq ft</dd><br/>
@@ -29,7 +38,9 @@
 
   <dt>Comments:</dt>
   <dd><%= @quote.comments %></dd><br/>
+
+  <img alt="Selected area map" src="<%= @static_map_URL.html_safe %>"><br/>
 </dl>
 
 
-<p>Cheers, <br> Shovel Squad</p>
+
