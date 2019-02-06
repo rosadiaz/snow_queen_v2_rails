@@ -35,27 +35,22 @@ body {
 }
 
 header {
-  // height: 10%;
   padding: 10px 0px 20px 5px;
 
   > img {
-    // height: 80px;
+    height: 80px;
   }
 }
 
 footer {
-  // height: 10%;
   grid-row-start: 2;
   grid-row-end: 3;
 
   >img {
-    height: 200px;
   }
 }
 
 main {
-  // display: flex;
-  // flex: 2;
   height: 80%;
   background-image: url("ShovelSquad-Web-Bkg.png");
   background-color: #f3e6e0;
