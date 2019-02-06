@@ -24,20 +24,29 @@ $theme-colors: (
 
 @import 'bootstrap';
 
-body{
-  // box-sizing: border-box;
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
 }
 
 header {
-  height: 10vh;
+  // height: 10%;
   padding: 10px 0px 20px 5px;
 
   > img {
-    height: 100%;
+    // height: 80px;
   }
 }
 
 footer {
+  // height: 10%;
+  grid-row-start: 2;
+  grid-row-end: 3;
 
   >img {
     height: 200px;
@@ -45,8 +54,15 @@ footer {
 }
 
 main {
-  height: 90vh;
+  // display: flex;
+  // flex: 2;
+  height: 80%;
   background-image: url("ShovelSquad-Web-Bkg.png");
+  background-color: #f3e6e0;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 #map {

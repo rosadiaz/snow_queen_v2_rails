@@ -16,7 +16,7 @@
               <form action="" id="addressSearchBar">
                 <div class="d-flex justify-content-center m-3">
                   <input id="addressInput" type="textbox" placeholder="Start typing your address" class="w-75">
-                  <input id="addressSubmit" type="submit" value="Find" class="btn bg-primary ml-3 disabled">
+                  <input id="addressSubmit" type="submit" value="Find" class="btn btn-primary text-white ml-3 disabled">
                 </div>
               </form>
             </div>
@@ -53,7 +53,7 @@
                     </div>
                   </div>
                   <div class="col col-2 p-3">
-                    <button id="doneSelectingArea" type="button" class="btn bg-primary disabled">Done selecting</button>
+                    <button id="doneSelectingArea" type="button" class="btn btn-primary text-white disabled">Done selecting</button>
                   </div>
                   <div class="col col-12">
                     <div id="map" data-api-key="<%=Rails.application.credentials.google_api%>">
@@ -95,12 +95,12 @@
                 </div>
                 <div class="col-10 mt-3">
                   <div><b> $35 each: Add a 20kg bag of our organic, pet-friendly and environmentally safe salting-agent </b></div>
-                  <button id="addBag" type="button" class="btn bg-primary rounded-circle pl-2 pr-2 pt-0 pb-0">+</button>
+                  <button id="addBag" type="button" class="btn btn-success text-white rounded-circle pl-2 pr-2 pt-0 pb-0">+</button>
                   <span id="numberOfBags" class="font-weight-bold font-size-35 align-middle">0</span>
                   <button id="removeBag" type="button" class="btn btn-primary rounded-circle pl-2 pr-2 pt-0 pb-0">-</button>
                 </div>
                 <div class="col-10">
-                  <button id="doneAddOns" type="button" class="btn bg-primary">Next</button>
+                  <button id="doneAddOns" type="button" class="btn btn-primary text-white">Next</button>
                 </div>
               </div>
             </div>
@@ -169,7 +169,7 @@
                     <% end %>
                   </div>
                   <div class="col-10 pt-3">
-                    <input id="submitPayment" type="submit" class="disabled btn btn-lg bg-primary" value="Submit Payment to Request Service">
+                    <input id="submitPayment" type="submit" class="disabled btn btn-lg btn-primary text-white" value="Submit Payment to Request Service">
                   </div>
                   <div class="col-9 pt-3">
                     <p class="text-center">Our team will be in touch with you to confirm your request and dispatch a member of our Shovel Squad to the address provided. </p>
@@ -208,7 +208,7 @@
                   <%= form.input :first_name %>
                   <%= form.input :last_name %>
                   <div class="text-center">
-                    <%= form.submit "Call me ASAP!", class: 'btn bg-primary m-3', id: "submitLead" %> 
+                    <%= form.submit "Call me ASAP!", class: 'btn btn-primary text-white m-3', id: "submitLead" %> 
                     <div><a href="tel:604-338-9094">604-338-9094</a>
                     </div>
                   </div>
@@ -288,7 +288,7 @@
 <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-primary">
+      <div class="modal-header btn-primary text-white">
         <h5 class="modal-title text-white text-shadow" id="modalTitle">Thank you for your business!</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -298,7 +298,7 @@
         <p class="text-center">Our team will be in touch with you to confirm your request and dispatch a member of our Shovel Squad to the address provided.</p> 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn bg-primary" data-dismiss="modal" id="closeSuccess">See you soon!</button>
+        <button type="button" class="btn btn-primary text-white" data-dismiss="modal" id="closeSuccess">See you soon!</button>
       </div>
     </div>
   </div>

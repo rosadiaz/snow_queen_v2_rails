@@ -14,12 +14,14 @@
   </head>
 
   <body class="bg-success">
-    <header>
-      <%= image_tag('ShovelSquad-Logo-Wordmark.png', alt: 'Shovel Squad Logo') %>
-    </header>
-    <%= yield %>
-    <footer class="d-flex justify-content-center bg-dark">
-          <%= image_tag('SS_logo.png', alt: 'Shovel Squad Logo') %>
-    </footer>
+    <div class="d-flex flex-column">
+      <header>
+        <%= image_tag('ShovelSquad-Logo-Wordmark.png', alt: 'Shovel Squad Logo') %>
+      </header>
+      <%= yield %>
+      <footer class="d-flex justify-content-center bg-dark">
+            <%= image_tag('SS_logo.png', alt: 'Shovel Squad Logo') %>
+      </footer>
+    </div>
   </body>
 </html>
