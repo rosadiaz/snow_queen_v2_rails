@@ -311,6 +311,13 @@
     PRICE_PER_SALT_BAG: <%= @price_per_salt_bag %>,
     DISCOUNT: <%= @discount %>,
   }
+  const mapOptions = {
+    BASE_URL: "<%= StaticMapUrlBuilder::BASE_URL %>",
+    POLYGON_OPTIONS: "<%= StaticMapUrlBuilder::POLYGON_OPTIONS %>",
+    ZOOM: "<%= StaticMapUrlBuilder::ZOOM %>",
+    SIZE: "<%= StaticMapUrlBuilder::SIZE %>",
+    MAP_TYPE: "<%= StaticMapUrlBuilder::MAP_TYPE %>",
+  }
 </script>
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.credentials.google_api%>&libraries=places,drawing&callback=initMap" async defer>

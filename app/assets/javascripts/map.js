@@ -260,17 +260,12 @@ class ShovelSquadMap {
 
   updateStaticMapOnSummary(polygons) {
     const APIkey = document.getElementById("map").getAttribute("data-api-key");
-    const base_URL = "https://maps.googleapis.com/maps/api/staticmap?";
-    const polygon_options = "path=color:0x61D5DD|fillcolor:0x61D5DD|weight:5|";
     const polygons_string = polygons.map(p => { 
       let coordString = this.vertexToString(p);
-      return polygon_options + coordString;
+      return mapOptions.POLYGON_OPTIONS + coordString;
     }).join('&');
-    const zoom = "20";
-    const size = "512x512";
-    const map_type = "satellite";
 
-    const staticMapURL = `${base_URL}${polygons_string}&zoom=${zoom}&size=${size}&maptype=${map_type}&key=${APIkey}`
+    const staticMapURL = `${mapOptions.BASE_URL}${polygons_string}&zoom=${mapOptions.ZOOM}&size=${mapOptions.SIZE}&maptype=${mapOptions.MAP_TYPE}&key=${APIkey}`
     document.getElementById("staticMap").setAttribute("src", staticMapURL)
     document.getElementById("staticMap").classList.remove("hidden");
   }
