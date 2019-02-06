@@ -53,10 +53,10 @@ class ShovelSquadMap {
   
   initDrawingManager() {
     const drawingOptions = {
-      fillColor: '#2DC1D6',
+      fillColor: '#BD2226',
       fillOpacity: 0.3,
       strokeWeight: 5,
-      strokeColor: '#2DC1D6',
+      strokeColor: '#BD2226',
       clickable: false,
       zIndex: 1
     }
@@ -75,7 +75,7 @@ class ShovelSquadMap {
   
   initRemoveControls(title, label) {
     const removeControlDiv = document.createElement('button');
-    removeControlDiv.classList.add('map-btn', 'btn-lg', 'btn-dark', 'm-1', 'font-weight-bold')
+    removeControlDiv.classList.add('map-btn', 'btn-lg', 'bg-success', 'm-1', 'font-weight-bold')
     removeControlDiv.title = title;
     removeControlDiv.innerHTML = label;
 

@@ -12,29 +12,41 @@
  *
  */
 $theme-colors: (
-  "light": #ddf8fa,
-  "primary": #0698b190,
-  "success": #76B041,
-  "warning": #D6C9C9,
+  "light": #EBD7C9,
+  "primary": #BD2226,
+  "success": #95B8B2,
+  "warning": #291B14,
   "secondary": gray,
   "info": #F6F7F7,
-  "dark": #177E89,
+  "dark": #421C16,
   "discount": #becead,
 );
 
 @import 'bootstrap';
+
+body{
+  // box-sizing: border-box;
+}
 
 header {
   height: 10vh;
   padding: 10px 0px 20px 5px;
 
   > img {
+    height: 100%;
+  }
+}
+
+footer {
+
+  >img {
     height: 200px;
   }
 }
 
 main {
   height: 90vh;
+  background-image: url("ShovelSquad-Web-Bkg.png");
 }
 
 #map {
