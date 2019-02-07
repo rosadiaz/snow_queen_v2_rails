@@ -47,6 +47,7 @@ class QuotesController < ApplicationController
       :polygons_coordinates, 
       :service_expedition_time,
       :salt_bags_quantity,
+      :terms,
       )  
   end
   

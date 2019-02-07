@@ -2,6 +2,8 @@ class Quote < ApplicationRecord
   validates :email, presence: true
   validates :address, presence: true
   validates :phone_number, presence: true, telephone_number: {country: proc{|record| :ca}, types: [:fixed_line, :mobile, :area_code_optional]}
+  validates :terms, acceptance: true
+  validates :terms, inclusion: { in: [true] }
 
   # PRICES SET BY SHOVEL SQUAD 
   PRICE_PER_SQ_FT = 0.25
