@@ -126,7 +126,7 @@ class ShovelSquadMap {
     document.getElementById("doneAddOns").addEventListener('click', this.handleDoneAddOns);
     document.getElementById("quote_email").addEventListener('keyup', () => this.enableSubmitButton);
     document.getElementById("quote_phone_number").addEventListener('keyup', () => this.enableSubmitButton);
-    document.getElementById('acceptTerms').addEventListener('change', this.handleAcceptTermsModal);
+    document.getElementById('acceptTerms').addEventListener('click', this.handleAcceptTermsModal);
     document.getElementById('quote_accept_terms').addEventListener('change', this.handleAcceptTermsChecked);
     document.getElementById('contact-info-form').addEventListener('submit', this.handlePaymentSubmit);
     document.getElementById('closeSuccess').addEventListener('click', this.reloadPage);
@@ -346,12 +346,13 @@ class ShovelSquadMap {
   }
 
   handleAcceptTermsChecked() {
-    if(quote_accept_terms.checked){
-        this.isTermsTrue = true;
-        this.enableSubmitButton();
-    }
-    else{
-        document.getElementById('submitPayment').classList.add('disabled');
+    if (document.getElementById('quote_accept_terms').checked) {
+      // this.isTermsTrue = true;
+      this.enableSubmitButton();
+    } else {
+      // this.isTermsTrue = false;
+      document.getElementById('submitPayment').classList.add('disabled');
+      document.getElementById('submitPayment').remove('disabled');;
     }
   }
   
@@ -371,7 +372,9 @@ class ShovelSquadMap {
       return document.getElementById(id).value !== "";
     });
 
-    if (requiredFieldsAreNotEmpty && this.isCreditCardComplete && this.isTermsTrue) {
+    const isTermsTrue = document.getElementById('quote_accept_terms').checked;
+    
+    if (requiredFieldsAreNotEmpty && this.isCreditCardComplete && isTermsTrue) {
       const submitPaymentButton = document.getElementById('submitPayment')
       submitPaymentButton.classList.remove('disabled');
       submitPaymentButton.disabled = false;
