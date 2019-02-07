@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_04_183845) do
+ActiveRecord::Schema.define(version: 2019_02_07_065821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2019_02_04_183845) do
     t.string "phone_number"
     t.string "payment_id"
     t.decimal "discount", precision: 10, scale: 2
+    t.boolean "terms"
     t.index ["email"], name: "index_quotes_on_email"
   end
 
