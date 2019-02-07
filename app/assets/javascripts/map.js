@@ -124,6 +124,7 @@ class ShovelSquadMap {
     document.getElementById("doneAddOns").addEventListener('click', this.handleDoneAddOns);
     document.getElementById("quote_email").addEventListener('keyup', () => this.enableSubmitButton);
     document.getElementById("quote_phone_number").addEventListener('keyup', () => this.enableSubmitButton);
+    document.getElementById('acceptTerms').addEventListener('click', this.handleAcceptTerms);
     document.getElementById('contact-info-form').addEventListener('submit', this.handlePaymentSubmit);
     document.getElementById('closeSuccess').addEventListener('click', this.reloadPage);
   }
@@ -339,6 +340,10 @@ class ShovelSquadMap {
   updateDiscount(grandTotalBeforeDiscount) {
     this.updateAmount('summaryDiscountAmount', this.discount * 100, 0)
     this.updateAmount('totalDiscount', grandTotalBeforeDiscount * (- this.discount), 2)
+  }
+
+  handleAcceptTerms() {
+    document.getElementById('quote_accept_terms').checked = true;
   }
 
   onCreditCardInputChange(cardInputIsComplete) {
