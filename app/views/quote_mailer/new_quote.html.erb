@@ -3,26 +3,30 @@
 <h2>Hello <%= @quote.first_name %></h2>
 
 <p>
-  This email is to confirm that our team has received your service request. Once it has been approved, 
-  we will email you to let you know once a member of the Shovel Squad is on their way.
+  Your Shovel Squad service request has been received! Once it has been approved, 
+  we will email to let you know once a member of the Shovel Squad is on their way!
 </p>
-<ul>Important things to keep in mind:
+<p>We're new in town and want to help make your service hassle-free.</p>
+<ul>Please note the following:
   <li>All requests are handled in a sequential manner.</li>
-  <li>Should  there be any issues with your request, a manager will be in touch with you via the telephone <b> <%= @quote.phone_number %></b>.</li>
-  <li>We will not be answering calls during peak times, please email if you have any questions rather than calling dispatch.
+  <li>If there is an issue with your request, our manager will call you directly to the number provided: <b> <%= @quote.phone_number %></b>.</li>
+  <li>Since we're working hard shoveling snow during peak snowfall times, it's best to reach us via email (contact@shovelsquad.ca) if you have any questions and need to reach us! Please reference your service request <b> #<%= @quote.id %> </b>.
 </li>
 </ul>
-
+<p>We’d love to get your feedback! We’ll be sending a quick survey following your Shovel Squad experience, we hope you’ll take the time to complete.</p>
 <p>
   For your reference, here are the details of the service you requested on <%= @quote.created_at %>:
 </p>
 <dl>
-  <dt class="primary-address">Address:</dt>
-  <dd><%= @quote.address %></dd><br/>
-
   <p>Expect one of our hard working squad members to show up within the next <b><%= t("service_expedition_times.#{@quote.service_expedition_time}") %></b> </p>
 
+  <% if (@quote.service_expedition_time === "free") %>
+    <p>We’ll send you another email to confirm the time we’ll be arriving at your address.</p>
+  <% end %>
 
+  <dt class="primary-address">Address:</dt>
+  <dd><%= @quote.address %></dd><br/>
+  
   <dt>Area to be serviced:</dt>
   <dd><%= number_with_precision(@quote.area, precision: 0, delimiter: ",") %> sq ft</dd><br/>
 
@@ -35,7 +39,7 @@
 
   <dt>Total charged to your credit card:</dt>
   <dd> <b><%= number_to_currency(@quote.total) %></b> </dd><br/>
-
+  <br>
   <dt>Comments:</dt>
   <dd><%= @quote.comments %></dd><br/>
 
