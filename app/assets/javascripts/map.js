@@ -40,6 +40,9 @@ class ShovelSquadMap {
     this.stripe = new ShovelSquadStripe({
       onCreditCardInputChange: this.onCreditCardInputChange,
     });
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
   }
   
   initMap() {

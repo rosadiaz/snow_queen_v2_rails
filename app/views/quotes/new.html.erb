@@ -94,7 +94,23 @@
                   </fieldset>
                 </div>
                 <div class="col-10 mt-3">
-                  <div><b> $35 each: Add a 20kg bag of our organic, pet-friendly and environmentally safe salting-agent </b></div>
+                  <div>
+                    <b> $35 each: </b> Add a 20kg bag of our organic, pet-friendly and environmentally safe
+                      <a 
+                        href="#" 
+                        class="form-check-label" 
+                        for="quote_accept_terms" 
+                        data-toggle="tooltip" 
+                        data-placement="top" 
+                        title="Why Shovel Squad doesn’t use ordinary salt:
+Salt can damage sidewalks, bricks, concrete, causes vehicles to rust, be harmful to pets, stain footwear and clothing, and kill vegetation.
+Shovel Squad uses an environmentally safer alternative to salt to keep your property, and our environment, healthy.
+We use a product that is specially formulated with beet extract solution and Calcium Magnesium Acetate. It is certified organic, has a low toxicity and is biodegradable. It helps to reduce damage to surfaces and vehicles by reducing chloride corrosion and requires fewer applications.
+Shovel Squad is the ONLY company in the lower mainland to offer this cutting-edge product!"
+>
+                        salting-agent<%= image_tag('info.png', alt: 'more information', id: 'info') %>
+                      </a>
+                  </div>
                   <button id="addBag" type="button" class="btn btn-success text-white rounded-circle pl-2 pr-2 pt-0 pb-0">+</button>
                   <span id="numberOfBags" class="font-weight-bold font-size-35 align-middle">0</span>
                   <button id="removeBag" type="button" class="btn btn-primary rounded-circle pl-2 pr-2 pt-0 pb-0">-</button>
@@ -249,7 +265,23 @@
                   <span id="serviceExpeditionDue" class="font-weight-bold text-secondary font-size-35">SERVICE EXPEDITION COST</span>
                 </dd>
               </div>
-              <div id="summarySaltBags" class="hidden">Additional de-icer bags: <b id="summaryNumberOfBags">NUMBER OF BAGS</b>
+              <div id="summarySaltBags" class="hidden"> 
+                Additional
+                <a 
+                  href="#" 
+                  class="form-check-label" 
+                  for="quote_accept_terms" 
+                  data-toggle="tooltip" 
+                  data-placement="top" 
+                  title="Why Shovel Squad doesn’t use ordinary salt:
+Salt can damage sidewalks, bricks, concrete, causes vehicles to rust, be harmful to pets, stain footwear and clothing, and kill vegetation.
+Shovel Squad uses an environmentally safer alternative to salt to keep your property, and our environment, healthy.
+We use a product that is specially formulated with beet extract solution and Calcium Magnesium Acetate. It is certified organic, has a low toxicity and is biodegradable. It helps to reduce damage to surfaces and vehicles by reducing chloride corrosion and requires fewer applications.
+Shovel Squad is the ONLY company in the lower mainland to offer this cutting-edge product!"
+>
+                  de-icer<%= image_tag('info.png', alt: 'more information', id: 'info') %>
+                </a>
+                bags: <b id="summaryNumberOfBags">NUMBER OF BAGS</b>
                 <dd class="text-right">
                   <span class="font-weight-bold currency-symbol text-secondary">$</span>
                   <span id="saltBagsDue" class="font-weight-bold text-secondary font-size-35">TOTAL FOR BAGS</span>
