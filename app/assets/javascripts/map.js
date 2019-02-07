@@ -372,7 +372,9 @@ class ShovelSquadMap {
     });
 
     if (requiredFieldsAreNotEmpty && this.isCreditCardComplete && this.isTermsTrue) {
-      document.getElementById('submitPayment').classList.remove('disabled');
+      const submitPaymentButton = document.getElementById('submitPayment')
+      submitPaymentButton.classList.remove('disabled');
+      submitPaymentButton.disabled = false;
     }
   }
 
@@ -396,6 +398,7 @@ class ShovelSquadMap {
         first_name: formData.get("quote[first_name]"),
         last_name: formData.get("quote[last_name]"),
         comments: formData.get("quote[comments]"),
+        terms: formData.get("quote[terms]"),
         address: this.geocodedAddress,
         area: this.totalAreaInSqFt,
         polygons_coordinates: JSON.stringify(coordinates),
