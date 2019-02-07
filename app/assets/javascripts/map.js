@@ -19,6 +19,7 @@ class ShovelSquadMap {
     this.saltBagPrice = priceList.PRICE_PER_SALT_BAG;
     this.saltBagsDue = null;
     this.discount = priceList.DISCOUNT;
+    this.isTermsTrue = false;
     this.isCreditCardComplete = false;
 
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
@@ -32,6 +33,7 @@ class ShovelSquadMap {
     this.handleAddBagClick = this.handleAddBagClick.bind(this);
     this.handleRemoveBagClick = this.handleRemoveBagClick.bind(this);
     this.handleDoneAddOns = this.handleDoneAddOns.bind(this);
+    this.handleAcceptTermsChecked = this.handleAcceptTermsChecked.bind(this);
     this.onCreditCardInputChange = this.onCreditCardInputChange.bind(this);
     this.handlePaymentSubmit = this.handlePaymentSubmit.bind(this);
     this.handleTokenReceived = this.handleTokenReceived.bind(this);
@@ -124,7 +126,8 @@ class ShovelSquadMap {
     document.getElementById("doneAddOns").addEventListener('click', this.handleDoneAddOns);
     document.getElementById("quote_email").addEventListener('keyup', () => this.enableSubmitButton);
     document.getElementById("quote_phone_number").addEventListener('keyup', () => this.enableSubmitButton);
-    document.getElementById('acceptTerms').addEventListener('click', this.handleAcceptTerms);
+    document.getElementById('acceptTerms').addEventListener('change', this.handleAcceptTermsModal);
+    document.getElementById('quote_accept_terms').addEventListener('change', this.handleAcceptTermsChecked);
     document.getElementById('contact-info-form').addEventListener('submit', this.handlePaymentSubmit);
     document.getElementById('closeSuccess').addEventListener('click', this.reloadPage);
   }
@@ -342,8 +345,19 @@ class ShovelSquadMap {
     this.updateAmount('totalDiscount', grandTotalBeforeDiscount * (- this.discount), 2)
   }
 
-  handleAcceptTerms() {
+  handleAcceptTermsChecked() {
+    if(quote_accept_terms.checked){
+        this.isTermsTrue = true;
+        this.enableSubmitButton();
+    }
+    else{
+        document.getElementById('submitPayment').classList.add('disabled');
+    }
+  }
+  
+  handleAcceptTermsModal() {
     document.getElementById('quote_accept_terms').checked = true;
+
   }
 
   onCreditCardInputChange(cardInputIsComplete) {
@@ -357,7 +371,7 @@ class ShovelSquadMap {
       return document.getElementById(id).value !== "";
     });
 
-    if (requiredFieldsAreNotEmpty && this.isCreditCardComplete) {
+    if (requiredFieldsAreNotEmpty && this.isCreditCardComplete && this.isTermsTrue) {
       document.getElementById('submitPayment').classList.remove('disabled');
     }
   }
