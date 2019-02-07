@@ -15,13 +15,23 @@
 
   <body class="bg-success">
     <div class="d-flex flex-column">
-      <header>
-        <%= image_tag('ShovelSquad-Logo-Wordmark.png', alt: 'Shovel Squad Logo') %>
+
+      <header class="bg-info">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col col-8">
+            <a href="https://www.shovelsquad.ca">
+              <%= image_tag('ShovelSquad-Logo-Wordmark.png', alt: 'Shovel Squad Logo') %>
+            </a>
+          </div>
+        </div>
       </header>
       <%= yield %>
       <footer class="d-flex justify-content-center bg-dark">
         <%= image_tag('SS_logo.png', alt: 'Shovel Squad Logo') %>
       </footer>
+      <div class="text-right bg-warning text-info p-3">
+        Web app developer <a href="mailto:rdjprogramming@gmail.com?Subject=Web%20development" target="_top">Rosa Diaz</a>
+      </div>
     </div>
   </body>
 </html>

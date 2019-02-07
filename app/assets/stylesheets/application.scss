@@ -17,7 +17,7 @@ $theme-colors: (
   "success": #95B8B2,
   "warning": #291B14,
   "secondary": gray,
-  "info": #F6F7F7,
+  "info": #B8A5A3,
   "dark": #421C16,
   "discount": #becead,
 );
@@ -29,11 +29,10 @@ html {
 
   --light: #EBD7C9;
   --primary: #BD2226;
-  --primary:  #BD2226;
   --success: #95B8B2;
   --warning: #291B14;
   --secondary: gray;
-  --info: #F6F7F7;
+  --info: #B8A5A3;
   --dark: #421C16;
   --discount: #becead;
 }
@@ -48,7 +47,9 @@ header {
   padding: 10px 0px 20px 5px;
 
   > img {
-    height: 70px;
+    height: 100%;
+    max-height: 60px;
+    // padding: 0px 0px 0px 10px;
   }
 }
 
@@ -63,7 +64,6 @@ footer {
 main {
   height: 80%;
   background-image: image-url("ShovelSquad-Web-Bkg.png");
-  background-color: var(--success);
   background-repeat: no-repeat;
   background-position-y: bottom;
   background-attachment: fixed;
