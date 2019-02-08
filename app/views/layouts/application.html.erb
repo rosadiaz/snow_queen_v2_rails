@@ -11,7 +11,7 @@
       const stripeKey = "<%= Rails.application.config.stripe_publishable_api_key%>"
     </script>
     <%= javascript_include_tag 'application' %>
-    <link rel="icon" href="SS_logo.png">
+    <%= favicon_link_tag asset_path('SS_logo.png') %>
   </head>
 
   <body class="bg-success">
@@ -42,19 +42,16 @@
       </header>
       <%= yield %>
 
-      <footer class="bg-warning">
-        <div class="row">
-          <div class ="col-2">
-            <%= image_tag('SS_logo.png', alt: 'Shovel Squad Logo') %>
-          </div>
-          <div class="col-10">
-            <h3 class="text-white d-flex justify-content-around">
-              Proudly serving
-            </h3>
-            <div class="text-white d-flex justify-content-around"> 
-              <h3>Port Coquitlam</h3>
-              <h3>Coquitlam</h3>
-              <h3>Port Moody</h3>
+      <footer class="bg-black">
+        <div class="row justify-content-center pt-5 pb-1">
+          <div class="col-8">
+            <p class="city-title text-white d-flex justify-content-around pb-4">
+              Proud To Be Serving
+            </p>
+            <div class="text-white d-flex justify-content-around pb-4"> 
+              <p class="city-title">Port Coquitlam</p>
+              <p class="city-title">Coquitlam</p>
+              <p class="city-title">Port Moody</p>
             </div>
             <div class="text-white">
               <strong>Email:&nbsp;</strong>contact@shovelsquad.ca<br>
@@ -66,7 +63,7 @@
         </div>
       </footer>
 
-      <div class="text-right bg-dark text-info p-3">
+      <div class="text-right bg-gray text-info p-3">
         Developed by <a href="https://www.linkedin.com/in/rosadiazjara/" target="_top">Rosa Diaz</a>
       </div>
     </div>

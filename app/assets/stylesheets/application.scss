@@ -20,13 +20,15 @@ $theme-colors: (
   "info": #B8A5A3,
   "dark": #421C16,
   "discount": #becead,
+  "black": black,
+  "gray": #3f3f3f,
 );
 
 @import 'bootstrap';
 
 html {
   height: 100%;
-  font-family: Helvetica Neue LT!important;
+  font-family: Helvetica !important;
 
   --light: #EBD7C9;
   --primary: #BD2226;
@@ -58,6 +60,12 @@ header {
 footer {
   grid-row-start: 2;
   grid-row-end: 3;
+
+  .city-title {
+    font-size: 26px;
+    font-family: Helvetica;
+    font-weight: 100;
+  }
 
   >img {
   }
