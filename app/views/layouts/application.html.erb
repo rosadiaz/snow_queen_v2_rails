@@ -15,21 +15,52 @@
 
   <body class="bg-success">
     <div class="d-flex flex-column">
-
-      <header class="bg-info">
-        <div class="row d-flex justify-content-center align-items-center">
-          <div class="col col-8">
-            <a href="https://www.shovelsquad.ca">
-              <%= image_tag('ShovelSquad-Logo-Wordmark.png', alt: 'Shovel Squad Logo') %>
-            </a>
-          </div>
+      <header class="bg-info sticky-top navbar navbar-expand-lg">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="https://www.shovelsquad.ca">
+          <%= image_tag('ShovelSquad-Logo-Wordmark.png', alt: 'Shovel Squad Logo') %>
+        </a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarMenu">
+          <ul class="navbar-nav mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-secondary" href="#">Contact Us</a>
+            </li>
+          </ul>
         </div>
       </header>
       <%= yield %>
-      <footer class="d-flex justify-content-center bg-dark">
-        <%= image_tag('SS_logo.png', alt: 'Shovel Squad Logo') %>
+
+      <footer class="bg-warning">
+        <div class="row">
+          <div class ="col-2">
+            <%= image_tag('SS_logo.png', alt: 'Shovel Squad Logo') %>
+          </div>
+          <div class="col-10">
+            <div class="text-white">
+              Proudly serving
+            </div>
+            <div class="text-white"> 
+              COQUITLAM PORT COQUITLAM PORT MOODY
+            </div>
+            <div class="text-primary">
+              contact@shovelsquad.ca
+            </div>
+          </div>
+        </div>
       </footer>
-      <div class="text-right bg-warning text-info p-3">
+
+      <div class="text-right bg-dark text-info p-3">
         Developed by <a href="https://www.linkedin.com/in/rosadiazjara/" target="_top">Rosa Diaz</a>
       </div>
     </div>

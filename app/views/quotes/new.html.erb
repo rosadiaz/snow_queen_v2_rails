@@ -4,7 +4,7 @@
       <div class="accordion" id="quoteAccordion">
 
         <div class="card">
-          <div class="card-header font-weight-bold bg-primary text-white text-shadow" id="lead">
+          <div class="card-header font-weight-bold bg-dark text-white text-shadow" id="lead">
             <div class="text-center"> 
               Book your Service!
             </div>
@@ -12,16 +12,19 @@
         </div>
 
         <div class="card"> <!-- Step 1: Search Address -->
-          <div class="card-header" id="headingFindAddress">
+          <div class="card-header bg-success" id="headingFindAddress">
             <h2 class="mb-0">
               <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMarkAddress", class: 'checkMark hidden') %>
               <button id="findAddress" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFindAddress" aria-expanded="true" aria-controls="collapseFindAddress">
-                <div><b>Step 1:</b> Address</div>
+                <div class="text-dark">
+                  <b>Step 1:</b>
+                  <span> Address</span>
+                </div>
               </button>
             </h2>
           </div>
           <div id="collapseFindAddress" class="collapse show" aria-labelledby="headingFindAddress" data-parent="#quoteAccordion">
-            <div class="card-body">
+            <div class="card-body bg-light">
               <form action="" id="addressSearchBar">
                 <div class="d-flex justify-content-center m-3">
                   <input id="addressInput" type="textbox" placeholder="Start typing your address" class="w-75">
@@ -32,16 +35,19 @@
           </div>
         </div>
         <div class="card"> <!-- Step 2: Select Area -->
-          <div class="card-header" id="headingMap">
+          <div class="card-header bg-success" id="headingMap">
             <h2 class="mb-0">
               <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMarkArea", class: 'hidden') %>
               <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseMap" aria-expanded="false" aria-controls="collapseMap">
-                <div><b>Step 2:</b> Select service area</div>
+                <div class="text-dark">
+                  <b>Step 2:</b>
+                  <span> Select service area</span>
+                </div>
               </button>
             </h2>
           </div>
           <div id="collapseMap" class="collapse" aria-labelledby="headingMap" data-parent="#quoteAccordion">
-            <div class="card-body">
+            <div class="card-body bg-light">
               <div> 
                 <div class="row">
                   <div class="col col-6">
@@ -75,16 +81,19 @@
           </div>
         </div>
         <div class="card"> <!-- Step 3: Add ons -->
-          <div class="card-header" id="headingAddOns">
+          <div class="card-header bg-success" id="headingAddOns">
             <h2 class="mb-0">
               <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMarkAddOns", class: 'hidden') %>
               <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAddOns" aria-expanded="false" aria-controls="collapseAddOns">
-                <div><b>Step 3:</b> Additional information </div>
+                <div class="text-dark">
+                  <b>Step 3:</b>
+                  <span> Additional information</span>
+                </div>
               </button>
             </h2>
           </div>
           <div id="collapseAddOns" class="collapse" aria-labelledby="headingAddOns" data-parent="#quoteAccordion">
-            <div class="card-body">
+            <div class="card-body bg-light">
               <div class="row d-flex justify-content-center" id="displayServiceExpedition">
                 <div class="col-10 mt-3">
                   <div><b> When should Shovel Squad arrive? </b></div>
@@ -127,16 +136,19 @@
           </div>
         </div>
         <div class="card"> <!-- Step 4: Contact info and payment -->
-          <div class="card-header" id="headingContactAndPaymentInfo">
+          <div class="card-header bg-success" id="headingContactAndPaymentInfo">
             <h2 class="mb-0">
               <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMarkPayment", class: 'hidden') %>
               <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseContactAndPaymentInfo" aria-expanded="false" aria-controls="collapseContactAndPaymentInfo">
-                <div><b>Step 4:</b> Contact and payment information </div>
+                <div class="text-dark">
+                  <b>Step 4:</b>
+                  <span> Contact and payment information</span>
+                </div>
               </button>
             </h2>
           </div>
           <div id="collapseContactAndPaymentInfo" class="collapse" aria-labelledby="headingContactAndPaymentInfo" data-parent="#quoteAccordion">
-            <div class="card-body">
+            <div class="card-body bg-light">
               <form action="/quotes" method="post" id="contact-info-form">
                 <div class="row d-flex justify-content-center ">
                   <div class="alert alert-danger hidden errors col-10" id="contact_info_errors">errors</div> <!-- Display missing fields or payment errors -->
@@ -278,7 +290,7 @@
     <div class="col col-3"> 
       <div class="accordion" id="leadAccordion"> <!-- New Lead contact info -->
         <div class="card">
-          <div class="card-header font-weight-bold bg-primary text-white text-shadow" id="lead">
+          <div class="card-header font-weight-bold bg-dark text-white text-shadow" id="lead">
             <div class="mb-0 d-flex justify-content-between align-items-center"> Having trouble?
               <button 
                 type="button" 
@@ -313,7 +325,7 @@
         </div>
       </div>
       <div class="quote card"> <!-- Requested service summary -->
-        <div class="card-header">
+        <div class="card-header bg-success">
           <dl>
             <div id="summary" class="hidden">
               <div id="summaryAddress" class="hidden">Address:
@@ -369,8 +381,8 @@
 
             </div>
             <div class="card"> 
-            <div class="card-header"><b>Total due:</b></div>
-              <div class="card-body text-center p-1">
+            <div class="card-header bg-info"><b>Total due:</b></div>
+              <div class="card-body text-center p-1 bg-light">
                 <p>
                   <span class="font-weight-bold currency-symbol text-secondary">$</span>
                   <span id="totalDue" class="font-weight-bold font-size-35">MIN_CHARGE</span> CAD
