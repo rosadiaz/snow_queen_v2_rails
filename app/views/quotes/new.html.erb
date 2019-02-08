@@ -28,7 +28,7 @@
               <form action="" id="addressSearchBar">
                 <div class="d-flex justify-content-center m-3">
                   <input id="addressInput" type="textbox" placeholder="Start typing your address" class="w-75">
-                  <input id="addressSubmit" type="submit" value="Find" class="btn btn-primary text-white ml-3 disabled">
+                  <input id="addressSubmit" type="submit" value="Find" class="btn btn-primary text-white ml-3 disabled" disabled>
                 </div>
               </form>
             </div>
@@ -69,7 +69,7 @@
                     </div>
                   </div>
                   <div class="col col-2 p-3">
-                    <button id="doneSelectingArea" type="button" class="btn btn-primary text-white disabled">Done selecting</button>
+                    <button id="doneSelectingArea" type="button" class="btn btn-primary text-white disabled" disabled>Done selecting</button>
                   </div>
                   <div class="col col-12">
                     <div id="map" data-api-key="<%=Rails.application.credentials.google_api%>">

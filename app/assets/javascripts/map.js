@@ -19,7 +19,6 @@ class ShovelSquadMap {
     this.saltBagPrice = priceList.PRICE_PER_SALT_BAG;
     this.saltBagsDue = null;
     this.discount = priceList.DISCOUNT;
-    this.isTermsTrue = false;
     this.isCreditCardComplete = false;
 
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
@@ -134,6 +133,8 @@ class ShovelSquadMap {
 
   enableFindButton(){
     document.getElementById('addressSubmit').classList.remove('disabled');
+    document.getElementById('addressSubmit').disabled = false;
+
   }
   
   handleSearchSubmit(event) {
@@ -164,9 +165,11 @@ class ShovelSquadMap {
     if (this.totalAreaInSqFt <= 0) {
       document.getElementById('checkMarkArea').classList.add('hidden');
       document.getElementById('doneSelectingArea').classList.add('disabled');
+      document.getElementById('doneSelectingArea').disabled = true;
     } else {
       document.getElementById('checkMarkArea').classList.remove('hidden');
       document.getElementById('doneSelectingArea').classList.remove('disabled');
+      document.getElementById('doneSelectingArea').disabled = false;
 
     }
     document.getElementById('areaSelectHint').classList.remove('hidden');
@@ -347,12 +350,10 @@ class ShovelSquadMap {
 
   handleAcceptTermsChecked() {
     if (document.getElementById('quote_accept_terms').checked) {
-      // this.isTermsTrue = true;
       this.enableSubmitButton();
     } else {
-      // this.isTermsTrue = false;
       document.getElementById('submitPayment').classList.add('disabled');
-      document.getElementById('submitPayment').remove('disabled');;
+      document.getElementById('submitPayment').disabled = false;;
     }
   }
   
@@ -373,7 +374,7 @@ class ShovelSquadMap {
     });
 
     const isTermsTrue = document.getElementById('quote_accept_terms').checked;
-    
+
     if (requiredFieldsAreNotEmpty && this.isCreditCardComplete && isTermsTrue) {
       const submitPaymentButton = document.getElementById('submitPayment')
       submitPaymentButton.classList.remove('disabled');
@@ -384,6 +385,7 @@ class ShovelSquadMap {
   handlePaymentSubmit(event) {
     event.preventDefault();
     document.getElementById('submitPayment').classList.add('disabled');
+    document.getElementById('submitPayment').disabled = true;
     this.stripe.getToken(this.handleTokenReceived);
   }
 
