@@ -166,14 +166,15 @@ class ShovelSquadMap {
       document.getElementById('checkMarkArea').classList.add('hidden');
       document.getElementById('doneSelectingArea').classList.add('disabled');
       document.getElementById('doneSelectingArea').disabled = true;
+      document.getElementById('submitPayment').classList.add('disabled');
+      document.getElementById('submitPayment').disabled = true;
     } else {
       document.getElementById('checkMarkArea').classList.remove('hidden');
       document.getElementById('doneSelectingArea').classList.remove('disabled');
       document.getElementById('doneSelectingArea').disabled = false;
-
     }
     document.getElementById('areaSelectHint').classList.remove('hidden');
-
+    this.enableSubmitButton();
   }
 
   convertToSqFt(totalAreaInMts) {
@@ -375,7 +376,7 @@ class ShovelSquadMap {
 
     const isTermsTrue = document.getElementById('quote_accept_terms').checked;
 
-    if (requiredFieldsAreNotEmpty && this.isCreditCardComplete && isTermsTrue) {
+    if (requiredFieldsAreNotEmpty && this.isCreditCardComplete && isTermsTrue && this.totalAreaInSqFt > 0) {
       const submitPaymentButton = document.getElementById('submitPayment')
       submitPaymentButton.classList.remove('disabled');
       submitPaymentButton.disabled = false;
