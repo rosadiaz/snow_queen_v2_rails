@@ -26,5 +26,5 @@
 /config/ssl/shovelsquad.local.crt
 /config/ssl/shovelsquad.local.key
 
-
+node_modules/
 .DS_Store
