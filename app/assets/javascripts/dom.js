@@ -6,3 +6,5 @@ const Dom = {
     node.classList.add("hidden");
   },
 }
+
+export default Dom;

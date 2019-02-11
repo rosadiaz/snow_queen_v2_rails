@@ -26,5 +26,10 @@
 /config/ssl/shovelsquad.local.crt
 /config/ssl/shovelsquad.local.key
 
-node_modules/
 .DS_Store
+
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity

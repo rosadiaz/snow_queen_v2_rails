@@ -1,5 +1,12 @@
 {
   "name": "snow_queen",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@babel/polyfill": "^7.2.5",
+    "@rails/webpacker": "3.5",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  }
 }

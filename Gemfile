@@ -43,6 +43,7 @@ gem 'telephone_number'
 # Stripe payment processing gem https://github.com/stripe/stripe-ruby
 gem 'stripe', '~> 3.0'
 gem 'babel-transpiler'
+gem 'webpacker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
