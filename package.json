@@ -1,5 +1,12 @@
 {
   "name": "snow_queen",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@babel/polyfill": "^7.2.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1"
+  }
 }
