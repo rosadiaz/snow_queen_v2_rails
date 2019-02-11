@@ -24,7 +24,7 @@ class ShovelSquadStripe {
 
     this.card = elements.create('card', {style: style});
     this.card.mount('#card-element');
-    
+
     // Handle real-time validation errors from the card Element.
     this.card.addEventListener('change', (event) => {
       this.onStripeChange(event.complete);
@@ -50,3 +50,5 @@ class ShovelSquadStripe {
     });
   }
 }
+
+export default ShovelSquadStripe;

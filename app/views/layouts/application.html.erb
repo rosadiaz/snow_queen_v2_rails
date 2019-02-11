@@ -21,7 +21,7 @@
       const stripeKey = "<%= Rails.application.config.stripe_publishable_api_key%>"
     </script>
     <%= javascript_include_tag 'vendor' %>
-    <%= javascript_include_tag 'application_es5' %>
+    <%= javascript_pack_tag 'application' %>
     <%= favicon_link_tag asset_path('SS_logo.png') %>
   </head>
 

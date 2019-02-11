@@ -48,6 +48,8 @@ pip install foobar
 
 ## Usage
 
+Run in terminal 'bin/webpack --watch' along with local server
+
 To change constants like the price list, refer to file 'quote.rb'
 To change service expedition times and descriptions, refer to file 'en.yml'
 To change email sender, cc, and bcc, refer to file 'application_mailer.rb'

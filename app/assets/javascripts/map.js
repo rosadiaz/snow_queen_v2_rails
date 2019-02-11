@@ -1,3 +1,9 @@
+import Dom from './dom'
+import ShovelSquadStripe from './stripe'
+import constants from './constants'
+import 'whatwg-fetch'
+import "@babel/polyfill"
+
 class ShovelSquadMap {
   constructor(config) {
     this.map = this.initMap();
@@ -45,7 +51,7 @@ class ShovelSquadMap {
       $('[data-toggle="tooltip"]').tooltip()
     })
   }
-  
+
   initMap() {
     return new google.maps.Map(document.getElementById('map'), {
       zoom: constants.ZOOM,
@@ -54,7 +60,7 @@ class ShovelSquadMap {
       tilt:0
     });
   }
-  
+
   initDrawingManager() {
     const drawingOptions = {
       fillColor: '#BD2226',
@@ -76,7 +82,7 @@ class ShovelSquadMap {
       rectangleOptions: drawingOptions
     })
   }
-  
+
   initRemoveControls(title, label) {
     const removeControlDiv = document.createElement('button');
     removeControlDiv.classList.add('map-btn', 'btn-lg', 'btn-success', 'm-1', 'font-weight-bold')
@@ -117,8 +123,8 @@ class ShovelSquadMap {
     this.removeLastControl.addEventListener('click', this.handleRemoveLastPolygon);
     this.removeAllControl.addEventListener('click', this.handleRemoveAllPolygons);
     document.getElementById('doneSelectingArea').addEventListener('click', this.handleDoneSelecting);
-    document.getElementsByName("serviceExpeditionCost").forEach((element) => { 
-      element.addEventListener('click', this.handleExpeditionInfoClick); 
+    Array.from(document.getElementsByName("serviceExpeditionCost")).forEach((element) => {
+      element.addEventListener('click', this.handleExpeditionInfoClick);
     });
     document.getElementById("addBag").addEventListener('click', this.handleAddBagClick);
     document.getElementById("removeBag").addEventListener('click', this.handleRemoveBagClick);
@@ -136,12 +142,12 @@ class ShovelSquadMap {
     document.getElementById('addressSubmit').disabled = false;
 
   }
-  
+
   handleSearchSubmit(event) {
     event.preventDefault();
     this.showNextSection('collapseFindAddress', 'collapseMap');
     document.getElementById('checkMarkAddress').classList.remove('hidden');
-    
+
     if (this.marker) { this.marker.setMap(null) }
     if (this.polygons.length > 0) {
       this.polygons.forEach(p => { p.setMap(null) });
@@ -166,14 +172,15 @@ class ShovelSquadMap {
       document.getElementById('checkMarkArea').classList.add('hidden');
       document.getElementById('doneSelectingArea').classList.add('disabled');
       document.getElementById('doneSelectingArea').disabled = true;
+      document.getElementById('submitPayment').classList.add('disabled');
+      document.getElementById('submitPayment').disabled = true;
     } else {
       document.getElementById('checkMarkArea').classList.remove('hidden');
       document.getElementById('doneSelectingArea').classList.remove('disabled');
       document.getElementById('doneSelectingArea').disabled = false;
-
     }
     document.getElementById('areaSelectHint').classList.remove('hidden');
-
+    this.enableSubmitButton();
   }
 
   convertToSqFt(totalAreaInMts) {
@@ -182,7 +189,7 @@ class ShovelSquadMap {
 
   aggregateAreaInMts() {
     let totalAreaInMts = 0;
-    this.polygons.forEach((p) => { 
+    this.polygons.forEach((p) => {
       let areaInMts = google.maps.geometry.spherical.computeArea(p.getPath());
       totalAreaInMts += areaInMts;
     });
@@ -230,7 +237,7 @@ class ShovelSquadMap {
       const secondaryAddressNode = document.getElementById('secondaryAddress');
       while (primaryAddressNode.firstChild) { primaryAddressNode.removeChild(primaryAddressNode.firstChild) }
       while (secondaryAddressNode.firstChild) { secondaryAddressNode.removeChild(secondaryAddressNode.firstChild) }
-      
+
       let splitAddress = geocodedAddress.split(',');
       const div = document.createElement('div');
       div.innerText = splitAddress.shift();
@@ -270,7 +277,7 @@ class ShovelSquadMap {
 
   updateStaticMapOnSummary(polygons) {
     const APIkey = document.getElementById("map").getAttribute("data-api-key");
-    const polygons_string = polygons.map(p => { 
+    const polygons_string = polygons.map(p => {
       let coordString = this.vertexToString(p);
       return mapOptions.POLYGON_OPTIONS + coordString;
     }).join('&');
@@ -282,7 +289,7 @@ class ShovelSquadMap {
 
   vertexToString(polygon) {
     let vertexArray = polygon.getPath().getArray();
-    let coordArray =  vertexArray.map(vertex => { 
+    let coordArray =  vertexArray.map(vertex => {
       return [vertex.lat(), vertex.lng()].join(",");
     });
     let firstCoord = [vertexArray[0].lat(), vertexArray[0].lng()].join(",")
@@ -311,13 +318,13 @@ class ShovelSquadMap {
       this.updateSaltBagsTotals();
     }
   }
-  
+
   updateSaltBagsTotals() {
     this.saltBagsDue = this.saltBagsQuantity * this.saltBagPrice;
     this.updateTotalSaltBags();
     this.updateGrandTotal();
   }
-  
+
   updateTotalSaltBags() {
     this.updateAmount('numberOfBags', this.saltBagsQuantity, 0);
     Dom.showNode(document.getElementById("summarySaltBags"));
@@ -356,7 +363,7 @@ class ShovelSquadMap {
       document.getElementById('submitPayment').disabled = false;;
     }
   }
-  
+
   handleAcceptTermsModal() {
     document.getElementById('quote_accept_terms').checked = true;
 
@@ -375,7 +382,7 @@ class ShovelSquadMap {
 
     const isTermsTrue = document.getElementById('quote_accept_terms').checked;
 
-    if (requiredFieldsAreNotEmpty && this.isCreditCardComplete && isTermsTrue) {
+    if (requiredFieldsAreNotEmpty && this.isCreditCardComplete && isTermsTrue && this.totalAreaInSqFt > 0) {
       const submitPaymentButton = document.getElementById('submitPayment')
       submitPaymentButton.classList.remove('disabled');
       submitPaymentButton.disabled = false;
@@ -392,18 +399,18 @@ class ShovelSquadMap {
   handleTokenReceived(token) {
     const form = document.getElementById('contact-info-form');
     const formData = new FormData(form);
-    const coordinates = this.polygons.map(p => { 
+    const coordinates = this.polygons.map(p => {
       return p.getPath().getArray().map(vertex => { return vertex.toJSON() })
     });
 
     const postData = {
       quote: {
-        email: formData.get("quote[email]"),
-        phone_number: formData.get("quote[phone_number]"),
-        first_name: formData.get("quote[first_name]"),
-        last_name: formData.get("quote[last_name]"),
-        comments: formData.get("quote[comments]"),
-        terms: formData.get("quote[terms]"),
+        email: document.getElementsByName("quote[email]")[0].value,
+        phone_number: document.getElementsByName("quote[phone_number]")[0].value,
+        first_name: document.getElementsByName("quote[first_name]")[0].value,
+        last_name: document.getElementsByName("quote[last_name]")[0].value,
+        comments: document.getElementsByName("quote[comments]")[0].value,
+        terms: document.getElementsByName("quote[terms]")[0].checked,
         address: this.geocodedAddress,
         area: this.totalAreaInSqFt,
         polygons_coordinates: JSON.stringify(coordinates),
@@ -421,7 +428,6 @@ class ShovelSquadMap {
       },
       body: JSON.stringify(postData)
     }).then( res => res.json()).then( data => {
-      console.log("data", data);
       if (data.errors) {
         const errorNode = document.getElementById("contact_info_errors");
         Dom.showNode(errorNode);
@@ -431,11 +437,13 @@ class ShovelSquadMap {
         document.getElementById('checkMarkPayment').classList.remove('hidden');
         $("#successModal").modal("show");
       }
-    })
+    });
   }
-  
+
   reloadPage() {
     location.reload();
   }
 
 }
+
+export default ShovelSquadMap;
