@@ -123,7 +123,7 @@ class ShovelSquadMap {
     this.removeLastControl.addEventListener('click', this.handleRemoveLastPolygon);
     this.removeAllControl.addEventListener('click', this.handleRemoveAllPolygons);
     document.getElementById('doneSelectingArea').addEventListener('click', this.handleDoneSelecting);
-    document.getElementsByName("serviceExpeditionCost").forEach((element) => {
+    Array.from(document.getElementsByName("serviceExpeditionCost")).forEach((element) => {
       element.addEventListener('click', this.handleExpeditionInfoClick);
     });
     document.getElementById("addBag").addEventListener('click', this.handleAddBagClick);

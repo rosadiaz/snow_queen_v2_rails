@@ -394,7 +394,7 @@
                   <span class="font-weight-bold currency-symbol text-secondary">$</span>
                   <span id="totalDue" class="font-weight-bold font-size-35">MIN_CHARGE</span> CAD
                 </p>
-                <p id="minChargeNote"style="font-size: 75%">(Minimum charge, waived once $150 reached)</p>
+                <p id="minChargeNote" style="font-size: 75%">(Minimum charge, waived once $150 reached)</p>
                 <div class="alert alert-success m-2">
                   <b> Promotional 50% discount automatically applied to your total </b>
                   <p>Our weather is unpredictable!
@@ -431,13 +431,13 @@
 </div>
 
 <script>
-  const priceList = {
+  var priceList = {
     PRICE_PER_SQ_FT: <%= @price_per_sq_ft %>,
     MIN_CHARGE: <%= @min_charge %>,
     PRICE_PER_SALT_BAG: <%= @price_per_salt_bag %>,
     DISCOUNT: <%= @discount %>,
   }
-  const mapOptions = {
+  var mapOptions = {
     BASE_URL: "<%= StaticMapUrlBuilder::BASE_URL %>",
     POLYGON_OPTIONS: "<%= StaticMapUrlBuilder::POLYGON_OPTIONS %>",
     ZOOM: "<%= StaticMapUrlBuilder::ZOOM %>",

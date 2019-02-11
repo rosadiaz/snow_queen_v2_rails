@@ -11,7 +11,6 @@
 import ShovelSquadMap from '../../assets/javascripts/map'
 import Lead from '../../assets/javascripts/lead'
 
-
 window.initMap = function() {
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", loadApp);
