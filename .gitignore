@@ -24,6 +24,9 @@
 
 .DS_Store/public/packs
 /public/packs-test
-/node_modules
+node_modules/
 yarn-debug.log*
 .yarn-integrity
+
+// bundled JS from webpack
+public/packs/*
