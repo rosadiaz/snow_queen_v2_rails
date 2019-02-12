@@ -1,6 +1,6 @@
 <main class="container-fluid p-3">
   <div class="row d-flex justify-content-center align-items-center">
-    <div class="col col-7">
+    <div class="col col-11 col-lg-7 ">
       <div class="accordion" id="quoteAccordion">
 
         <div class="card">
@@ -55,7 +55,7 @@
             <div class="card-body bg-light">
               <div> 
                 <div class="row">
-                  <div class="col col-6">
+                  <div class="col col-12 col-lg-6">
                     <p>In the map below, select the area for Shovel Squad to clear and salt or de-ice. </p>
                     <ul>
                       <li> Use single clicks to draw an outline of the area requested to be serviced.</li>
@@ -64,16 +64,17 @@
                     </ul>
                     <p>Note all areas that are cleared of snow will have our organic salting-agent laid down</p>
                   </div>
-                  <div class="col col-6">
+                  <div class="col col-12 col-lg-6">
                     <%= image_tag('SelectAreaNarrow.gif', alt: 'Select area example animation', width: '90%') %>
                   </div>
-                  <div class="col col-7 pt-3">
+                  <div class="col col-12 pt-3">
                     <div id="areaSelectHint" class="hidden alert alert-success" role="alert">
-                      <p>Did you know you can select more than one area?</p>
-                      <p> Add side paths, backstairs, patio, etc.</p>
+                      <p>Did you know you can select more than one area? 
+                        <br>Add side paths, backstairs, patio, etc.
+                      </p>
                     </div>
                   </div>
-                  <div class="col col-2 p-3">
+                  <div class="col col-3 p-3">
                     <button id="doneSelectingArea" type="button" class="btn btn-primary text-white disabled" disabled>Done selecting</button>
                   </div>
                   <div class="col col-12">
@@ -100,11 +101,11 @@
           <div id="collapseAddOns" class="collapse" aria-labelledby="headingAddOns" data-parent="#quoteAccordion">
             <div class="card-body bg-light">
               <div class="row d-flex justify-content-center" id="displayServiceExpedition">
-                <div class="col-10 mt-3">
+                <div class="col-12 col-lg-10 mt-3">
                   <div><b> When should Shovel Squad arrive? </b></div>
                   <fieldset class="form-group">
                     <div class="row">
-                      <div class="col-sm-10">
+                      <div class="col-12 col-lg-10">
                         <% Quote::SERVICE_EXPEDITION_OPTIONS.each do |time, price| %>
                           <div class="form-check">
                             <input class="form-check-input" type="radio" name="serviceExpeditionCost" id="<%= time %>" value="<%= price %>" data-label="<%= t("service_expedition_labels.#{time}") %>" checked>
@@ -117,7 +118,7 @@
                     </div>
                   </fieldset>
                 </div>
-                <div class="col-10 mt-3">
+                <div class="col-12 col-lg-10 mt-3">
                   <div>
                     <b> $35 each: </b> Add a 20kg bag of our organic, pet-friendly and environmentally safe
                       <a 
@@ -133,7 +134,7 @@
                   <span id="numberOfBags" class="font-weight-bold font-size-35 align-middle">0</span>
                   <button id="removeBag" type="button" class="btn btn-primary rounded-circle pl-2 pr-2 pt-0 pb-0">-</button>
                 </div>
-                <div class="col-10">
+                <div class="col-12 col-lg-10">
                   <button id="doneAddOns" type="button" class="btn btn-primary text-white">Next</button>
                 </div>
               </div>
@@ -157,33 +158,33 @@
               <form action="/quotes" method="post" id="contact-info-form">
                 <div class="row d-flex justify-content-center ">
                   <div class="alert alert-danger hidden errors col-10" id="contact_info_errors">errors</div> <!-- Display missing fields or payment errors -->
-                  <div class="col-6 mt-3"> <!-- Email -->
+                  <div class="col-12 col-lg-6 mt-3"> <!-- Email -->
                     <div class="form-group email required quote_email"><label class="form-control-label email required" for="quote_email">Email <abbr title="required">*</abbr></label>
                     <input class="form-control string email required" type="email" name="quote[email]" id="quote_email"></div>
                   </div>
-                  <div class="col-4 mt-3"> <!-- Phone number -->
+                  <div class="col-12 col-lg-4 mt-3"> <!-- Phone number -->
                     <div class="form-group phone_number required quote_phone_number"><label class="form-control-label phone_number required" for="quote_phone_number">Phone number <abbr title="required">*</abbr></label>
                     <input class="form-control string phone_number required" type="tel" name="quote[phone_number]" id="quote_phone_number"></div>
                   </div>
-                  <div class="col-5"> <!-- First Name -->
+                  <div class="col-12 col-lg-5"> <!-- First Name -->
                     <div class="form-group string optional quote_first_name">
                       <label class="form-control-label string optional" for="quote_first_name">First name</label>
                       <input class="form-control string optional" type="text" name="quote[first_name]" id="quote_first_name">
                     </div>
                   </div>
-                  <div class="col-5"> <!-- Last Name -->
+                  <div class="col-12 col-lg-5"> <!-- Last Name -->
                     <div class="form-group string optional quote_last_name">
                       <label class="form-control-label string optional" for="quote_last_name">Last name</label>
                       <input class="form-control string optional" type="text" name="quote[last_name]" id="quote_last_name">
                     </div>
                   </div>
-                  <div class="col-10"> <!-- Comments -->
+                  <div class="col-12 col-lg-10"> <!-- Comments -->
                     <div class="form-group text optional quote_comments">
                       <label class="form-control-label text optional" for="quote_comments">Comments</label>
                       <textarea class="form-control text optional" placeholder="How can we best serve you?" name="quote[comments]" id="quote_comments"></textarea>
                     </div>
                   </div>
-                  <div class="col-10 pl-5"> <!-- Accept Terms and Conditions -->
+                  <div class="col-12 col-lg-10 pl-5"> <!-- Accept Terms and Conditions -->
                     <div class="form-group required quote_accept_terms">
                       <input class="required form-check-input" type="checkbox" name="quote[terms]" id="quote_accept_terms" for="quote_terms" value="true">
                       <label class="form-check-label" for="quote_accept_terms">
@@ -192,7 +193,7 @@
                           Terms and Conditions
                         </button>
                         <!-- Terms and Conditions Modal -->
-                        <div class="modal fade" id="terms" tabindex="-1" role="dialog" aria-labelledby="termsTitle" aria-hidden="true">
+                        <div class="modal fade m-5" id="terms" tabindex="-1" role="dialog" aria-labelledby="termsTitle" aria-hidden="true">
                           <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -263,10 +264,10 @@
                       </label>
                     </div>
                   </div>
-                  <div class="col-10">
+                  <div class="col-12 col-lg-10">
                     <label for="card-element">Credit card</label>
                   </div>
-                  <div class="col-10">
+                  <div class="col-12 col-lg-10">
                     <div id="card-element">
                       <!-- A Stripe Element will be inserted here. -->
                     </div>
@@ -279,10 +280,10 @@
                       </div>
                     <% end %>
                   </div>
-                  <div class="col-10 pt-3">
+                  <div class="col-12 col-lg-10 pt-3">
                     <input id="submitPayment" type="submit" class="disabled btn btn-lg btn-primary text-white" value="Submit Payment to Request Service" disabled>
                   </div>
-                  <div class="col-9 pt-3">
+                  <div class="col-12 col-lg-9 pt-3">
                     <p class="text-center">You’ll receive an email confirmation of your service request. Upon approval from our team, you’ll receive a secondary email with the expected dispatch time to your address. We’ll call you directly if there are any concerns.</p>
                   </div>
                 </div>
@@ -292,7 +293,7 @@
         </div>
       </div>
     </div>
-    <div class="col col-3"> 
+    <div class="col col-9 col-lg-3"> 
             <div class ="justify-content-center d-flex">
             <%= image_tag('SS_logo.png', alt: 'Shovel Squad Logo') %>
           </div>
