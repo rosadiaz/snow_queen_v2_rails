@@ -7,11 +7,6 @@
           <div class="card-header font-weight-bold bg-dark text-white text-shadow" id="lead">
             <div class="text-center"> 
               <strong>Book your Service! </strong><br><br>
-              <p>Currently not mobile-friendly. For best results, please use a desktop or laptop.</p>
-              <small>
-                <br>Note: we’re currently only servicing the Burke Mountain, Coquitlam neighbourhood. 
-                <br>We apologize for any inconvenience and hope to be serving more neighbourhoods next winter!
-              </small>
             </div>
           </div>
         </div>
@@ -22,11 +17,11 @@
               <%= image_tag('checkmark.png', alt: 'Step completed', width:"30px", id:"checkMarkAddress", class: 'checkMark hidden') %>
               <button id="findAddress" class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFindAddress" aria-expanded="true" aria-controls="collapseFindAddress">
                 <div class="text-dark">
-                  <b>Step 1:</b>
-                  <span> Address</span>
+                  <b>Step 1:</b> Address<br>
                 </div>
               </button>
             </h2>
+            <small class="pl-3">Note: we’re currently only servicing the Burke Mountain, Coquitlam neighbourhood.</small>
           </div>
           <div id="collapseFindAddress" class="collapse show" aria-labelledby="headingFindAddress" data-parent="#quoteAccordion">
             <div class="card-body bg-light">
@@ -67,6 +62,7 @@
                   <div class="col col-12 col-lg-6">
                     <%= image_tag('SelectAreaNarrow.gif', alt: 'Select area example animation', width: '90%') %>
                   </div>
+                  <b class="pl-3 d-lg-none d-xl-block">For best results, please use a desktop or laptop.</b>
                   <div class="col col-12 pt-3">
                     <div id="areaSelectHint" class="hidden alert alert-success" role="alert">
                       <p>Did you know you can select more than one area? 
