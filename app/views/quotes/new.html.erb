@@ -23,7 +23,7 @@
             </h2>
             <small class="pl-3">Note: we’re currently only servicing the Burke Mountain, Coquitlam neighbourhood.</small>
           </div>
-          <div id="collapseFindAddress" class="collapse show" aria-labelledby="headingFindAddress" data-parent="#quoteAccordion">
+          <div id="collapseFindAddress" class="collapse" aria-labelledby="headingFindAddress" data-parent="#quoteAccordion">
             <div class="card-body bg-light">
               <form action="" id="addressSearchBar">
                 <div class="d-flex justify-content-center m-3">
@@ -46,18 +46,16 @@
               </button>
             </h2>
           </div>
-          <div id="collapseMap" class="collapse" aria-labelledby="headingMap" data-parent="#quoteAccordion">
+          <div id="collapseMap" class="collapse show" aria-labelledby="headingMap" data-parent="#quoteAccordion">
             <div class="card-body bg-light">
-              <div> 
-                <div class="row">
-                  <div class="col col-12 col-lg-6">
+              <div class="p-3">
+                  <div>
                     <p>In the map below, select the area for Shovel Squad to clear and salt or de-ice. </p>
                     <ul>
                       <li> Use single clicks to draw an outline of the area requested to be serviced.</li>
                       <li> Double click to connect the last point with the first point.</li>
                       <li> This will tell our team the area and square footage to be cleared.</li>
                     </ul>
-                    <p>Note all areas that are cleared of snow will have our organic salting-agent laid down</p>
                     <p>Note all areas that are cleared of snow will have our organic 
                       <a 
                         href="#" 
@@ -69,25 +67,24 @@
                       </a>
                       laid down</p>
                   </div>
-                  <div class="col col-12 col-lg-6">
-                    <%= image_tag('SelectAreaNarrow.gif', alt: 'Select area example animation', width: '90%') %>
+                  <div class="row justify-content-center">
+                    <%= image_tag('SelectAreaNarrow.gif', alt: 'Select area example animation', id: "areaSelectingGif") %>
                   </div>
-                  <b class="pl-3 d-lg-none d-xl-block">For best results, please use a desktop or laptop.</b>
-                  <div class="col col-12 pt-3">
+                  <b class="d-block d-xl-none text-center">For best results, please use full-screen on a desktop or laptop.</b>
+                  <div>
                     <div id="areaSelectHint" class="hidden alert alert-success" role="alert">
                       <p>Did you know you can select more than one area? 
                         <br>Add side paths, backstairs, patio, etc.
                       </p>
                     </div>
                   </div>
-                  <div class="col col-3 p-3">
-                    <button id="doneSelectingArea" type="button" class="btn btn-primary text-white disabled" disabled>Done selecting</button>
+                  <div>
+                    <button id="doneSelectingArea" type="button" class="btn btn-primary text-white mt-3 mb-3 disabled" disabled>Done selecting</button>
                   </div>
-                  <div class="col col-12">
+                  <div>
                     <div id="map" data-api-key="<%=Rails.application.credentials.google_api%>">
                     </div>
                   </div>
-                </div>
               </div>
             </div>
           </div>
@@ -300,9 +297,9 @@
       </div>
     </div>
     <div class="col col-9 col-lg-3"> 
-            <div class ="justify-content-center d-flex">
-            <%= image_tag('SS_logo.png', alt: 'Shovel Squad Logo') %>
-          </div>
+      <div class ="justify-content-center d-flex">
+        <%= image_tag('SS_logo.png', alt: 'Shovel Squad Logo') %>
+      </div>
       <div class="accordion" id="leadAccordion"> <!-- New Lead contact info -->
         <div class="card">
           <div class="card-header font-weight-bold bg-dark text-white text-shadow" id="lead">
