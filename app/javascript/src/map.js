@@ -437,7 +437,7 @@ class ShovelSquadMap {
         document.getElementById('checkMarkPayment').classList.remove('hidden');
         $("#successModal").modal("show");
       }
-    });
+    }).catch(() => { $("#serverErrorModal").modal("show")}); // TODO: modal displaying error 
   }
 
   reloadPage() {
