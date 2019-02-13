@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shovel Squad (React)</title>
+    <%= csrf_meta_tags %>
+    <%= javascript_pack_tag 'index' %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+  <script
+    id="google-maps-script"
+    async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDafFObZ3lBKKVKjYwxGL2xcvqVEwC68XY&libraries=places,drawing" async defer>
+  </script>
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous"
+  />
+</html>
