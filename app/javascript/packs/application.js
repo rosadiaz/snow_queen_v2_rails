@@ -6,10 +6,9 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
-//= require 'dom'
 
-import ShovelSquadMap from '../../assets/javascripts/map'
-import Lead from '../../assets/javascripts/lead'
+import ShovelSquadMap from '../src/map'
+import Lead from '../src/lead'
 
 window.initMap = function() {
   if (document.readyState === "loading") {
