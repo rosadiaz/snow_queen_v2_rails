@@ -43,6 +43,8 @@ gem 'telephone_number'
 # Stripe payment processing gem https://github.com/stripe/stripe-ruby
 gem 'stripe', '~> 3.0'
 gem 'webpacker'
+# Airbrake error monitoring Heroku https://devcenter.heroku.com/articles/airbrake
+gem 'airbrake'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
