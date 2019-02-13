@@ -121,8 +121,15 @@ main {
   text-decoration: none;
 }
 
-#areaSelectingGif > img {
-  height: 30vh;
+#areaSelectingGif {
+  height: 5vh;
+}
+
+@media (min-width: 1200px) {  
+  #areaSelectingGif {
+    height: 10vh;
+  }
+  
 }
 
 .errors {
