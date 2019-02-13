@@ -67,7 +67,19 @@ footer {
     font-weight: 100;
   }
 
-  >img {
+  .total {
+    font-size: 26px;
+    font-family: Helvetica;
+    font-weight: 100;
+  }
+
+  .minChargeNote {
+    font-size: initial;
+  }
+
+  img {
+    // height: 100%;
+    // max-width: 30%
   }
 }
 
@@ -129,7 +141,7 @@ main {
   #areaSelectingGif {
     height: 10vh;
   }
-  
+
 }
 
 .errors {

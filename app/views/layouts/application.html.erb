@@ -23,6 +23,7 @@
     <%= javascript_include_tag 'vendor' %>
     <%= javascript_pack_tag 'application' %>
     <%= favicon_link_tag asset_path('SS_logo.png') %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body class="bg-success">
@@ -52,44 +53,6 @@
         </div>
       </header>
       <%= yield %>
-
-      <footer class="bg-black">
-        <div class="row justify-content-center pt-5 pb-1">
-          <div class="col-8">
-            <p class="city-title text-white d-flex justify-content-around pb-4">
-              Serving Burke Mountain, Coquitlam Residents Only
-            </p>
-            <div class="text-white d-flex justify-content-around pb-4"> 
-              <p>We apologize for any inconvenience and hope to be serving more neighbourhoods next winter.</p>
-            </div>
-            <div class="text-white">
-              <strong>Email:&nbsp;</strong>contact@shovelsquad.ca<br>
-              <span style="color: #851a1c;">
-                <a style="color: #851a1c;" href="http://shovelsquad.ca/index.php/terms-and-conditions/">Terms and Conditions</a><br>
-              </span>
-            </div>
-          </div>
-        </div>
-          <!-- Default Statcounter code for Shovel squad app http://https://app.shovelsquad.ca -->
-          <script type="text/javascript">
-          var sc_project=11944311; 
-          var sc_invisible=0; 
-          var sc_security="d9f2157b"; 
-          var sc_https=1; 
-          var scJsHost = "https://";
-          document.write("<sc"+"ript type='text/javascript' src='" + scJsHost+
-          "statcounter.com/counter/counter.js'></"+"script>");
-          </script>
-          <noscript><div class="statcounter"><a title="Web Analytics"
-          href="https://statcounter.com/" target="_blank"><img class="statcounter"
-          src="https://c.statcounter.com/11944311/0/d9f2157b/0/" alt="Web
-          Analytics"></a></div></noscript>
-          <!-- End of Statcounter Code -->
-      </footer>
-
-      <div class="text-right bg-gray text-info p-3">
-        Developed by <a href="https://www.linkedin.com/in/rosadiazjara/" target="_top">Rosa Diaz</a>
-      </div>
     </div>
   </body>
 </html>
