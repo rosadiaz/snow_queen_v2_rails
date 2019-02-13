@@ -47,6 +47,7 @@ body {
 }
 
 header {
+  min-height: 10%;
   padding-left: 10% !important;
   padding-right: 10% !important;
 
@@ -58,6 +59,7 @@ header {
 }
 
 footer {
+  min-height: 30%;
   grid-row-start: 2;
   grid-row-end: 3;
 
@@ -103,6 +105,14 @@ main {
   border-radius: 3px;
   margin: 5px;
   font-size: 14px;
+}
+
+.gmnoprint {
+  display:none;
+}
+
+.gm-control-active {
+  display: none;
 }
 
 .hidden {
