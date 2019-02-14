@@ -47,13 +47,13 @@ body {
 }
 
 header {
+  height: 10vh;
   padding-left: 10% !important;
   padding-right: 10% !important;
 
   > img {
     height: 100%;
     max-height: 60px;
-    // padding: 0px 0px 0px 10px;
   }
 }
 
@@ -67,12 +67,28 @@ footer {
     font-weight: 100;
   }
 
-  >img {
+  .total {
+    font-size: 26px;
+    font-family: Helvetica;
+    font-weight: 100;
+  }
+
+  .minChargeNote {
+    font-size: initial;
   }
 }
 
+z-index-10000 {
+  z-index: 10000;
+}
+
+z-index-10001 {
+  z-index: 10001;
+}
+
 main {
-  height: 80%;
+  height: 80vh;
+  overflow-y: scroll;
   background-image: image-url("ShovelSquad-Web-Bkg.png");
   background-repeat: no-repeat;
   background-position-y: bottom;
@@ -91,6 +107,14 @@ main {
   border-radius: 3px;
   margin: 5px;
   font-size: 14px;
+}
+
+.gmnoprint {
+  display:none;
+}
+
+.gm-control-active {
+  display: none;
 }
 
 .hidden {
@@ -121,8 +145,15 @@ main {
   text-decoration: none;
 }
 
-#areaSelectingGif > img {
-  height: 30vh;
+#areaSelectingGif {
+  height: 5vh;
+}
+
+@media (min-width: 1200px) {  
+  #areaSelectingGif {
+    height: 10vh;
+  }
+
 }
 
 .errors {
@@ -142,6 +173,9 @@ main {
 .font-size-35 {
   font-size: 35px;
 }
+.font-size-20 {
+  font-size: 20px;
+}
 
 .currency-symbol {
   font-size: 25px;
@@ -151,11 +185,11 @@ main {
 .modal {
   // Ensures autocomplete suggestions are shown in the front most layer 
   // https://stackoverflow.com/a/10958563
-  z-index: 20;
+  z-index: 10001;
 }
 
 .modal-backdrop {
-  z-index: 10;        
+  z-index: 10000;        
 }
 
 .StripeElement {
