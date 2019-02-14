@@ -2,7 +2,6 @@
   <div class="row d-flex justify-content-center align-items-center">
     <div class="col col-12 col-lg-7 ">
       <div class="accordion" id="quoteAccordion">
-
         <div class="card">
           <div class="card-header font-weight-bold bg-dark text-white text-shadow" id="lead">
             <div class="text-center"> 
@@ -10,7 +9,6 @@
             </div>
           </div>
         </div>
-
         <div class="card"> <!-- Step 1: Search Address -->
           <div class="card-header bg-success" id="headingFindAddress">
             <div class="mb-0">
@@ -29,7 +27,7 @@
                   <input id="addressInput" type="textbox" placeholder="Start typing your address" class="w-75">
                   <input id="addressSubmit" type="submit" value="Find" class="btn btn-primary text-white ml-3 disabled" disabled>
                 </div>
-            <small class="d-flex justify-content-center">Note: we’re currently only servicing the Burke Mountain, Coquitlam neighbourhood.</small>
+                <small class="d-flex justify-content-center">Note: we’re currently only servicing the Burke Mountain, Coquitlam neighbourhood.</small>
               </form>
             </div>
           </div>
@@ -196,7 +194,7 @@
                           Terms and Conditions
                         </button>
                         <!-- Terms and Conditions Modal -->
-                        <div class="modal fade m-5" id="terms" tabindex="-1" role="dialog" aria-labelledby="termsTitle" aria-hidden="true">
+                        <div class="modal fade m-2" id="terms" tabindex="-1" role="dialog" aria-labelledby="termsTitle" aria-hidden="true">
                           <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -452,7 +450,8 @@
 </script>
 
 <footer>
-  <div class="bg-black d-none d-lg-block d-xl-block"> <!-- FOOTER DESKTOP -->
+<!-- FOOTER DESKTOP -->
+  <div id="desktopFooter" class="bg-black d-none d-lg-block d-xl-block"> 
     <div class="row justify-content-center pt-5 pb-1">
       <div class="col-8">
         <p class="city-title text-white d-flex justify-content-around pb-4">
@@ -491,33 +490,79 @@
       Developed by <a href="https://www.linkedin.com/in/rosadiazjara/" target="_top">Rosa Diaz</a>
     </div>
   </div>
-  <div class="bg-black d-lg-none d-xl-none fixed-bottom"> <!-- FOOTER MOBILE-->
-    <div class="row p-1 text-white">
-      <div class="col-4 p-0 d-flex justify-content-center">
-        <img id="staticMapMobile" alt="Selected area map" class="staticMap hidden" style="height: 100px; width: 100px">
-      </div>
-
-      <div class="col-4 p-0">
-        <div class="hidden" id="footerAddress">
-          <div id="primaryAddressMobile">### Street</div>
-          <div id="secondaryAddressMobile">
-            <small class="secondary-address"> City</small><br>
-            <small class="secondary-address"> Province Postal Code</small><br>
-            <small class="secondary-address"> Country</small><br>
+  <!-- FOOTER MOBILE-->
+  <div class="fixed-bottom">
+    <div id="accordion">
+      <div class="card bg-black d-lg-none d-xl-none">
+        <div class="card-header" id="headingOne"> <!-- Total mobile-->
+          <div class="row align-items-center text-white">
+            <div class="col-1"></div>
+            <div class="col-4">
+              <h5 class="mb-0">
+                <button class="btn align-middle" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  See details
+                </button>
+              </h5>
+            </div>
+            <div class="col-5 text-right">
+              <span class="font-weight-bold currency-symbol text-secondary">$</span>
+              <span id="totalDueMobile" class="font-weight-bold font-size-35">MIN_CHARGE</span>
+            </div>
+            <div class="col-12 text-right">
+              <small id="minChargeNoteMobile">(Minimum charge after discount $75)</small>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-4 p-0">
-        <small id="summaryServiceExpeditionTimeMobile" class ="hidden">SERVICE EXPEDITION TIME</small><br>
-        <small id="summarySaltBagsMobile" class ="hidden">NUMBER OF BAGS</small><br>
-        <span>Total due:</span>
-        <p>
-          <span class="font-weight-bold currency-symbol text-secondary">$</span>
-          <span id="totalDueMobile" class="font-weight-bold font-size-35">MIN_CHARGE</span> CAD
-        </p>
-      </div>
-      <div class="col-12 text-right minChargeNote">
-        <small id="minChargeNoteMobile">(Minimum charge after discount $75)</small>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion"> <!-- Details mobile -->
+          <div class="card-body">
+            <div class="row p-1 text-white"> <!-- Map and Address -->
+              <div class="col-1"></div>
+              <div class="col-4 p-0 d-flex justify-content-center"> <!-- Map mobile-->
+                <img id="staticMapMobile" alt="Selected area map" class="staticMap hidden" style="height: 100px; width: 100px">
+              </div>
+              <div class="col-6 p-0"> <!-- Address mobile-->
+                <div class="hidden" id="footerAddress">
+                  <div id="primaryAddressMobile">### Street</div>
+                  <div id="secondaryAddressMobile">
+                    <small class="secondary-address"> City</small><br>
+                    <small class="secondary-address"> Province Postal Code</small><br>
+                    <small class="secondary-address"> Country</small><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row hidden text-white" id="summaryAreaMobile"> <!-- Total Area mobile-->
+              <div class="col-1"></div>
+              <div class="col-6">
+                <small>Selected area: <b id="areaInSqFtMobile">AREA IN SQ FT</b> sq ft</small><br>
+              </div>
+              <div class="col-5 font-size-20">
+                  <span>$</span>
+                  <span id="subTotalDueMobile" class="font-weight-bold text-secondary">SUBTOTAL FOR AREA</span>
+              </div>
+            </div>
+            <div class="row hidden text-white" id="summaryExpeditionOptionsMobile"> <!-- Service Options mobile-->
+              <div class="col-1"></div>
+              <div class="col-6">
+                <small id="summaryServiceExpeditionTimeMobile">SERVICE EXPEDITION TIME</small><br>
+              </div>
+              <div class="col-5 font-size-20">
+                <span>$</span>
+                <span id="serviceExpeditionDueMobile" class="font-weight-bold text-secondary">EXPEDITION COST</span>
+              </div>
+            </div>
+            <div class="row hidden text-white" id="summarySaltBagsMobileOptions"> <!-- Salt Bags mobile-->
+              <div class="col-1"></div>
+              <div class="col-6">
+                <small id="summarySaltBagsMobile">NUMBER OF BAGS</small><br>
+              </div>
+              <div class="col-5 font-size-20">      
+                <span>$</span>
+                <span id="saltBagsDueMobile" class="font-weight-bold text-secondary">BAGS COST</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row bg-success m-0">
@@ -528,5 +573,4 @@
       <small>Developed by <a href="https://www.linkedin.com/in/rosadiazjara/" target="_top">Rosa Diaz</a></small>
     </div>
   </div>
-
 </footer>

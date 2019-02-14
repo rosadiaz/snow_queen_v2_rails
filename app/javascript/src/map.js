@@ -202,8 +202,11 @@ class ShovelSquadMap {
 
   updateAreaOnSummary() {
     Dom.showNode(document.getElementById('summaryArea'))
+    Dom.showNode(document.getElementById('summaryAreaMobile'))
     this.updateAmount('areaInSqFt', this.totalAreaInSqFt, 0)
+    this.updateAmount('areaInSqFtMobile', this.totalAreaInSqFt, 0)
     this.updateAmount('subTotalDue', this.subTotal, 2)
+    this.updateAmount('subTotalDueMobile', this.subTotal, 2)
   }
 
   updateAmount(id, amount, precision) {
@@ -259,6 +262,7 @@ class ShovelSquadMap {
         small.classList.add('secondary-address');
         secondaryAddressNode.appendChild(div);
         secondaryAddressMobileNode.appendChild(small);
+        secondaryAddressMobileNode.appendChild(document.createElement('br'));
       });
     Dom.showNode(document.getElementById('summary'));
     Dom.showNode(document.getElementById('summaryAddress'));
@@ -313,13 +317,14 @@ class ShovelSquadMap {
 
   handleExpeditionInfoClick(event) {
     Dom.showNode(document.getElementById('summaryExpeditionOptions'));
-    Dom.showNode(document.getElementById('summaryServiceExpeditionTimeMobile'));
+    Dom.showNode(document.getElementById('summaryExpeditionOptionsMobile'));
     this.serviceExpeditionCost = Number.parseFloat(event.target.value);
     this.serviceExpeditionLabel = event.target.dataset.label;
     this.serviceExpeditionTime = event.target.id;
     document.getElementById('summaryServiceExpeditionTime').innerText = this.serviceExpeditionLabel;
-    document.getElementById('summaryServiceExpeditionTimeMobile').innerText = "∙ " + this.serviceExpeditionLabel;
+    document.getElementById('summaryServiceExpeditionTimeMobile').innerText = this.serviceExpeditionLabel;
     this.updateAmount('serviceExpeditionDue', this.serviceExpeditionCost, 2);
+    this.updateAmount('serviceExpeditionDueMobile', this.serviceExpeditionCost, 2);
     this.updateGrandTotal();
   }
 
@@ -344,10 +349,11 @@ class ShovelSquadMap {
   updateTotalSaltBags() {
     this.updateAmount('numberOfBags', this.saltBagsQuantity, 0);
     this.updateAmount('summaryNumberOfBags', this.saltBagsQuantity, 0);
-    document.getElementById('summarySaltBagsMobile').innerText = "∙ " + this.saltBagsQuantity + " de-icer bags";
+    document.getElementById('summarySaltBagsMobile').innerText = this.saltBagsQuantity + " additional de-icer bags";
     this.updateAmount('saltBagsDue', this.saltBagsDue, 2);
+    this.updateAmount('saltBagsDueMobile', this.saltBagsDue, 2);
     Dom.showNode(document.getElementById("summarySaltBags"));
-    Dom.showNode(document.getElementById("summarySaltBagsMobile"));
+    Dom.showNode(document.getElementById("summarySaltBagsMobileOptions"));
   }
 
   handleDoneAddOns() {
