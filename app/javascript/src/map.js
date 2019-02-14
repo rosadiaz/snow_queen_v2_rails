@@ -234,23 +234,35 @@ class ShovelSquadMap {
     if (geocodedAddress) {
       this.geocodedAddress = geocodedAddress;
       const primaryAddressNode = document.getElementById('primaryAddress');
+      const primaryAddressMobileNode = document.getElementById('primaryAddressMobile');
       const secondaryAddressNode = document.getElementById('secondaryAddress');
+      const secondaryAddressMobileNode = document.getElementById('secondaryAddressMobile');
       while (primaryAddressNode.firstChild) { primaryAddressNode.removeChild(primaryAddressNode.firstChild) }
+      while (primaryAddressMobileNode.firstChild) { primaryAddressMobileNode.removeChild(primaryAddressMobileNode.firstChild) }
       while (secondaryAddressNode.firstChild) { secondaryAddressNode.removeChild(secondaryAddressNode.firstChild) }
+      while (secondaryAddressMobileNode.firstChild) { secondaryAddressMobileNode.removeChild(secondaryAddressMobileNode.firstChild) }
 
       let splitAddress = geocodedAddress.split(',');
       const div = document.createElement('div');
-      div.innerText = splitAddress.shift();
+      let street = splitAddress.shift();
+      div.innerText = street;
+      primaryAddressMobileNode.innerText = street;
       div.classList.add('primary-address');
       primaryAddressNode.appendChild(div);
+
       splitAddress.forEach(element => {
         const div = document.createElement('div');
+        const small = document.createElement('small');
         div.innerText = element;
+        small.innerText = element;
         div.classList.add('secondary-address');
+        small.classList.add('secondary-address');
         secondaryAddressNode.appendChild(div);
+        secondaryAddressMobileNode.appendChild(small);
       });
     Dom.showNode(document.getElementById('summary'));
     Dom.showNode(document.getElementById('summaryAddress'));
+    Dom.showNode(document.getElementById('footerAddress'));
     }
   }
 
@@ -284,7 +296,9 @@ class ShovelSquadMap {
 
     const staticMapURL = `${mapOptions.BASE_URL}${polygons_string}&zoom=${mapOptions.ZOOM}&size=${mapOptions.SIZE}&maptype=${mapOptions.MAP_TYPE}&key=${APIkey}`
     document.getElementById("staticMap").setAttribute("src", staticMapURL)
+    document.getElementById("staticMapMobile").setAttribute("src", staticMapURL)
     document.getElementById("staticMap").classList.remove("hidden");
+    document.getElementById("staticMapMobile").classList.remove("hidden");
   }
 
   vertexToString(polygon) {
@@ -299,11 +313,13 @@ class ShovelSquadMap {
 
   handleExpeditionInfoClick(event) {
     Dom.showNode(document.getElementById('summaryExpeditionOptions'));
+    Dom.showNode(document.getElementById('summaryServiceExpeditionTimeMobile'));
     this.serviceExpeditionCost = Number.parseFloat(event.target.value);
     this.serviceExpeditionLabel = event.target.dataset.label;
     this.serviceExpeditionTime = event.target.id;
-    document.getElementById('summaryServiceExpeditionTime').innerText = this.serviceExpeditionLabel
-    this.updateAmount('serviceExpeditionDue', this.serviceExpeditionCost, 2)
+    document.getElementById('summaryServiceExpeditionTime').innerText = this.serviceExpeditionLabel;
+    document.getElementById('summaryServiceExpeditionTimeMobile').innerText = "∙ " + this.serviceExpeditionLabel;
+    this.updateAmount('serviceExpeditionDue', this.serviceExpeditionCost, 2);
     this.updateGrandTotal();
   }
 
@@ -327,9 +343,11 @@ class ShovelSquadMap {
 
   updateTotalSaltBags() {
     this.updateAmount('numberOfBags', this.saltBagsQuantity, 0);
-    Dom.showNode(document.getElementById("summarySaltBags"));
     this.updateAmount('summaryNumberOfBags', this.saltBagsQuantity, 0);
+    document.getElementById('summarySaltBagsMobile').innerText = "∙ " + this.saltBagsQuantity + " de-icer bags";
     this.updateAmount('saltBagsDue', this.saltBagsDue, 2);
+    Dom.showNode(document.getElementById("summarySaltBags"));
+    Dom.showNode(document.getElementById("summarySaltBagsMobile"));
   }
 
   handleDoneAddOns() {
@@ -342,12 +360,15 @@ class ShovelSquadMap {
     let grandTotalBeforeDiscount = this.subTotal + this.serviceExpeditionCost + this.saltBagsDue;
     this.updateDiscount(grandTotalBeforeDiscount);
     this.grandTotal = Math.max(grandTotalBeforeDiscount, priceList.MIN_CHARGE) * this.discount;
-    if (this.grandTotal > priceList.MIN_CHARGE) {
-      Dom.hideNode(document.getElementById('minChargeNote'))
+    if (this.grandTotal > (priceList.MIN_CHARGE * this.discount)) {
+      Dom.hideNode(document.getElementById('minChargeNote'));
+      Dom.hideNode(document.getElementById('minChargeNoteMobile'));
     } else {
-      Dom.showNode(document.getElementById('minChargeNote'))
+      Dom.showNode(document.getElementById('minChargeNote'));
+      Dom.showNode(document.getElementById('minChargeNoteMobile'));
     }
     this.updateAmount('totalDue', this.grandTotal, 2)
+    this.updateAmount('totalDueMobile', this.grandTotal, 2)
   }
 
   updateDiscount(grandTotalBeforeDiscount) {

@@ -383,14 +383,12 @@
                   <span id="saltBagsDue" class="font-weight-bold text-secondary font-size-35">TOTAL FOR BAGS</span>
                 </dd>
               </div>
-
               <div id="summaryDiscount">Discount: <b id="summaryDiscountAmount">DISCOUNT</b>%
                 <dd class="text-right">
                   <span class="font-weight-bold currency-symbol text-secondary">$</span>
                   <span id="totalDiscount" class="font-weight-bold text-discount font-size-35">TOTAL DISCOUNT</span>
                 </dd>
               </div>
-
             </div>
             <div class="card"> 
             <div class="card-header bg-info"><b>Total due:</b></div>
@@ -453,9 +451,8 @@
   src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.credentials.google_api%>&libraries=places,drawing&callback=initMap" async defer>
 </script>
 
-
 <footer>
-  <div class="bg-black d-none d-lg-block d-xl-block">
+  <div class="bg-black d-none d-lg-block d-xl-block"> <!-- FOOTER DESKTOP -->
     <div class="row justify-content-center pt-5 pb-1">
       <div class="col-8">
         <p class="city-title text-white d-flex justify-content-around pb-4">
@@ -494,25 +491,33 @@
       Developed by <a href="https://www.linkedin.com/in/rosadiazjara/" target="_top">Rosa Diaz</a>
     </div>
   </div>
-  <div class="bg-black d-lg-none d-xl-none fixed-bottom">
+  <div class="bg-black d-lg-none d-xl-none fixed-bottom"> <!-- FOOTER MOBILE-->
     <div class="row p-1 text-white">
       <div class="col-4 p-0 d-flex justify-content-center">
-        <img alt="Selected area map" class="staticMap" style="height: 100px; width: 100px" src="https://maps.googleapis.com/maps/api/staticmap?path=color:0x61D5DD|fillcolor:0x61D5DD|weight:5|49.310033833638435,-122.85919604685716|49.310033833638435,-122.8593003345128|49.30985193852413,-122.8593003345128|49.30985193852413,-122.85913712297827|49.310033833638435,-122.85919604685716&amp;zoom=20&amp;size=512x512&amp;maptype=satellite&amp;key=AIzaSyDTUlZw7oIzOwoDws0-jOOlbfCK_9rmT5s">
+        <img id="staticMapMobile" alt="Selected area map" class="staticMap hidden" style="height: 100px; width: 100px">
+      </div>
+
+      <div class="col-4 p-0">
+        <div class="hidden" id="footerAddress">
+          <div id="primaryAddressMobile">### Street</div>
+          <div id="secondaryAddressMobile">
+            <small class="secondary-address"> City</small><br>
+            <small class="secondary-address"> Province Postal Code</small><br>
+            <small class="secondary-address"> Country</small><br>
+          </div>
+        </div>
       </div>
       <div class="col-4 p-0">
-        <span>2342 Clarke St</span>
-        <small>Port Moody<br>
-          BC V3H 1Y8<br>
-          Canada
-        </small>
+        <small id="summaryServiceExpeditionTimeMobile" class ="hidden">SERVICE EXPEDITION TIME</small><br>
+        <small id="summarySaltBagsMobile" class ="hidden">NUMBER OF BAGS</small><br>
+        <span>Total due:</span>
+        <p>
+          <span class="font-weight-bold currency-symbol text-secondary">$</span>
+          <span id="totalDueMobile" class="font-weight-bold font-size-35">MIN_CHARGE</span> CAD
+        </p>
       </div>
-      <div class="col-4 p-0">
-        <small>In the next 8hrs</small><br>
-        <small>+ 3 de-icer bags</small>
-        <p class="text-center total">Total $75</p>
-      </div>
-      <div class="col-12 text-center minChargeNote">
-        <small>(Minimum charge after discount $75)</small>
+      <div class="col-12 text-right minChargeNote">
+        <small id="minChargeNoteMobile">(Minimum charge after discount $75)</small>
       </div>
     </div>
     <div class="row bg-success m-0">
