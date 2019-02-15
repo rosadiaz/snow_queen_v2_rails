@@ -40,27 +40,34 @@ html {
   --discount: #becead;
 }
 
+.navbar-brand {
+  img {
+    height: 30px;
+    padding: 0 0 0 10px;
+  }
+}
+
 body {
-  min-height: 100%;
+  // min-height: 80%;
   // display: grid;
   // grid-template-rows: 1fr auto;
 }
 
-header {
-  height: 10vh;
-  padding-left: 10% !important;
-  padding-right: 10% !important;
+// header {
+//   height: 10vh;
+//   padding-left: 10% !important;
+//   padding-right: 10% !important;
 
-  img {
-    // height: 100%;
-    max-height: 40px;
-    // border: thin solid red;
-  }
-}
+//   img {
+//     // height: 100%;
+//     max-height: 40px;
+//     // border: thin solid red;
+//   }
+// }
 
 footer {
-  grid-row-start: 2;
-  grid-row-end: 3;
+  // grid-row-start: 2;
+  // grid-row-end: 3;
 
   .city-title {
     font-size: 26px;
@@ -88,12 +95,12 @@ z-index-10001 {
 }
 
 main {
-  height: 70vh;
-  overflow-y: scroll;
+  // height: 80vh;
+  // overflow-y: scroll;
   background-image: image-url("ShovelSquad-Web-Bkg.png");
-  background-repeat: no-repeat;
-  background-position-y: bottom;
-  background-attachment: fixed;
+  // background-repeat: no-repeat;
+  // background-position-y: bottom;
+  // background-attachment: fixed;
   background-size: cover;
 }
 

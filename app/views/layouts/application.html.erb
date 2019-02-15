@@ -31,18 +31,17 @@
   </head>
 
   <body class="bg-success">
-    <div class="d-flex flex-column">
-      <header class="bg-info sticky-top navbar navbar-light navbar-expand-lg">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="http://shovelsquad.ca/index.php/">
           <%= image_tag('ShovelSquad-Logo-Wordmark.png', alt: 'Shovel Squad Logo') %>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end bg-info pl-3 text-" id="navbarMenu">
-          <ul class="navbar-nav mt-2 mt-lg-0">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link text-secondary" href="http://shovelsquad.ca/index.php/">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link text-secondary" href="http://shovelsquad.ca/index.php/">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-secondary" href="http://shovelsquad.ca/index.php/">About Us</a>
@@ -55,8 +54,7 @@
             </li>
           </ul>
         </div>
-      </header>
+      </nav>
       <%= yield %>
-    </div>
   </body>
 </html>
