@@ -1,9 +1,13 @@
 const Dom = {
   showNode: (node) => {
-    node.classList.remove("hidden");
+    if (node && node.classList) {
+      node.classList.remove("hidden");
+    }
   },
   hideNode: (node) => {
-    node.classList.add("hidden");
+    if (node && node.classlist) {
+      node.classList.add("hidden");
+    }
   },
 }
 

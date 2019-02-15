@@ -179,7 +179,6 @@ class ShovelSquadMap {
       document.getElementById('doneSelectingArea').classList.remove('disabled');
       document.getElementById('doneSelectingArea').disabled = false;
     }
-    document.getElementById('areaSelectHint').classList.remove('hidden');
     this.enableSubmitButton();
   }
 
@@ -211,7 +210,9 @@ class ShovelSquadMap {
 
   updateAmount(id, amount, precision) {
     const node = document.getElementById(id);
-    node.innerText = `${amount.toLocaleString(undefined, {maximumFractionDigits: precision})}`;
+    if (node) {
+      node.innerText = `${amount.toLocaleString(undefined, {maximumFractionDigits: precision})}`;
+    }
   }
 
   geocodeAddress(address) {
