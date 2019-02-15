@@ -42,8 +42,8 @@ html {
 
 body {
   min-height: 100%;
-  display: grid;
-  grid-template-rows: 1fr auto;
+  // display: grid;
+  // grid-template-rows: 1fr auto;
 }
 
 header {
@@ -51,9 +51,10 @@ header {
   padding-left: 10% !important;
   padding-right: 10% !important;
 
-  > img {
-    height: 100%;
-    max-height: 60px;
+  img {
+    // height: 100%;
+    max-height: 40px;
+    // border: thin solid red;
   }
 }
 
@@ -87,7 +88,7 @@ z-index-10001 {
 }
 
 main {
-  height: 80vh;
+  height: 70vh;
   overflow-y: scroll;
   background-image: image-url("ShovelSquad-Web-Bkg.png");
   background-repeat: no-repeat;
@@ -153,7 +154,13 @@ main {
   #areaSelectingGif {
     height: 10vh;
   }
+}
 
+@media (max-width: 991.98px) { 
+  footer {
+    max-height: 91px;
+    // border: red thin solid;
+  }
 }
 
 .errors {
