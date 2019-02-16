@@ -117,10 +117,6 @@ main {
   font-size: 14px;
 }
 
-.gmnoprint {
-  display:none;
-}
-
 .gm-control-active {
   display: none;
 }
@@ -167,6 +163,9 @@ main {
   footer {
     max-height: 91px;
     // border: red thin solid;
+  }
+  .gmnoprint {
+    display:none;
   }
 }
 
