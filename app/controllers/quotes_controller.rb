@@ -19,6 +19,7 @@ class QuotesController < ApplicationController
           currency: 'cad',
           description: "Shovel Squad service # #{@quote.id}",
           source: token,
+          receipt_email: "#{@quote.email}",
       })
       @quote.add_payment_id(charge["id"])
       # TODO: hacking handling errors
