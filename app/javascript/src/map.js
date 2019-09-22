@@ -1,4 +1,4 @@
-// import Dom from './dom'
+import Dom from './dom'
 // import ShovelSquadStripe from './stripe'
 import constants from './constants'
 import 'whatwg-fetch'
@@ -166,7 +166,7 @@ class ShovelSquadMap {
   handlePolygonChanged() {
     this.totalAreaInSqFt = this.convertToSqFt(this.aggregateAreaInMts());
     // this.subTotal = this.calculateSubTotal();
-    // this.updateAreaOnSummary();
+    this.updateAreaOnSummary();
     // this.updateGrandTotal();
     // if (this.totalAreaInSqFt <= 0) {
     //   document.getElementById('checkMarkArea').classList.add('hidden');
@@ -200,19 +200,19 @@ class ShovelSquadMap {
   //   return this.totalAreaInSqFt * priceList.PRICE_PER_SQ_FT;
   // }
 
-  // updateAreaOnSummary() {
-  //   Dom.showNode(document.getElementById('summaryArea'))
-  //   Dom.showNode(document.getElementById('summaryAreaMobile'))
-  //   this.updateAmount('areaInSqFt', this.totalAreaInSqFt, 0)
-  //   this.updateAmount('areaInSqFtMobile', this.totalAreaInSqFt, 0)
-  //   this.updateAmount('subTotalDue', this.subTotal, 2)
-  //   this.updateAmount('subTotalDueMobile', this.subTotal, 2)
-  // }
+  updateAreaOnSummary() {
+    Dom.showNode(document.getElementById('summaryArea'))
+    // Dom.showNode(document.getElementById('summaryAreaMobile'))
+    this.updateAmount('areaInSqFt', this.totalAreaInSqFt, 0)
+    // this.updateAmount('areaInSqFtMobile', this.totalAreaInSqFt, 0)
+    // this.updateAmount('subTotalDue', this.subTotal, 2)
+    // this.updateAmount('subTotalDueMobile', this.subTotal, 2)
+  }
 
-  // updateAmount(id, amount, precision) {
-  //   const node = document.getElementById(id);
-  //   node.innerText = `${amount.toLocaleString(undefined, {maximumFractionDigits: precision})}`;
-  // }
+  updateAmount(id, amount, precision) {
+    const node = document.getElementById(id);
+    node.innerText = `${amount.toLocaleString(undefined, {maximumFractionDigits: precision})}`;
+  }
 
   geocodeAddress(address) {
     this.geocoder.geocode({'address': address, 'region': 'CA'}, this.handleGeocodingResponse);
@@ -227,48 +227,48 @@ class ShovelSquadMap {
         position: results[0].geometry.location
       });
       this.geocodedAddress = results[0].formatted_address;
-      // this.updateAddressOnSummary(this.geocodedAddress);
+      this.updateAddressOnSummary(this.geocodedAddress);
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   }
 
-  // updateAddressOnSummary(geocodedAddress) {
-  //   if (geocodedAddress) {
-  //     this.geocodedAddress = geocodedAddress;
-  //     const primaryAddressNode = document.getElementById('primaryAddress');
-  //     const primaryAddressMobileNode = document.getElementById('primaryAddressMobile');
-  //     const secondaryAddressNode = document.getElementById('secondaryAddress');
-  //     const secondaryAddressMobileNode = document.getElementById('secondaryAddressMobile');
-  //     while (primaryAddressNode.firstChild) { primaryAddressNode.removeChild(primaryAddressNode.firstChild) }
-  //     while (primaryAddressMobileNode.firstChild) { primaryAddressMobileNode.removeChild(primaryAddressMobileNode.firstChild) }
-  //     while (secondaryAddressNode.firstChild) { secondaryAddressNode.removeChild(secondaryAddressNode.firstChild) }
-  //     while (secondaryAddressMobileNode.firstChild) { secondaryAddressMobileNode.removeChild(secondaryAddressMobileNode.firstChild) }
+  updateAddressOnSummary(geocodedAddress) {
+    if (geocodedAddress) {
+      this.geocodedAddress = geocodedAddress;
+      const primaryAddressNode = document.getElementById('primaryAddress');
+      // const primaryAddressMobileNode = document.getElementById('primaryAddressMobile');
+      const secondaryAddressNode = document.getElementById('secondaryAddress');
+      // const secondaryAddressMobileNode = document.getElementById('secondaryAddressMobile');
+      while (primaryAddressNode.firstChild) { primaryAddressNode.removeChild(primaryAddressNode.firstChild) }
+      // while (primaryAddressMobileNode.firstChild) { primaryAddressMobileNode.removeChild(primaryAddressMobileNode.firstChild) }
+      while (secondaryAddressNode.firstChild) { secondaryAddressNode.removeChild(secondaryAddressNode.firstChild) }
+      // while (secondaryAddressMobileNode.firstChild) { secondaryAddressMobileNode.removeChild(secondaryAddressMobileNode.firstChild) }
 
-  //     let splitAddress = geocodedAddress.split(',');
-  //     const div = document.createElement('div');
-  //     let street = splitAddress.shift();
-  //     div.innerText = street;
-  //     primaryAddressMobileNode.innerText = street;
-  //     div.classList.add('primary-address');
-  //     primaryAddressNode.appendChild(div);
+      let splitAddress = geocodedAddress.split(',');
+      const div = document.createElement('div');
+      let street = splitAddress.shift();
+      div.innerText = street;
+      // primaryAddressMobileNode.innerText = street;
+      div.classList.add('primary-address');
+      primaryAddressNode.appendChild(div);
 
-  //     splitAddress.forEach(element => {
-  //       const div = document.createElement('div');
-  //       const small = document.createElement('small');
-  //       div.innerText = element;
-  //       small.innerText = element;
-  //       div.classList.add('secondary-address');
-  //       small.classList.add('secondary-address');
-  //       secondaryAddressNode.appendChild(div);
-  //       secondaryAddressMobileNode.appendChild(small);
-  //       secondaryAddressMobileNode.appendChild(document.createElement('br'));
-  //     });
-  //   Dom.showNode(document.getElementById('summary'));
-  //   Dom.showNode(document.getElementById('summaryAddress'));
-  //   Dom.showNode(document.getElementById('footerAddress'));
-  //   }
-  // }
+      splitAddress.forEach(element => {
+        const div = document.createElement('div');
+        const small = document.createElement('small');
+        div.innerText = element;
+        small.innerText = element;
+        div.classList.add('secondary-address');
+        small.classList.add('secondary-address');
+        secondaryAddressNode.appendChild(div);
+        // secondaryAddressMobileNode.appendChild(small);
+        // secondaryAddressMobileNode.appendChild(document.createElement('br'));
+      });
+    Dom.showNode(document.getElementById('summary'));
+    Dom.showNode(document.getElementById('summaryAddress'));
+    // Dom.showNode(document.getElementById('footerAddress'));
+    }
+  }
 
   handlePolygonCreated(polygon){
     this.polygons.push(polygon)

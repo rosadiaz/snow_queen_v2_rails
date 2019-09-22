@@ -8,6 +8,26 @@
   <div id="map" data-api-key="<%=Rails.application.credentials.google_api%>">
   </div>
 </div>
+
+<div id="summary" class="hidden">
+  <div id="summaryAddress" class="hidden">Address:
+    <div>
+      <div class="row displayAddress" id="displayAddress">
+        <div class="col-12 card-text" id="primaryAddress"><div class="primary-address">### Street</div></div>
+        <div class="col-6 card-text secondary" id="secondaryAddress">
+          <div class="secondary-address"> City</div>
+          <div class="secondary-address"> Province Postal Code</div>
+          <div class="secondary-address"> Country</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="summaryArea" class="hidden">Selected area: <b id="areaInSqFt">AREA IN SQ FT</b> sq ft
+  </div>
+</div>
+
+
+
 <script>
   var mapOptions = {
     BASE_URL: "<%= StaticMapUrlBuilder::BASE_URL %>",
