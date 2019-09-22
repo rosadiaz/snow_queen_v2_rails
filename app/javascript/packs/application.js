@@ -20,6 +20,6 @@ window.initMap = function() {
 
 window.loadApp = function () {
   new ShovelSquadMap();
-  new Lead();
+  // new Lead();
   $('#addressInput').focus(); //TODO not working
 }
