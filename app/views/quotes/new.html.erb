@@ -1,30 +1,37 @@
 <div class="container-fluid">
-  <form action="" id="addressSearchBar">
-    <div class="d-flex justify-content-center m-3">
-      <input id="addressInput" type="textbox" placeholder="Start typing your address" class="w-75">
-      <input id="addressSubmit" type="submit" value="Find" class="btn btn-primary text-white ml-3 disabled" disabled>
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <form action="" id="addressSearchBar">
+        <div class="input-group mb-3">
+          <input id="addressInput" type="text" class="form-control" placeholder="Search address" aria-label="Address" aria-describedby="button-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary disabled" type="submit" id="addressSubmit" disabled>🔍</button>
+          </div>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
+
   <div id="map" data-api-key="<%=Rails.application.credentials.google_api%>">
   </div>
-</div>
-
-<div id="summary" class="hidden">
-  <div id="summaryAddress" class="hidden">Address:
-    <div>
-      <div class="row displayAddress" id="displayAddress">
-        <div class="col-12 card-text" id="primaryAddress"><div class="primary-address">### Street</div></div>
-        <div class="col-6 card-text secondary" id="secondaryAddress">
-          <div class="secondary-address"> City</div>
-          <div class="secondary-address"> Province Postal Code</div>
-          <div class="secondary-address"> Country</div>
+  <div id="summary" class="hidden">
+    <div id="summaryAddress" class="hidden">Address:
+      <div>
+        <div class="row displayAddress" id="displayAddress">
+          <div class="col-12 card-text" id="primaryAddress"><div class="primary-address">### Street</div></div>
+          <div class="col-6 card-text secondary" id="secondaryAddress">
+            <div class="secondary-address"> City</div>
+            <div class="secondary-address"> Province Postal Code</div>
+            <div class="secondary-address"> Country</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="summaryArea" class="hidden">Selected area: <b id="areaInSqFt">AREA IN SQ FT</b> sq ft
+    <div id="summaryArea" class="hidden">Service area: <b id="areaInSqFt">AREA IN SQ FT</b> sq ft
+    </div>
   </div>
 </div>
+
 
 
 
