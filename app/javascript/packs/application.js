@@ -8,7 +8,6 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import ShovelSquadMap from '../src/map'
-import html2canvas from 'html2canvas';
 import Lead from '../src/lead'
 
 window.initMap = function() {
@@ -22,16 +21,4 @@ window.initMap = function() {
 window.loadApp = function () {
   new ShovelSquadMap();
   $('#addressInput').focus();
-  let link = document.getElementById("printScreen");
-  link.addEventListener("click", function(event){
-    // hide map buttons
-    //instead of 👇document.body make container for only map and summary 
-    html2canvas(document.body, {useCORS:true, allowTaint: true, scale: 1} ).then(function(canvas) {
-      let newLink = document.createElement("a")
-      newLink.download = "image.jpg"; //change file name to address??
-      newLink.href = canvas.toDataURL("image/jpeg",0.8).replace(/^data:image\/[^;]/, 'data:application/octet-stream');
-      newLink.click();
-      //turn on map buttons
-    });
-  });
 }

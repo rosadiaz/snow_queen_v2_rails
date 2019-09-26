@@ -3,6 +3,7 @@ import Dom from './dom'
 import constants from './constants'
 import 'whatwg-fetch'
 import "@babel/polyfill"
+import html2canvas from 'html2canvas'
 
 class ShovelSquadMap {
   constructor(config) {
@@ -124,6 +125,7 @@ class ShovelSquadMap {
     this.drawingManager.addListener('polygoncomplete', this.handlePolygonCreated);
     this.removeLastControl.addEventListener('click', this.handleRemoveLastPolygon);
     this.removeAllControl.addEventListener('click', this.handleRemoveAllPolygons);
+    document.getElementById('printArea').addEventListener('click', this.printScreen);
     // document.getElementById('doneSelectingArea').addEventListener('click', this.handleDoneSelecting);
     // Array.from(document.getElementsByName("serviceExpeditionCost")).forEach((element) => {
     //   element.addEventListener('click', this.handleExpeditionInfoClick);
@@ -316,6 +318,21 @@ class ShovelSquadMap {
     coordArray.push(firstCoord);
     return coordArray.join("|");
   }
+
+  printScreen(){
+    let link = document.getElementById("printScreen");
+    link.addEventListener("click", function(event){
+      // hide map buttons
+      html2canvas(document.getElementById("printArea"), {useCORS:true, allowTaint: true, scale: 1} ).then(function(canvas) {
+        let newLink = document.createElement("a")
+        newLink.download = "image.jpg"; //change file name to address??
+        newLink.href = canvas.toDataURL("image/jpeg",0.8).replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+        newLink.click();
+        //turn on map buttons
+      });
+    });
+  }
+  
 
   // handleExpeditionInfoClick(event) {
   //   Dom.showNode(document.getElementById('summaryExpeditionOptions'));
