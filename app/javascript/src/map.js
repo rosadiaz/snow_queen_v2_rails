@@ -8,8 +8,8 @@ class ShovelSquadMap {
   constructor(config) {
     this.map = this.initMap();
     this.drawingManager = this.initDrawingManager();
-    this.removeLastControl = this.initRemoveControls('Click to remove selected area from the map','Remove last');
-    this.removeAllControl = this.initRemoveControls('Click to remove ALL selected areas from the map', 'Remove All');
+    this.removeLastControl = this.initRemoveControls('Click to remove selected area from the map','Remove last','removeLast');
+    this.removeAllControl = this.initRemoveControls('Click to remove ALL selected areas from the map', 'Remove All', 'removeAll');
     this.geocoder = this.initGeocoder();
     this.autocomplete = this.initAutocomplete();
     this.marker = null;
@@ -58,11 +58,12 @@ class ShovelSquadMap {
     })
   }
 
-  initRemoveControls(title, label) {
+  initRemoveControls(title, label, id) {
     const removeControlDiv = document.createElement('button');
     removeControlDiv.classList.add('map-btn', 'btn-lg', 'btn-primary', 'm-1', 'font-weight-bold')
     removeControlDiv.title = title;
     removeControlDiv.innerHTML = label;
+    removeControlDiv.id = id;
 
     removeControlDiv.index = 1;
     this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(removeControlDiv);
@@ -136,7 +137,6 @@ class ShovelSquadMap {
     });
     return totalAreaInMts;
   }
-
 
   updateAreaOnSummary() {
     Dom.showNode(document.getElementById('summaryArea'))
@@ -225,12 +225,17 @@ class ShovelSquadMap {
   printScreen(){
     let link = document.getElementById("printArea");
     // hide map buttons
+    document.getElementById("removeLast").classList.add('hidden');
+    document.getElementById("removeAll").classList.add('hidden');
+    // WHY CANT I USE THE VARIABLE link 👇
     html2canvas(document.getElementById("printArea"), {useCORS:true, allowTaint: true, scale: 1} ).then(function(canvas) {
       let newLink = document.createElement("a")
       newLink.download = "image.jpg"; //change file name to address??
       newLink.href = canvas.toDataURL("image/jpeg",0.8).replace(/^data:image\/[^;]/, 'data:application/octet-stream');
       newLink.click();
       //turn on map buttons
+      document.getElementById("removeLast").classList.remove('hidden');
+      document.getElementById("removeAll").classList.remove('hidden');
     });
   }
   
