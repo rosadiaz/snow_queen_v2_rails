@@ -5,7 +5,7 @@
         <div class="input-group m-3">
           <input id="addressInput" type="text" class="form-control" placeholder="Search address" aria-label="Address" aria-describedby="button-addon2">
           <div class="input-group-append">
-            <button class="btn btn-primary disabled" type="submit" id="addressSubmit" disabled>🔍</button>
+            <button class="btn disabled" type="submit" id="addressSubmit" disabled><span>🔍</span></button>
           </div>
         </div>
       </form>
@@ -15,23 +15,32 @@
   </div>
 
   <div id="summary" class="hidden">
-    <div class="card mb-3" style="max-width: 18rem;">
+    <div class="card mb-3" style="max-width: 18rem;" id="card">
       <div class="card-header">
         <div id="summaryAddress" class="hidden">
           <div>
             <div class="row displayAddress" id="displayAddress">
               <div class="col-12 card-text" id="primaryAddress"><div class="primary-address">### Street</div></div>
-              <div class="col-6 card-text secondary" id="secondaryAddress">
+              <div class="col-9 card-text secondary" id="secondaryAddress">
                 <div class="secondary-address"> City</div>
                 <div class="secondary-address"> Province Postal Code</div>
                 <div class="secondary-address"> Country</div>
+              </div>
+              <div class="col-2">
+                <a href="#" id="printScreen">&#10515</a>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="card-body">
-        <div id="summaryArea" class=" card-title hidden"><b id="areaInSqFt">AREA IN SQ FT</b> sq ft
+        <div class="row">
+          <div class="col-3">
+            <img alt="Snow Queen Logo" src="/assets/Final_SnowQueen_Logo_BlueOnWhite.jpg" style="max-height: 70px">  
+          </div>
+          <div class="col-9">
+            <div id="summaryArea" class="card-title text-center"><b id="areaInSqFt">0</b> sq ft</div>
+            </div>
         </div>
       </div>
     </div>

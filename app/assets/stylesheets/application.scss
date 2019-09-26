@@ -13,8 +13,8 @@
  */
 $theme-colors: (
   "light": #EBD7C9,
-  "primary":  #50809d,
-  "success": #212f38,
+  "primary":  #212f38,
+  "success": #517f9e,
   "warning": #291B14,
   "secondary": gray,
   "info": #B8A5A3,
@@ -27,12 +27,11 @@ $theme-colors: (
 @import 'bootstrap';
 
 html {
-  // height: 100%;
   font-family: Helvetica !important;
 
   --light: #EBD7C9;
   --primary: #50809d;
-  --success: #212f38;
+  --success: #517f9e;
   --warning: #291B14;
   --secondary: gray;
   --info: #B8A5A3;
@@ -40,74 +39,17 @@ html {
   --discount: #becead;
 }
 
-.navbar-brand {
-  img {
-    height: 30px;
-    padding: 0 0 0 10px;
-  }
-}
-
 html, body {
   height: 100%;
-  // display: grid;
-  // grid-template-rows: 1fr auto;
-}
-
-// header {
-//   height: 10vh;
-//   padding-left: 10% !important;
-//   padding-right: 10% !important;
-
-//   img {
-//     // height: 100%;
-//     max-height: 40px;
-//     // border: thin solid red;
-//   }
-// }
-
-footer {
-  // grid-row-start: 2;
-  // grid-row-end: 3;
-
-  .city-title {
-    font-size: 26px;
-    font-family: Helvetica;
-    font-weight: 100;
-  }
-
-  .total {
-    font-size: 26px;
-    font-family: Helvetica;
-    font-weight: 100;
-  }
-
-  .minChargeNote {
-    font-size: initial;
-  }
-}
-
-z-index-10000 {
-  z-index: 10000;
-}
-
-z-index-10001 {
-  z-index: 10001;
-}
-
-main {
-  // height: 80vh;
-  // overflow-y: scroll;
-  background-image: image-url("ShovelSquad-Web-Bkg.png");
-  // background-repeat: no-repeat;
-  // background-position-y: bottom;
-  // background-attachment: fixed;
-  background-size: cover;
 }
 
 #map {
   width: 100%;
-  height: calc(100vh - 70px); // removes bootstrap add on for search bar
+  height: calc(100vh - 85px); // removes bootstrap add on for search bar
   background-color: grey;
+  border: 2px solid #d0cfcf;
+  border-radius: 3px;
+  box-shadow: 3px 3px 3px 0px;
 }
 
 .map-btn {
@@ -117,62 +59,50 @@ main {
   font-size: 14px;
 }
 
-.gm-control-active {
-  display: none;
-}
-
 .hidden {
   display: none;
 }
-
-#info {
-  width: 10px;
-  vertical-align: super;
-}
-
-.tooltip-inner {
-  max-width: 400px;
-  // color: black;
-  background-color: var(--warning);
-  }
 
 #summary > .card {
   position: absolute;
   top: 100px;
   left: 50px;
+  border: 2px solid #d0cfcf;
+  border-radius: 2px;
+  box-shadow: 3px 3px 3px 0px;
+}
+
+#summary {
+  img {
+    padding-right: 10px;
+    border-right: 2px dotted #517f9e;
+  }
+  .card-body {
+    .col-9 {
+      margin: auto;
+      padding-top: 15px;
+    }
+  }
+  #summaryArea {
+    font-size: 28px;
+  }
+}
+
+#addressSearchBar {
+  .btn {
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-left: none;
+    font-size: 16px;
+  }
 }
 .primary-address {
   font-size: 24px;
   font-weight: bold;
   color: black;
 }
-
 .secondary-address {
   color: gray
-}
-
-.simple_form abbr {
-  text-decoration: none;
-}
-
-#areaSelectingGif {
-  height: 10vh;
-}
-
-@media (min-width: 1200px) {  
-  #areaSelectingGif {
-    height: 10vh;
-  }
-}
-
-@media (max-width: 991.98px) { 
-  footer {
-    max-height: 91px;
-    // border: red thin solid;
-  }
-  .gmnoprint {
-    display:none;
-  }
 }
 
 .errors {
@@ -182,62 +112,13 @@ main {
 .text-shadow {
   text-shadow: 0.5px 0.5px 3px #4a4a4a;
 }
-
-.edit-button {
-  font-size: 20px;
-  border: 1px solid lightgray;
-  color: gray;
-}
-
 .font-size-35 {
   font-size: 35px;
 }
 .font-size-20 {
   font-size: 20px;
 }
-
 .currency-symbol {
   font-size: 25px;
   vertical-align: super;
-}
-
-.modal {
-  // Ensures autocomplete suggestions are shown in the front most layer 
-  // https://stackoverflow.com/a/10958563
-  z-index: 10001;
-}
-
-.modal-backdrop {
-  z-index: 10000;        
-}
-
-.StripeElement {
-  background-color: white;
-  height: 40px;
-  padding: 10px 12px;
-  border-radius: 4px;
-  border: 1px solid #ced4da;
-  box-shadow: 0 1px 3px 0 #e6ebf1;
-  -webkit-transition: box-shadow 150ms ease;
-  transition: box-shadow 150ms ease;
-}
-
-.StripeElement--focus {
-  box-shadow: 0 1px 3px 0 #cfd7df;
-}
-
-.StripeElement--invalid {
-  border-color: #fa755a;
-}
-
-.StripeElement--webkit-autofill {
-  background-color: #fefde5 !important;
-}
-
-#card-errors {
-  color: #fa755a;
-}
-
-.btn.disabled, .btn:disabled {
-  opacity: 0.3;
 }
