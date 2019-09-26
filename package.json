@@ -4,6 +4,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@rails/webpacker": "^3.5",
+    "html2canvas": "^1.0.0-rc.4",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
