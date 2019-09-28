@@ -232,8 +232,14 @@ class ShovelSquadMap {
     this.drawingManager.setOptions({ drawingControl: false });
     setTimeout(()=>{
       html2canvas(link, {useCORS:true, allowTaint: true, scale: 1} ).then((canvas) => {
-        let newLink = document.createElement("a")
-        newLink.download = "image.jpg"; //change file name to address??
+        let newLink = document.createElement("a");
+        let splitAddress = this.geocodedAddress.split(',');
+        let street = splitAddress.shift().split(' ').join('_');
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth();
+        let day = date.getDate();
+        newLink.download = `${year}${month}${day}_${street}.jpg`; //change file name to address??
         newLink.href = canvas.toDataURL("image/jpeg",0.8).replace(/^data:image\/[^;]/, 'data:application/octet-stream');
         newLink.click();
         // show map buttons
