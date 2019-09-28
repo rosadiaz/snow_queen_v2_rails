@@ -22,6 +22,7 @@ class ShovelSquadMap {
     this.handlePolygonCreated = this.handlePolygonCreated.bind(this);
     this.handleRemoveLastPolygon = this.handleRemoveLastPolygon.bind(this);
     this.handleRemoveAllPolygons = this.handleRemoveAllPolygons.bind(this);
+    this.printScreen = this.printScreen.bind(this);
     this.addListeners();
   }
 
@@ -228,7 +229,7 @@ class ShovelSquadMap {
     document.getElementById("removeLast").classList.add('hidden');
     document.getElementById("removeAll").classList.add('hidden');
     // WHY CANT I USE THE VARIABLE link 👇
-    html2canvas(document.getElementById("printArea"), {useCORS:true, allowTaint: true, scale: 1} ).then(function(canvas) {
+    html2canvas(link, {useCORS:true, allowTaint: true, scale: 1} ).then(function(canvas) {
       let newLink = document.createElement("a")
       newLink.download = "image.jpg"; //change file name to address??
       newLink.href = canvas.toDataURL("image/jpeg",0.8).replace(/^data:image\/[^;]/, 'data:application/octet-stream');
