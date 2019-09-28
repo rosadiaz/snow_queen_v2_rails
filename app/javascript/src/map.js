@@ -239,7 +239,7 @@ class ShovelSquadMap {
         let year = date.getFullYear();
         let month = date.getMonth();
         let day = date.getDate();
-        newLink.download = `${year}${month}${day}_${street}.jpg`; //change file name to address??
+        newLink.download = `${year}${month}${day}_${street}.jpg`;
         newLink.href = canvas.toDataURL("image/jpeg",0.8).replace(/^data:image\/[^;]/, 'data:application/octet-stream');
         newLink.click();
         // show map buttons
