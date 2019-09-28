@@ -228,16 +228,21 @@ class ShovelSquadMap {
     // hide map buttons
     document.getElementById("removeLast").classList.add('hidden');
     document.getElementById("removeAll").classList.add('hidden');
-    // WHY CANT I USE THE VARIABLE link 👇
-    html2canvas(link, {useCORS:true, allowTaint: true, scale: 1} ).then(function(canvas) {
-      let newLink = document.createElement("a")
-      newLink.download = "image.jpg"; //change file name to address??
-      newLink.href = canvas.toDataURL("image/jpeg",0.8).replace(/^data:image\/[^;]/, 'data:application/octet-stream');
-      newLink.click();
-      //turn on map buttons
-      document.getElementById("removeLast").classList.remove('hidden');
-      document.getElementById("removeAll").classList.remove('hidden');
-    });
+    this.map.setOptions({ zoomControl: false });
+    this.drawingManager.setOptions({ drawingControl: false });
+    setTimeout(()=>{
+      html2canvas(link, {useCORS:true, allowTaint: true, scale: 1} ).then((canvas) => {
+        let newLink = document.createElement("a")
+        newLink.download = "image.jpg"; //change file name to address??
+        newLink.href = canvas.toDataURL("image/jpeg",0.8).replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+        newLink.click();
+        // show map buttons
+        document.getElementById("removeLast").classList.remove('hidden');
+        document.getElementById("removeAll").classList.remove('hidden');
+        this.map.setOptions({ zoomControl: true });
+        this.drawingManager.setOptions({ drawingControl: true });
+      }, 300);
+    })
   }
   
   reloadPage() {
