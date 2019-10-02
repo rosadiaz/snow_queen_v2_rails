@@ -23,6 +23,7 @@ class ShovelSquadMap {
     this.handleRemoveLastPolygon = this.handleRemoveLastPolygon.bind(this);
     this.handleRemoveAllPolygons = this.handleRemoveAllPolygons.bind(this);
     this.printScreen = this.printScreen.bind(this);
+    this.checkKey = this.checkKey.bind(this);
     this.addListeners();
   }
 
@@ -100,6 +101,7 @@ class ShovelSquadMap {
     this.removeLastControl.addEventListener('click', this.handleRemoveLastPolygon);
     this.removeAllControl.addEventListener('click', this.handleRemoveAllPolygons);
     document.getElementById('printScreen').addEventListener('click', this.printScreen);
+    document.addEventListener('keydown', this.checkKey);
   }
 
   enableFindButton(){
@@ -223,6 +225,31 @@ class ShovelSquadMap {
     return coordArray.join("|");
   }
 
+  checkKey(e) {
+    switch (e.keyCode) {
+      case 37:
+        // left arrow
+        this.map.panBy(-100,0);
+        break;
+      case 38:
+        // up arrow
+        this.map.panBy(0,-100);
+        break;
+      case 39:
+        // right arrow
+        this.map.panBy(100,0);
+        break;
+      case 40:
+        // down arrow
+        this.map.panBy(0,100);
+        break;
+      case 27:
+        // ESC key
+        //open last polygon and continue selecting area   
+        break; 
+    }
+  }
+  
   printScreen(){
     let link = document.getElementById("printArea");
     // hide map buttons
