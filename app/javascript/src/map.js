@@ -56,7 +56,7 @@ class ShovelSquadMap {
       },
       map: this.map,
       polygonOptions: drawingOptions,
-      rectangleOptions: drawingOptions
+      // rectangleOptions: drawingOptions
     })
   }
 
@@ -264,7 +264,7 @@ class ShovelSquadMap {
         let street = splitAddress.shift().split(' ').join('_');
         let date = new Date();
         let year = date.getFullYear();
-        let month = date.getMonth();
+        let month = date.getMonth() + 1;
         let day = date.getDate();
         newLink.download = `${year}${month}${day}_${street}.jpg`;
         newLink.href = canvas.toDataURL("image/jpeg",0.8).replace(/^data:image\/[^;]/, 'data:application/octet-stream');
