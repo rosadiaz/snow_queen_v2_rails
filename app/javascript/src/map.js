@@ -255,6 +255,14 @@ class ShovelSquadMap {
           })
         }
         break; 
+      case 187:
+        let currentZoom = this.map.getZoom();
+        this.map.setZoom(currentZoom + 1);
+        break;
+      case 189:
+        currentZoom = this.map.getZoom();
+        this.map.setZoom(currentZoom - 1);
+        break;
     }
   }
   
