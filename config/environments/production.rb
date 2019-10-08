@@ -1,5 +1,4 @@
 require 'rubygems' if RUBY_VERSION < '1.9'
-require 'rest_client'
 require 'json'
 
 Rails.application.configure do
@@ -100,8 +99,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  # response = RestClient.get "https://mailtrap.io/api/v1/inboxes.json?api_token=#{ENV['MAILTRAP_API_TOKEN']}"
 
   first_inbox = JSON.parse(response)[0] # get first inbox
 
