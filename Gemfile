@@ -37,7 +37,6 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'json'
-gem 'rest-client'
 # TelephoneNumber is global phone number validation gem based on Google's libphonenumber library. https://github.com/mobi/telephone_number
 gem 'telephone_number'
 # Stripe payment processing gem https://github.com/stripe/stripe-ruby
