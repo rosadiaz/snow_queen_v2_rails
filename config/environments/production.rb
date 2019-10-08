@@ -100,20 +100,20 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  first_inbox = JSON.parse(response)[0] # get first inbox
+  # first_inbox = JSON.parse(response)[0] # get first inbox
 
-  ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
-  :user_name => first_inbox['username'],
-  :password => first_inbox['password'],
-  :address => first_inbox['domain'],
-  :domain => first_inbox['domain'],
-  :port => first_inbox['smtp_ports'][0],
-  :authentication => :plain
-  }
+  # ActionMailer::Base.delivery_method = :smtp
+  # ActionMailer::Base.smtp_settings = {
+  # :user_name => first_inbox['username'],
+  # :password => first_inbox['password'],
+  # :address => first_inbox['domain'],
+  # :domain => first_inbox['domain'],
+  # :port => first_inbox['smtp_ports'][0],
+  # :authentication => :plain
+  # }
 
-    # Stripe keys accessing
-    config.stripe_secret_api_key = Rails.application.credentials.dig(:stripe, :secret_live_key)
-    config.stripe_publishable_api_key = Rails.application.credentials.dig(:stripe, :publishable_live_key)
+  #   # Stripe keys accessing
+  #   config.stripe_secret_api_key = Rails.application.credentials.dig(:stripe, :secret_live_key)
+  #   config.stripe_publishable_api_key = Rails.application.credentials.dig(:stripe, :publishable_live_key)
 
 end
