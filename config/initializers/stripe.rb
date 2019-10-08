@@ -1,1 +1,0 @@
-Stripe.api_key = Rails.application.config.stripe_secret_api_key
