@@ -45,18 +45,17 @@ class ShovelSquadMap {
       strokeWeight: 5,
       strokeColor: '#50809d',
       clickable: false,
-      zIndex: 1
+      zIndex: 1,
+      editable: true,
     }
     return new google.maps.drawing.DrawingManager({
       drawingMode: google.maps.drawing.OverlayType.POLYGON,
-      drawingControl: true,
       drawingControlOptions: {
         position: google.maps.ControlPosition.TOP_CENTER,
         drawingModes: ['polygon']
       },
       map: this.map,
       polygonOptions: drawingOptions,
-      // rectangleOptions: drawingOptions
     })
   }
 
@@ -245,7 +244,16 @@ class ShovelSquadMap {
         break;
       case 27:
         // ESC key
-        //open last polygon and continue selecting area   
+        let currentDrawingMode = this.drawingManager.getDrawingMode();
+        if (currentDrawingMode == null) {
+          this.drawingManager.setOptions ({
+            drawingMode : 'polygon',
+          })
+        } else {
+          this.drawingManager.setOptions ({
+            drawingMode : null,
+          })
+        }
         break; 
     }
   }
