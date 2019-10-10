@@ -8,7 +8,6 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import ShovelSquadMap from '../src/map'
-// import Lead from '../src/lead'
 
 window.initMap = function() {
   if (document.readyState === "loading") {
