@@ -16,7 +16,7 @@ module SnowQueen
       end if File.exists?(env_file)
     end
     
-    config.assets.initialize_on_precompile = false
+    # config.assets.initialize_on_precompile = false
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
