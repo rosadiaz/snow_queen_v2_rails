@@ -32,9 +32,10 @@ class ShovelSquadMap {
       zoom: constants.ZOOM,
       center: constants.CENTER_MAP_LOCATION,
       mapTypeId: google.maps.MapTypeId.SATELLITE,
-      tilt:0,
+      tilt:45,
       disableDefaultUI: true,
       zoomControl: true,
+      rotateControl: true,
     });
   }
 
