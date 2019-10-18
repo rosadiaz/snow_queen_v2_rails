@@ -32,7 +32,7 @@ class ShovelSquadMap {
       zoom: constants.ZOOM,
       center: constants.CENTER_MAP_LOCATION,
       mapTypeId: google.maps.MapTypeId.SATELLITE,
-      tilt:45,
+      tilt:0,
       disableDefaultUI: true,
       zoomControl: true,
       rotateControl: true,
@@ -41,10 +41,10 @@ class ShovelSquadMap {
 
   initDrawingManager() {
     const drawingOptions = {
-      fillColor: '#50809d',
-      fillOpacity: 0.3,
-      strokeWeight: 5,
-      strokeColor: '#50809d',
+      fillColor: '#fabc09',
+      fillOpacity: 0.6,
+      strokeWeight: 4,
+      strokeColor: '#fabc09',
       clickable: false,
       zIndex: 1,
       editable: true,
